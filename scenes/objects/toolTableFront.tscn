@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7ky66rgkvvfg"]
+
+[ext_resource type="Texture2D" uid="uid://mhqrvgpfwxh4" path="res://graphics/objects/Tool_Table_Front.png" id="1_d0y0b"]
+[ext_resource type="Texture2D" uid="uid://b3tfxdl2eapy2" path="res://graphics/pickUps/Full_Health_Right.png" id="2_dw84s"]
+[ext_resource type="Texture2D" uid="uid://c0l1y6t5hhtfa" path="res://graphics/pickUps/Shotgun_Ammo.png" id="3_jaewg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70kq0"]
+size = Vector2(223.333, 135.417)
+
+[node name="Tool_Table_Front" type="StaticBody2D"]
+scale = Vector2(0.6, 0.6)
+
+[node name="toolTable" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_d0y0b")
+
+[node name="fullHealth" type="Sprite2D" parent="."]
+position = Vector2(-65, -145)
+scale = Vector2(0.644699, 0.57554)
+texture = ExtResource("2_dw84s")
+
+[node name="shotGunAmmo" type="Sprite2D" parent="."]
+position = Vector2(30, -136.667)
+scale = Vector2(0.653409, 0.638554)
+texture = ExtResource("3_jaewg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.33333, 71.6667)
+shape = SubResource("RectangleShape2D_70kq0")

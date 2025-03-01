@@ -1,0 +1,132 @@
+[gd_scene load_steps=18 format=3 uid="uid://c8o4e8o1yvwor"]
+
+[ext_resource type="Script" path="res://scenes/levels/first_room.gd" id="1_cv3xx"]
+[ext_resource type="Texture2D" uid="uid://drw5c86os34is" path="res://graphics/levels/Leveltest.png" id="1_vc34t"]
+[ext_resource type="Texture2D" uid="uid://b5bcjefjbbh16" path="res://graphics/levels/Sewer_Tunnel.png" id="2_isfub"]
+[ext_resource type="Texture2D" uid="uid://bayyajt148h5e" path="res://graphics/levels/RightDoor.png" id="3_7nu7y"]
+[ext_resource type="Texture2D" uid="uid://ni18unmxiem8" path="res://graphics/levels/ManHole.png" id="5_2fntg"]
+[ext_resource type="Texture2D" uid="uid://bfxsj7i6i7lnc" path="res://graphics/levels/SewerRiver1.png" id="6_cbxtq"]
+[ext_resource type="Texture2D" uid="uid://bhk8ubb1jsfmv" path="res://graphics/levels/Wall Light Right.png" id="7_8uygx"]
+[ext_resource type="Texture2D" uid="uid://b12sbf3vuuld7" path="res://graphics/levels/Wall Light Front.png" id="8_br0bj"]
+[ext_resource type="Texture2D" uid="uid://mhqrvgpfwxh4" path="res://graphics/objects/Tool_Table_Front.png" id="9_q08m6"]
+[ext_resource type="Texture2D" uid="uid://cqwie3hyolh53" path="res://graphics/objects/TrashBuggyLeft.png" id="10_0glmq"]
+[ext_resource type="Texture2D" uid="uid://cbc83g42tcles" path="res://graphics/pickUps/Files.png" id="11_gxtup"]
+[ext_resource type="Texture2D" uid="uid://b8q8a0o733m8k" path="res://graphics/pickUps/Full_Health_Front.png" id="12_wkl7x"]
+[ext_resource type="Texture2D" uid="uid://cpakic5n85ryu" path="res://graphics/pickUps/Revolver_Ammo.png" id="13_kjmdj"]
+[ext_resource type="Texture2D" uid="uid://c0l1y6t5hhtfa" path="res://graphics/pickUps/Shotgun_Ammo.png" id="14_0mrof"]
+[ext_resource type="Texture2D" uid="uid://dk4jxl0n3wlt7" path="res://graphics/pickUps/Small_Health_Front.png" id="15_agtih"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c83j6"]
+size = Vector2(142.215, 134.189)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1jer"]
+radius = 114.232
+
+[node name="firstRoom" type="StaticBody2D"]
+script = ExtResource("1_cv3xx")
+
+[node name="roomSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.28, 0.234)
+texture = ExtResource("1_vc34t")
+
+[node name="SewerTunnel" type="Sprite2D" parent="."]
+position = Vector2(96, 14)
+rotation = 0.0174533
+scale = Vector2(0.3, 0.221)
+texture = ExtResource("2_isfub")
+
+[node name="RightDoor" type="Sprite2D" parent="."]
+position = Vector2(1173, 225)
+scale = Vector2(0.308795, 0.248119)
+texture = ExtResource("3_7nu7y")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(8, 2)
+polygon = PackedVector2Array(-1522, 26, -1522, 676, -850, 42, 823, 43, 1499, 680, 1496, 28, 828, -305, -852, -308)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 4)
+polygon = PackedVector2Array(-1479, 637, -1551, 708, 1546, 720, 1458, 644)
+
+[node name="doorTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doorTrigger"]
+position = Vector2(1119.78, 403.185)
+scale = Vector2(1, 1)
+skew = -0.811578
+shape = SubResource("RectangleShape2D_c83j6")
+
+[node name="sewerTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sewerTrigger"]
+position = Vector2(-956, 263)
+skew = 0.623083
+shape = SubResource("CircleShape2D_i1jer")
+
+[node name="floorObjects" type="Node2D" parent="."]
+
+[node name="ManHole" type="Sprite2D" parent="floorObjects"]
+position = Vector2(174, 333)
+scale = Vector2(0.431641, 0.398958)
+texture = ExtResource("5_2fntg")
+
+[node name="greenSlime" type="Sprite2D" parent="floorObjects"]
+position = Vector2(-491, 339)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_cbxtq")
+
+[node name="WallLightRight" type="Sprite2D" parent="floorObjects"]
+position = Vector2(1160, 52)
+rotation = 0.10472
+scale = Vector2(0.339941, 0.172741)
+texture = ExtResource("7_8uygx")
+
+[node name="WallLightFront" type="Sprite2D" parent="floorObjects"]
+position = Vector2(-329, -193)
+scale = Vector2(0.254036, 0.232407)
+texture = ExtResource("8_br0bj")
+
+[node name="WallLightFront2" type="Sprite2D" parent="floorObjects"]
+position = Vector2(461, -193)
+scale = Vector2(0.254036, 0.232407)
+texture = ExtResource("8_br0bj")
+
+[node name="ToolTableFront" type="Sprite2D" parent="floorObjects"]
+position = Vector2(340, 26)
+scale = Vector2(0.302372, 0.291667)
+texture = ExtResource("9_q08m6")
+
+[node name="TrashBuggyLeft" type="Sprite2D" parent="floorObjects"]
+position = Vector2(-1073, 467)
+scale = Vector2(0.344167, 0.358167)
+texture = ExtResource("10_0glmq")
+
+[node name="Files" type="Sprite2D" parent="floorObjects"]
+position = Vector2(719, 89)
+scale = Vector2(0.317647, 0.41)
+texture = ExtResource("11_gxtup")
+
+[node name="FullHealthFront" type="Sprite2D" parent="floorObjects"]
+position = Vector2(-441, 548)
+scale = Vector2(0.537249, 0.57554)
+texture = ExtResource("12_wkl7x")
+
+[node name="RevolverAmmo" type="Sprite2D" parent="floorObjects"]
+position = Vector2(564, 566)
+texture = ExtResource("13_kjmdj")
+
+[node name="ShotgunAmmo" type="Sprite2D" parent="floorObjects"]
+position = Vector2(-356, 97)
+scale = Vector2(0.784091, 0.795181)
+texture = ExtResource("14_0mrof")
+
+[node name="SmallHealthFront" type="Sprite2D" parent="floorObjects"]
+position = Vector2(362, -61)
+scale = Vector2(0.578313, 0.679012)
+texture = ExtResource("15_agtih")
+
+[connection signal="body_entered" from="doorTrigger" to="." method="_on_door_trigger_body_entered"]
+[connection signal="body_exited" from="doorTrigger" to="." method="_on_door_trigger_body_exited"]
+[connection signal="body_entered" from="sewerTrigger" to="." method="_on_sewer_trigger_body_entered"]
+[connection signal="body_exited" from="sewerTrigger" to="." method="_on_sewer_trigger_body_exited"]
