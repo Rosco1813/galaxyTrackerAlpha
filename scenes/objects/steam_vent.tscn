@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bthpj5ai55cxk"]
+
+[ext_resource type="Texture2D" uid="uid://ni18unmxiem8" path="res://graphics/levels/ManHole.png" id="1_cegso"]
+[ext_resource type="Texture2D" uid="uid://80531l6qeosl" path="res://preAlphaFiles/graphics/decals/white.png" id="2_c5ptj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0km1"]
+size = Vector2(325, 107.342)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ql0sc"]
+emission_shape = 1
+emission_sphere_radius = 118.25
+particle_flag_disable_z = true
+spread = 48.08
+gravity = Vector3(-4, -143, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 3.0
+scale_max = 5.82
+color = Color(0.929412, 1, 0.372549, 0.129412)
+
+[node name="steamVent" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(17, 2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_cegso")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-51, -38)
+shape = SubResource("RectangleShape2D_c0km1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-52, -65)
+amount = 42
+process_material = SubResource("ParticleProcessMaterial_ql0sc")
+texture = ExtResource("2_c5ptj")
+lifetime = 2.0

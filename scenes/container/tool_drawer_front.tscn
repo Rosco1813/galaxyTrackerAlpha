@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0fjongi78yxg"]
+
+[ext_resource type="PackedScene" uid="uid://bbmbpp44gnfni" path="res://scenes/container/item_container.tscn" id="1_4edr6"]
+[ext_resource type="Texture2D" uid="uid://mhqrvgpfwxh4" path="res://graphics/objects/Tool_Table_Front.png" id="2_mq7el"]
+[ext_resource type="Script" path="res://scenes/container/tool_drawer_front.gd" id="2_yptsv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddvr8"]
+size = Vector2(445, 479)
+
+[node name="toolDrawerFront" instance=ExtResource("1_4edr6")]
+script = ExtResource("2_yptsv")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_mq7el")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(2.5, 48.5)
+shape = SubResource("RectangleShape2D_ddvr8")

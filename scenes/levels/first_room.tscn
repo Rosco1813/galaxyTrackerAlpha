@@ -1,26 +1,140 @@
-[gd_scene load_steps=18 format=3 uid="uid://c8o4e8o1yvwor"]
+[gd_scene load_steps=25 format=3 uid="uid://c8o4e8o1yvwor"]
 
 [ext_resource type="Script" path="res://scenes/levels/first_room.gd" id="1_cv3xx"]
 [ext_resource type="Texture2D" uid="uid://drw5c86os34is" path="res://graphics/levels/Leveltest.png" id="1_vc34t"]
 [ext_resource type="Texture2D" uid="uid://b5bcjefjbbh16" path="res://graphics/levels/Sewer_Tunnel.png" id="2_isfub"]
 [ext_resource type="Texture2D" uid="uid://bayyajt148h5e" path="res://graphics/levels/RightDoor.png" id="3_7nu7y"]
-[ext_resource type="Texture2D" uid="uid://ni18unmxiem8" path="res://graphics/levels/ManHole.png" id="5_2fntg"]
-[ext_resource type="Texture2D" uid="uid://bfxsj7i6i7lnc" path="res://graphics/levels/SewerRiver1.png" id="6_cbxtq"]
-[ext_resource type="Texture2D" uid="uid://bhk8ubb1jsfmv" path="res://graphics/levels/Wall Light Right.png" id="7_8uygx"]
-[ext_resource type="Texture2D" uid="uid://b12sbf3vuuld7" path="res://graphics/levels/Wall Light Front.png" id="8_br0bj"]
-[ext_resource type="Texture2D" uid="uid://mhqrvgpfwxh4" path="res://graphics/objects/Tool_Table_Front.png" id="9_q08m6"]
+[ext_resource type="PackedScene" uid="uid://bthpj5ai55cxk" path="res://scenes/objects/steam_vent.tscn" id="5_7ys3i"]
+[ext_resource type="PackedScene" uid="uid://cb0jhtaqvr5mp" path="res://scenes/objects/wall_light_front.tscn" id="5_x7fnc"]
+[ext_resource type="Texture2D" uid="uid://bxt8so3qncrnd" path="res://graphics/levels/sewerRiver.png" id="6_rd36r"]
+[ext_resource type="Script" path="res://scenes/levels/greenSlime.gd" id="7_sdfxp"]
 [ext_resource type="Texture2D" uid="uid://cqwie3hyolh53" path="res://graphics/objects/TrashBuggyLeft.png" id="10_0glmq"]
 [ext_resource type="Texture2D" uid="uid://cbc83g42tcles" path="res://graphics/pickUps/Files.png" id="11_gxtup"]
 [ext_resource type="Texture2D" uid="uid://b8q8a0o733m8k" path="res://graphics/pickUps/Full_Health_Front.png" id="12_wkl7x"]
 [ext_resource type="Texture2D" uid="uid://cpakic5n85ryu" path="res://graphics/pickUps/Revolver_Ammo.png" id="13_kjmdj"]
 [ext_resource type="Texture2D" uid="uid://c0l1y6t5hhtfa" path="res://graphics/pickUps/Shotgun_Ammo.png" id="14_0mrof"]
 [ext_resource type="Texture2D" uid="uid://dk4jxl0n3wlt7" path="res://graphics/pickUps/Small_Health_Front.png" id="15_agtih"]
+[ext_resource type="PackedScene" uid="uid://d0fjongi78yxg" path="res://scenes/container/tool_drawer_front.tscn" id="15_jhks0"]
+[ext_resource type="PackedScene" uid="uid://cggcmeb7bjbir" path="res://scenes/objects/wall_light_right.tscn" id="16_magul"]
+[ext_resource type="PackedScene" uid="uid://cuc06ue0d043g" path="res://scenes/objects/wall_light_left.tscn" id="17_pntpt"]
+[ext_resource type="PackedScene" uid="uid://bhpxcuy4u3e4b" path="res://scenes/objects/fan_shadow_animation.tscn" id="18_nrrk8"]
+[ext_resource type="PackedScene" uid="uid://dnu8rne7ue2uf" path="res://scenes/container/box.tscn" id="19_b4eie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c83j6"]
 size = Vector2(142.215, 134.189)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i1jer"]
 radius = 114.232
+
+[sub_resource type="Animation" id="Animation_w5s7c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_rd36r")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fwppi"]
+resource_name = "slime_flow"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_rd36r")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_30ypo"]
+_data = {
+"RESET": SubResource("Animation_w5s7c"),
+"slime_flow": SubResource("Animation_fwppi")
+}
 
 [node name="firstRoom" type="StaticBody2D"]
 script = ExtResource("1_cv3xx")
@@ -50,14 +164,15 @@ position = Vector2(0, 4)
 polygon = PackedVector2Array(-1479, 637, -1551, 708, 1546, 720, 1458, 644)
 
 [node name="doorTrigger" type="Area2D" parent="."]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="doorTrigger"]
 position = Vector2(1119.78, 403.185)
-scale = Vector2(1, 1)
 skew = -0.811578
 shape = SubResource("RectangleShape2D_c83j6")
 
 [node name="sewerTrigger" type="Area2D" parent="."]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sewerTrigger"]
 position = Vector2(-956, 263)
@@ -65,37 +180,32 @@ skew = 0.623083
 shape = SubResource("CircleShape2D_i1jer")
 
 [node name="floorObjects" type="Node2D" parent="."]
+visibility_layer = 16
 
-[node name="ManHole" type="Sprite2D" parent="floorObjects"]
-position = Vector2(174, 333)
-scale = Vector2(0.431641, 0.398958)
-texture = ExtResource("5_2fntg")
+[node name="wallLightFront" parent="floorObjects" instance=ExtResource("5_x7fnc")]
+position = Vector2(-233, -261)
+scale = Vector2(0.3, 0.3)
+
+[node name="wallLightRight" parent="floorObjects" instance=ExtResource("16_magul")]
+position = Vector2(1168, 18)
+scale = Vector2(0.3, 0.3)
+
+[node name="steamVent" parent="floorObjects" instance=ExtResource("5_7ys3i")]
+position = Vector2(110, 326)
+scale = Vector2(0.7, 0.7)
 
 [node name="greenSlime" type="Sprite2D" parent="floorObjects"]
-position = Vector2(-491, 339)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("6_cbxtq")
+visibility_layer = 16
+position = Vector2(-455, 314)
+scale = Vector2(0.397083, 0.414329)
+texture = ExtResource("6_rd36r")
+hframes = 3
+script = ExtResource("7_sdfxp")
 
-[node name="WallLightRight" type="Sprite2D" parent="floorObjects"]
-position = Vector2(1160, 52)
-rotation = 0.10472
-scale = Vector2(0.339941, 0.172741)
-texture = ExtResource("7_8uygx")
-
-[node name="WallLightFront" type="Sprite2D" parent="floorObjects"]
-position = Vector2(-329, -193)
-scale = Vector2(0.254036, 0.232407)
-texture = ExtResource("8_br0bj")
-
-[node name="WallLightFront2" type="Sprite2D" parent="floorObjects"]
-position = Vector2(461, -193)
-scale = Vector2(0.254036, 0.232407)
-texture = ExtResource("8_br0bj")
-
-[node name="ToolTableFront" type="Sprite2D" parent="floorObjects"]
-position = Vector2(340, 26)
-scale = Vector2(0.302372, 0.291667)
-texture = ExtResource("9_q08m6")
+[node name="slimeAnimation" type="AnimationPlayer" parent="floorObjects/greenSlime"]
+libraries = {
+"": SubResource("AnimationLibrary_30ypo")
+}
 
 [node name="TrashBuggyLeft" type="Sprite2D" parent="floorObjects"]
 position = Vector2(-1073, 467)
@@ -103,7 +213,7 @@ scale = Vector2(0.344167, 0.358167)
 texture = ExtResource("10_0glmq")
 
 [node name="Files" type="Sprite2D" parent="floorObjects"]
-position = Vector2(719, 89)
+position = Vector2(809, 97)
 scale = Vector2(0.317647, 0.41)
 texture = ExtResource("11_gxtup")
 
@@ -121,10 +231,58 @@ position = Vector2(-356, 97)
 scale = Vector2(0.784091, 0.795181)
 texture = ExtResource("14_0mrof")
 
+[node name="toolDrawerFront" parent="floorObjects" instance=ExtResource("15_jhks0")]
+position = Vector2(186, 45)
+scale = Vector2(0.25, 0.25)
+
 [node name="SmallHealthFront" type="Sprite2D" parent="floorObjects"]
-position = Vector2(362, -61)
-scale = Vector2(0.578313, 0.679012)
+position = Vector2(179, -31)
+scale = Vector2(0.433735, 0.493827)
 texture = ExtResource("15_agtih")
+
+[node name="wallLightLeft" parent="floorObjects" instance=ExtResource("17_pntpt")]
+position = Vector2(-1351, 61)
+rotation = 0.0802851
+scale = Vector2(0.4, 0.4)
+
+[node name="fanShadowAnimation" parent="floorObjects" instance=ExtResource("18_nrrk8")]
+position = Vector2(683, 474)
+rotation = -0.287979
+skew = -0.811578
+
+[node name="fanShadowAnimation2" parent="floorObjects" instance=ExtResource("18_nrrk8")]
+position = Vector2(-674, 462)
+rotation = -0.287979
+skew = -0.811578
+
+[node name="fanShadowAnimation3" parent="floorObjects" instance=ExtResource("18_nrrk8")]
+position = Vector2(-118, 236)
+rotation = -0.287979
+skew = -0.811578
+
+[node name="box" parent="floorObjects" instance=ExtResource("19_b4eie")]
+position = Vector2(1250, 560)
+scale = Vector2(0.25, 0.25)
+
+[node name="box2" parent="floorObjects" instance=ExtResource("19_b4eie")]
+position = Vector2(1340, 566)
+scale = Vector2(0.25, 0.25)
+
+[node name="box3" parent="floorObjects" instance=ExtResource("19_b4eie")]
+position = Vector2(1264, 590)
+scale = Vector2(0.25, 0.25)
+
+[node name="box4" parent="floorObjects" instance=ExtResource("19_b4eie")]
+position = Vector2(1284, 505)
+scale = Vector2(0.25, 0.25)
+
+[node name="box5" parent="floorObjects" instance=ExtResource("19_b4eie")]
+position = Vector2(-650, 107)
+scale = Vector2(0.25, 0.25)
+
+[node name="box6" parent="floorObjects" instance=ExtResource("19_b4eie")]
+position = Vector2(490, 247)
+scale = Vector2(0.25, 0.25)
 
 [connection signal="body_entered" from="doorTrigger" to="." method="_on_door_trigger_body_entered"]
 [connection signal="body_exited" from="doorTrigger" to="." method="_on_door_trigger_body_exited"]

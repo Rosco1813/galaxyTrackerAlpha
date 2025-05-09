@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://q6lg5rv45f8k"]
+
+[ext_resource type="Texture2D" uid="uid://ce1qf2c3pea1q" path="res://graphics/ui/heathBarUi.png" id="1_6p2yo"]
+[ext_resource type="Texture2D" uid="uid://caw2wqj3ku1wl" path="res://preAlphaFiles/graphics/ui/progress_bar/bg.png" id="2_ccrv8"]
+[ext_resource type="Texture2D" uid="uid://cc1g728f6j37j" path="res://preAlphaFiles/graphics/ui/bullet.png" id="2_ygaxe"]
+[ext_resource type="Texture2D" uid="uid://5hclf41m5ab2" path="res://preAlphaFiles/graphics/ui/progress_bar/over.png" id="3_p7gi0"]
+[ext_resource type="Texture2D" uid="uid://k72fetrtonj0" path="res://preAlphaFiles/graphics/ui/grenade.png" id="3_tedut"]
+[ext_resource type="Texture2D" uid="uid://dyl0o6krfqenj" path="res://preAlphaFiles/graphics/ui/progress_bar/progress.png" id="4_45w2q"]
+[ext_resource type="FontFile" uid="uid://co7xw8byulnp7" path="res://graphics/ui/fonts/AstronBoyWonder.ttf" id="5_thqa8"]
+
+[sub_resource type="Theme" id="Theme_v4ndb"]
+default_font = ExtResource("5_thqa8")
+default_font_size = 32
+
+[sub_resource type="Theme" id="Theme_gkmni"]
+default_font = ExtResource("5_thqa8")
+default_font_size = 32
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(141, 112.25)
+scale = Vector2(0.451667, 0.480461)
+texture = ExtResource("1_6p2yo")
+hframes = 2
+
+[node name="health_container" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -40.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 40
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="health_container"]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("2_ccrv8")
+texture_over = ExtResource("3_p7gi0")
+texture_progress = ExtResource("4_45w2q")
+
+[node name="primary_ammo" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.01
+anchor_top = 0.92
+anchor_right = 0.01
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="primary_ammo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="primary_ammo/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_v4ndb")
+text = "10
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="primary_ammo/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_ygaxe")
+expand_mode = 4
+
+[node name="grenade_ammo" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.06
+anchor_top = 0.92
+anchor_right = 0.07
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="grenade_ammo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="grenade_ammo/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_gkmni")
+text = "5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="grenade_ammo/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_tedut")
+expand_mode = 4

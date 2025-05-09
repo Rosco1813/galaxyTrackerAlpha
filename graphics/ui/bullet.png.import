@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ehxoegea5gw0"
-path="res://.godot/imported/SewerRiver3.png-ddfcda5e1e93a1255f34842029067500.ctex"
+uid="uid://cc1g728f6j37j"
+path="res://.godot/imported/bullet.png-4bae621dab764cab7e638dd187102422.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/levels/SewerRiver3.png"
-dest_files=["res://.godot/imported/SewerRiver3.png-ddfcda5e1e93a1255f34842029067500.ctex"]
+source_file="res://graphics/ui/bullet.png"
+dest_files=["res://.godot/imported/bullet.png-4bae621dab764cab7e638dd187102422.ctex"]
 
 [params]
 

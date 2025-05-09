@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var sprite = $playerSprite
 @onready var animationTree = $AnimationTree
 signal shootWeapon(markerPosition, weaponType, direction)
-var speed = 5
+var speed = 3
 var weapons:Array = ['pistol', 'shotgun','empty_handed', 'grenade']
 var selectedWeapon: String = weapons[0];
 var direction:Vector2 = Vector2.ZERO
@@ -14,9 +14,11 @@ var rolling = false
 var shooting = false
 var last_position_y = 0.0
 var last_shot_position
+var player:bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print('globals ammo ', Globals.pistol_ammo)
 	animationTree.active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,8 +26,10 @@ func _process(_delta: float) -> void:
 	if rolling == false:
 		direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
-
+	if shooting == true || aiming == true:
+		speed = 0
 	velocity = direction * speed
+
 
 	if aiming == false && shooting == false || rolling == true:
 #		move_and_slide()
@@ -35,7 +39,9 @@ func _process(_delta: float) -> void:
 	update_animation()
 	if aiming == false && shooting == false:
 		if position.y != last_position_y:
-			update_character_scale()
+#			update_character_scale()
+			update_level_scale()
+			pass
 		last_position_y = position.y
 	if Input.is_action_just_released("switch_weapon"):
 		switchWeapon()
@@ -44,13 +50,13 @@ func _process(_delta: float) -> void:
 		speed = 0
 	if Input.is_action_just_released("grenade"):
 		var previousWeapon = selectedWeapon
-#		print(' previous weapon ', previousWeapon)
+
 		selectedWeapon = 'grenade'
-#		print('1 throw grenade weapon ', selectedWeapon)
+
 		triggerAmmoAnimation()
 		selectedWeapon = previousWeapon
-		speed = 5
-#		print('back to og weapon ', selectedWeapon)
+		speed = 3
+
 
 
 func switchWeapon():
@@ -62,17 +68,22 @@ func switchWeapon():
 	print('Current Weapon : ', selectedWeapon)
 
 func update_character_scale():
-#	if direction.y < 0:  # Moving up
-
 	if position.y > last_position_y && sprite.scale.y < 0.38 :
-		sprite.scale += Vector2(.0009, .0009)
-#		print('scale up = ', sprite.scale, ": velocity : ",velocity, ": Position : ", position)
+		sprite.scale += Vector2(.001, .001)
+	elif position.y < last_position_y && sprite.scale.y > 0.28:
+		sprite.scale += Vector2(-.001, -.001)
 
-#	elif direction.y > 0:  # Moving down
-	elif position.y < last_position_y && sprite.scale.y > 0.23:
-		sprite.scale += Vector2(-.0009, -.0009)
-#		print('scale down = ', sprite.scale, ": velocity : ",velocity, ": Position : ", position)
+func update_level_scale():
+	var parent = get_parent()
+	if parent:
 
+		if position.y > last_position_y && parent.scale.y  > 0.85:
+#			print('1 : position y : ', position.y, ' : last position : ', last_position_y, " :  Parent scale : ", parent.scale.y)
+			parent.scale += Vector2(-.001, -.001)
+		elif position.y < last_position_y && parent.scale.y < 1.1:
+#			print('2 : position y : ', position.y, ' : last position : ', last_position_y, " :  Parent scale : ", parent.scale.y)
+			parent.scale += Vector2(.001, .001)
+	last_position_y = position.y
 
 func update_animation():
 	if direction != Vector2.ZERO:
@@ -96,17 +107,21 @@ func update_animation():
 			shooting = true
 			set_animation_conditions('is_shooting', true)
 	if Input.is_action_just_released("aim"):
+#		$AnimationPlayer.stop()
+
 		set_animation_conditions('is_idle', true)
 	if Input.is_action_just_pressed("roll") && aiming == false :
 		rolling = true
 
-	if rolling == true:
+	if rolling == true && shooting == false:
 		speed = 10
 		set_animation_conditions("is_rolling", true)
 
 func set_animation_conditions(condition: String, value: bool):
 	var all_conditions = ["is_aiming", "is_idle", "is_moving", "is_rolling", "is_shooting", "walk_shotgun"]
 	for cond in all_conditions:
+		if cond == 'is_moving' && value == true && rolling == false:
+			speed = 3
 		var param_path = "parameters/conditions/" + cond
 		if cond == condition:
 			animationTree[param_path] = value
@@ -129,7 +144,7 @@ func update_blend_position():
 	animationTree["parameters/walk_shotgun/blend_position"] = direction
 
 func endRoll(_value = false):
-	speed = 5
+	speed = 3
 	set_roll(false)
 func endShooting(value=false):
 	shooting = value

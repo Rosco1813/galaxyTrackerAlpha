@@ -12,3 +12,22 @@ func _process(delta: float) -> void:
 	position += direction * speed * delta
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
+
+
+func _on_body_entered(body: Node2D) -> void:
+#	print("Collision Body : : : ")
+	if "hit" in body:
+		body.hit()
+		if "is_enemy" in body:
+			print('is an enemy')
+	if "player" in body:
+		pass
+	elif  "walls" in body:
+		pass
+	else:
+		queue_free()
+	pass # Replace with function body.
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfxsj7i6i7lnc"
-path="res://.godot/imported/SewerRiver1.png-f04225596f8ce915117d1fd025566348.ctex"
+uid="uid://ce1qf2c3pea1q"
+path="res://.godot/imported/heathBarUi.png-981b862082ece479d329260f839b00bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/levels/SewerRiver1.png"
-dest_files=["res://.godot/imported/SewerRiver1.png-f04225596f8ce915117d1fd025566348.ctex"]
+source_file="res://graphics/ui/heathBarUi.png"
+dest_files=["res://.godot/imported/heathBarUi.png-981b862082ece479d329260f839b00bf.ctex"]
 
 [params]
 

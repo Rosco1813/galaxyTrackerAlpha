@@ -1,29 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckbx4514u3tl6"]
+[gd_scene load_steps=6 format=3 uid="uid://ckbx4514u3tl6"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_0p3dd"]
-[ext_resource type="PackedScene" uid="uid://c8o4e8o1yvwor" path="res://scenes/levels/first_room.tscn" id="3_2sbtt"]
-[ext_resource type="PackedScene" uid="uid://coodhe5k47vkg" path="res://scenes/enemies/sewerRat.tscn" id="4_6ydqp"]
+[ext_resource type="PackedScene" uid="uid://bsngda51k5wel" path="res://scenes/weapons/projectiles/pistol_shot.tscn" id="2_8kias"]
+[ext_resource type="PackedScene" uid="uid://dl3jwjvcrixn4" path="res://scenes/weapons/projectiles/grenade.tscn" id="3_gopt7"]
 [ext_resource type="PackedScene" uid="uid://cp5jri42yuyq7" path="res://scenes/player1/player_1.tscn" id="4_foeya"]
+[ext_resource type="PackedScene" uid="uid://q6lg5rv45f8k" path="res://scenes/UI/ui.tscn" id="5_dr7d3"]
 
 [node name="Level" type="Node2D"]
 position = Vector2(1, 1)
 script = ExtResource("1_0p3dd")
-
-[node name="firstRoom" parent="." instance=ExtResource("3_2sbtt")]
+pistol_shot = ExtResource("2_8kias")
+grenade = ExtResource("3_gopt7")
 
 [node name="Player1" parent="." instance=ExtResource("4_foeya")]
 position = Vector2(563, 264)
 
 [node name="Camera2D" type="Camera2D" parent="Player1"]
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(1.1, 1.1)
 position_smoothing_enabled = true
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="sewerRat" parent="." instance=ExtResource("4_6ydqp")]
+[node name="Lights" type="Node2D" parent="."]
 
-[connection signal="player_entered_door" from="firstRoom" to="." method="_on_first_room_player_entered_door"]
-[connection signal="player_exit_door" from="firstRoom" to="." method="_on_first_room_player_exit_door"]
-[connection signal="sewer_entrance" from="firstRoom" to="." method="_on_first_room_sewer_entrance"]
-[connection signal="sewer_exit" from="firstRoom" to="." method="_on_first_room_sewer_exit"]
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("5_dr7d3")]
+
 [connection signal="shootWeapon" from="Player1" to="." method="_on_player_1_shoot_weapon"]

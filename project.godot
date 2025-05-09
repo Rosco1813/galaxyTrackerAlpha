@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="GalaxyTrackerAlpha"
-run/main_scene="res://scenes/levels/level.tscn"
+run/main_scene="res://scenes/levels/first_room_updated.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://globals/globals.gd"
 
 [display]
 
@@ -88,3 +92,17 @@ reload={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":5,"axis_value":1.0,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Objects"
+2d_physics/layer_4="Projectiles"
+2d_physics/layer_5="Items & Zones"
+2d_physics/layer_6="Player2"
+2d_physics/layer_7="Buddy"
+
+[rendering]
+
+2d/snap/snap_2d_transforms_to_pixel=true
