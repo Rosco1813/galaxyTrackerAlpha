@@ -1,26 +1,36 @@
-[gd_scene load_steps=10 format=3 uid="uid://q6lg5rv45f8k"]
+[gd_scene load_steps=16 format=3 uid="uid://q6lg5rv45f8k"]
 
 [ext_resource type="Texture2D" uid="uid://ce1qf2c3pea1q" path="res://graphics/ui/heathBarUi.png" id="1_6p2yo"]
+[ext_resource type="Script" path="res://scenes/UI/ui.gd" id="1_18ld7"]
 [ext_resource type="Texture2D" uid="uid://caw2wqj3ku1wl" path="res://preAlphaFiles/graphics/ui/progress_bar/bg.png" id="2_ccrv8"]
 [ext_resource type="Texture2D" uid="uid://cc1g728f6j37j" path="res://preAlphaFiles/graphics/ui/bullet.png" id="2_ygaxe"]
-[ext_resource type="Texture2D" uid="uid://5hclf41m5ab2" path="res://preAlphaFiles/graphics/ui/progress_bar/over.png" id="3_p7gi0"]
+[ext_resource type="Texture2D" uid="uid://5hclf41m5ab2" path="res://graphics/ui/progress_bar/over.png" id="3_a8qnc"]
 [ext_resource type="Texture2D" uid="uid://k72fetrtonj0" path="res://preAlphaFiles/graphics/ui/grenade.png" id="3_tedut"]
 [ext_resource type="Texture2D" uid="uid://dyl0o6krfqenj" path="res://preAlphaFiles/graphics/ui/progress_bar/progress.png" id="4_45w2q"]
 [ext_resource type="FontFile" uid="uid://co7xw8byulnp7" path="res://graphics/ui/fonts/AstronBoyWonder.ttf" id="5_thqa8"]
+[ext_resource type="FontFile" uid="uid://oy17h2pedji" path="res://graphics/ui/fonts/ka1.ttf" id="6_kpcxc"]
+[ext_resource type="Texture2D" uid="uid://caw2wqj3ku1wl" path="res://graphics/ui/progress_bar/bg.png" id="8_p6pwq"]
+[ext_resource type="Texture2D" uid="uid://dyl0o6krfqenj" path="res://graphics/ui/progress_bar/progress.png" id="9_oyfll"]
+[ext_resource type="FontFile" uid="uid://bh81e2wa6k4i6" path="res://graphics/ui/fonts/FunkyRundkopfTwoNF.ttf" id="11_kp24k"]
 
 [sub_resource type="Theme" id="Theme_v4ndb"]
-default_font = ExtResource("5_thqa8")
+default_font = ExtResource("6_kpcxc")
 default_font_size = 32
 
 [sub_resource type="Theme" id="Theme_gkmni"]
 default_font = ExtResource("5_thqa8")
 default_font_size = 32
 
+[sub_resource type="Theme" id="Theme_ciq6w"]
+default_font = ExtResource("11_kp24k")
+default_font_size = 32
+
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_18ld7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(141, 112.25)
-scale = Vector2(0.451667, 0.480461)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_6p2yo")
 hframes = 2
 
@@ -36,14 +46,16 @@ offset_right = 150.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_bottom = 56
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="health_container"]
 layout_mode = 2
 value = 50.0
 texture_under = ExtResource("2_ccrv8")
-texture_over = ExtResource("3_p7gi0")
+texture_over = ExtResource("3_a8qnc")
 texture_progress = ExtResource("4_45w2q")
+tint_under = Color(0.133333, 0.184314, 1, 0.443137)
+tint_over = Color(0, 0, 0, 0.509804)
 
 [node name="primary_ammo" type="Control" parent="."]
 layout_mode = 3
@@ -66,7 +78,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="primary_ammo/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_v4ndb")
-text = "10
+text = "25
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -75,6 +87,75 @@ vertical_alignment = 1
 layout_mode = 2
 texture = ExtResource("2_ygaxe")
 expand_mode = 4
+
+[node name="shotgun_ammo" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.01
+anchor_top = 0.902
+anchor_right = 0.041
+anchor_bottom = 1.0
+offset_left = 137.2
+offset_top = -24.4401
+offset_right = 137.52
+offset_bottom = 1.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="shotgun_ammo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="shotgun_ammo/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_v4ndb")
+text = "6
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="shotgun_ammo/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_ygaxe")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="test_controls" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.01
+anchor_top = 0.902
+anchor_right = 0.041
+anchor_bottom = 1.0
+offset_left = 1017.2
+offset_top = -577.44
+offset_right = 1017.52
+offset_bottom = -552.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="test_controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="test_controls/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_v4ndb")
+text = "triangle -  weapons
+R1 - Aim
+L1 - grenade
+square - shoot
+circle - roll
+"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="grenade_ammo" type="Control" parent="."]
 layout_mode = 3
@@ -103,6 +184,54 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="grenade_ammo/VBoxContainer"]
+modulate = Color(0.905882, 0, 0.00784314, 0.847059)
 layout_mode = 2
 texture = ExtResource("3_tedut")
 expand_mode = 4
+
+[node name="stamina_container" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -70.0
+offset_right = 164.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_top = 27
+theme_override_constants/margin_right = 14
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="stamina_container"]
+layout_mode = 2
+size_flags_horizontal = 8
+value = 20.0
+texture_under = ExtResource("8_p6pwq")
+texture_over = ExtResource("3_a8qnc")
+texture_progress = ExtResource("9_oyfll")
+tint_under = Color(0.133333, 0.184314, 1, 0.443137)
+tint_over = Color(0, 0, 0, 0.466667)
+tint_progress = Color(1, 0, 0.0313726, 1)
+
+[node name="selected_weapon" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.146
+anchor_top = 0.89
+anchor_right = 0.21
+anchor_bottom = 0.943
+offset_left = 68.12
+offset_top = 15.2
+offset_right = 87.2
+offset_bottom = 19.04
+
+[node name="VBoxContainer" type="VBoxContainer" parent="selected_weapon"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="selected_weapon/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ciq6w")

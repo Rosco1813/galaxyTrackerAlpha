@@ -22,8 +22,11 @@ func _process(_delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 
-	print('timer ended !!!!!!!')
+#	print('timer ended !!!!!!!')
 	pass # Replace with function body.
 
 func explode():
 	explosionAnimation.play("explosion")
+
+func hit():
+	print('GRENDADE HIT =======')

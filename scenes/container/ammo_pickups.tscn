@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6ckbssf4rc02"]
+
+[ext_resource type="Script" path="res://scenes/container/ammo_pickups.gd" id="1_plmrn"]
+[ext_resource type="Texture2D" uid="uid://cpakic5n85ryu" path="res://graphics/pickUps/Revolver_Ammo.png" id="1_x3v4j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdngn"]
+size = Vector2(48, 33)
+
+[node name="ammo_pickups" type="StaticBody2D"]
+script = ExtResource("1_plmrn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_x3v4j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -0.5)
+shape = SubResource("RectangleShape2D_jdngn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-1, -21, -17, -22, -33, -18, -35, 0, -30, 20, -5, 19, 0, 17, 25, 19, 27, 3, 28, -18, 11, -26)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

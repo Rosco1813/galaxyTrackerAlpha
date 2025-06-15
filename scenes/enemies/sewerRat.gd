@@ -7,6 +7,7 @@ extends CharacterBody2D
 var is_enemy:bool = true
 var direction = Vector2.RIGHT
 var speed = 200
+var health = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,5 +20,11 @@ func _process(_delta: float) -> void:
 	move_and_slide()
 
 func hit():
-	queue_free()
-	print('Damage')
+	health -=50
+	if health == 0:
+		queue_free()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "Player1":
+		Globals.player_one_health -= 40
+

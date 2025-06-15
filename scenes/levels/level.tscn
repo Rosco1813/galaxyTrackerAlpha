@@ -25,6 +25,8 @@ position_smoothing_enabled = true
 
 [node name="Ground" type="Node2D" parent="."]
 
+[node name="Items" type="Node2D" parent="."]
+
 [node name="UI" parent="." instance=ExtResource("5_dr7d3")]
 
 [connection signal="shootWeapon" from="Player1" to="." method="_on_player_1_shoot_weapon"]

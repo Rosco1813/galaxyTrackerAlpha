@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bakvllclkt34w"]
+
+[ext_resource type="Texture2D" uid="uid://cbc83g42tcles" path="res://graphics/pickUps/Files.png" id="1_2u7g4"]
+[ext_resource type="Script" path="res://scenes/container/files.gd" id="1_v7dgp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kygi"]
+size = Vector2(216.48, 97.9899)
+
+[node name="files" type="StaticBody2D"]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_v7dgp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2u7g4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.10761, -3.50612)
+rotation = 0.296706
+scale = Vector2(1, 1)
+skew = 0.959931
+shape = SubResource("RectangleShape2D_6kygi")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-172.5, -22.5, -65, -62.5, -15, -42.5, -2.5, -50, 192.5, 10, 37.5, 67.5, -27.5, 50, -47.5, 62.5, -162.5, 22.5, -130, 7.5)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

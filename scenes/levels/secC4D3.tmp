@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://66l50q0uak2w"]
+[gd_scene load_steps=9 format=3 uid="uid://66l50q0uak2w"]
 
 [ext_resource type="PackedScene" uid="uid://ckbx4514u3tl6" path="res://scenes/levels/level.tscn" id="1_hcht3"]
 [ext_resource type="Script" path="res://scenes/levels/second_room.gd" id="2_ko13x"]
@@ -7,10 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cb0jhtaqvr5mp" path="res://scenes/objects/wall_light_front.tscn" id="4_thbj5"]
 [ext_resource type="PackedScene" uid="uid://cuc06ue0d043g" path="res://scenes/objects/wall_light_left.tscn" id="5_j8kfk"]
 [ext_resource type="PackedScene" uid="uid://c6gfdhx2ycesu" path="res://scenes/container/table_right.tscn" id="8_0p2dp"]
-[ext_resource type="PackedScene" uid="uid://bqc5531k37wet" path="res://scenes/container/item.tscn" id="8_ai4ok"]
-[ext_resource type="PackedScene" uid="uid://c6ckbssf4rc02" path="res://scenes/container/ammo_pickups.tscn" id="9_b62ce"]
-[ext_resource type="PackedScene" uid="uid://coodhe5k47vkg" path="res://scenes/enemies/sewerRat.tscn" id="10_6khvn"]
-[ext_resource type="PackedScene" uid="uid://dnu8rne7ue2uf" path="res://scenes/container/box.tscn" id="11_t1dru"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jdfwy"]
 size = Vector2(169.021, 130.71)
@@ -37,7 +33,7 @@ metadata/_edit_lock_ = true
 [node name="Player1" parent="." index="1"]
 position = Vector2(-802, 226)
 
-[node name="Camera2D" parent="Player1" index="7"]
+[node name="Camera2D" parent="Player1" index="6"]
 metadata/_edit_lock_ = true
 
 [node name="Projectiles" parent="." index="2"]
@@ -65,8 +61,6 @@ metadata/_edit_lock_ = true
 [node name="tableRight" parent="objects" index="3" instance=ExtResource("8_0p2dp")]
 position = Vector2(443, 157)
 scale = Vector2(0.3, 0.3)
-collision_layer = 1
-collision_mask = 1
 
 [node name="doorTrigger" type="Area2D" parent="." index="4"]
 metadata/_edit_lock_ = true
@@ -82,26 +76,5 @@ metadata/_edit_lock_ = true
 color = Color(0.8, 0.8, 0.8, 1)
 blend_mode = 1
 metadata/_edit_lock_ = true
-
-[node name="health_item" parent="." index="8" instance=ExtResource("8_ai4ok")]
-position = Vector2(-611, 665)
-
-[node name="health_item2" parent="." index="9" instance=ExtResource("8_ai4ok")]
-position = Vector2(102, 461)
-
-[node name="ammo_pickups" parent="." index="10" instance=ExtResource("9_b62ce")]
-position = Vector2(-345, 252)
-
-[node name="ammo_pickups2" parent="." index="11" instance=ExtResource("9_b62ce")]
-position = Vector2(749, 492)
-
-[node name="sewerRat" parent="." index="12" instance=ExtResource("10_6khvn")]
-position = Vector2(-267, -27)
-
-[node name="box" parent="." index="13" instance=ExtResource("11_t1dru")]
-position = Vector2(-186, 378)
-scale = Vector2(0.4, 0.4)
-collision_layer = 1
-collision_mask = 1
 
 [connection signal="body_entered" from="doorTrigger" to="." method="_on_door_trigger_body_entered"]

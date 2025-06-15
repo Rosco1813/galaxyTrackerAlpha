@@ -248,7 +248,7 @@ one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.0117647, 0.0588235, 0.486275)
-energy = 10.0
+energy = 0.0
 texture = ExtResource("4_76sc7")
 texture_scale = 0.08
 

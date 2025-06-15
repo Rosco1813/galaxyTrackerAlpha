@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c8o4e8o1yvwor"]
+[gd_scene load_steps=19 format=3 uid="uid://c8o4e8o1yvwor"]
 
 [ext_resource type="Script" path="res://scenes/levels/first_room.gd" id="1_cv3xx"]
 [ext_resource type="Texture2D" uid="uid://drw5c86os34is" path="res://graphics/levels/Leveltest.png" id="1_vc34t"]
@@ -8,12 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cb0jhtaqvr5mp" path="res://scenes/objects/wall_light_front.tscn" id="5_x7fnc"]
 [ext_resource type="Texture2D" uid="uid://bxt8so3qncrnd" path="res://graphics/levels/sewerRiver.png" id="6_rd36r"]
 [ext_resource type="Script" path="res://scenes/levels/greenSlime.gd" id="7_sdfxp"]
-[ext_resource type="Texture2D" uid="uid://cqwie3hyolh53" path="res://graphics/objects/TrashBuggyLeft.png" id="10_0glmq"]
-[ext_resource type="Texture2D" uid="uid://cbc83g42tcles" path="res://graphics/pickUps/Files.png" id="11_gxtup"]
-[ext_resource type="Texture2D" uid="uid://b8q8a0o733m8k" path="res://graphics/pickUps/Full_Health_Front.png" id="12_wkl7x"]
-[ext_resource type="Texture2D" uid="uid://cpakic5n85ryu" path="res://graphics/pickUps/Revolver_Ammo.png" id="13_kjmdj"]
-[ext_resource type="Texture2D" uid="uid://c0l1y6t5hhtfa" path="res://graphics/pickUps/Shotgun_Ammo.png" id="14_0mrof"]
-[ext_resource type="Texture2D" uid="uid://dk4jxl0n3wlt7" path="res://graphics/pickUps/Small_Health_Front.png" id="15_agtih"]
 [ext_resource type="PackedScene" uid="uid://d0fjongi78yxg" path="res://scenes/container/tool_drawer_front.tscn" id="15_jhks0"]
 [ext_resource type="PackedScene" uid="uid://cggcmeb7bjbir" path="res://scenes/objects/wall_light_right.tscn" id="16_magul"]
 [ext_resource type="PackedScene" uid="uid://cuc06ue0d043g" path="res://scenes/objects/wall_light_left.tscn" id="17_pntpt"]
@@ -207,38 +201,11 @@ libraries = {
 "": SubResource("AnimationLibrary_30ypo")
 }
 
-[node name="TrashBuggyLeft" type="Sprite2D" parent="floorObjects"]
-position = Vector2(-1073, 467)
-scale = Vector2(0.344167, 0.358167)
-texture = ExtResource("10_0glmq")
-
-[node name="Files" type="Sprite2D" parent="floorObjects"]
-position = Vector2(809, 97)
-scale = Vector2(0.317647, 0.41)
-texture = ExtResource("11_gxtup")
-
-[node name="FullHealthFront" type="Sprite2D" parent="floorObjects"]
-position = Vector2(-441, 548)
-scale = Vector2(0.537249, 0.57554)
-texture = ExtResource("12_wkl7x")
-
-[node name="RevolverAmmo" type="Sprite2D" parent="floorObjects"]
-position = Vector2(564, 566)
-texture = ExtResource("13_kjmdj")
-
-[node name="ShotgunAmmo" type="Sprite2D" parent="floorObjects"]
-position = Vector2(-356, 97)
-scale = Vector2(0.784091, 0.795181)
-texture = ExtResource("14_0mrof")
-
 [node name="toolDrawerFront" parent="floorObjects" instance=ExtResource("15_jhks0")]
 position = Vector2(186, 45)
 scale = Vector2(0.25, 0.25)
-
-[node name="SmallHealthFront" type="Sprite2D" parent="floorObjects"]
-position = Vector2(179, -31)
-scale = Vector2(0.433735, 0.493827)
-texture = ExtResource("15_agtih")
+collision_layer = 1
+collision_mask = 1
 
 [node name="wallLightLeft" parent="floorObjects" instance=ExtResource("17_pntpt")]
 position = Vector2(-1351, 61)
@@ -263,26 +230,40 @@ skew = -0.811578
 [node name="box" parent="floorObjects" instance=ExtResource("19_b4eie")]
 position = Vector2(1250, 560)
 scale = Vector2(0.25, 0.25)
+collision_layer = 1
+collision_mask = 1
 
 [node name="box2" parent="floorObjects" instance=ExtResource("19_b4eie")]
 position = Vector2(1340, 566)
 scale = Vector2(0.25, 0.25)
+collision_layer = 1
+collision_mask = 1
 
 [node name="box3" parent="floorObjects" instance=ExtResource("19_b4eie")]
 position = Vector2(1264, 590)
 scale = Vector2(0.25, 0.25)
+collision_layer = 1
+collision_mask = 1
 
 [node name="box4" parent="floorObjects" instance=ExtResource("19_b4eie")]
 position = Vector2(1284, 505)
 scale = Vector2(0.25, 0.25)
+collision_layer = 1
+collision_mask = 1
 
 [node name="box5" parent="floorObjects" instance=ExtResource("19_b4eie")]
 position = Vector2(-650, 107)
 scale = Vector2(0.25, 0.25)
+collision_layer = 1
+collision_mask = 1
 
 [node name="box6" parent="floorObjects" instance=ExtResource("19_b4eie")]
 position = Vector2(490, 247)
 scale = Vector2(0.25, 0.25)
+collision_layer = 1
+collision_mask = 1
+
+[node name="firstRoomItems" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="doorTrigger" to="." method="_on_door_trigger_body_entered"]
 [connection signal="body_exited" from="doorTrigger" to="." method="_on_door_trigger_body_exited"]
