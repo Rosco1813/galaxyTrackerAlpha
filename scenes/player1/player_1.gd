@@ -25,6 +25,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+
 	if rolling == false:
 		direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
@@ -179,9 +180,23 @@ func triggerAmmoAnimation():
 		shootWeapon.emit(selected_marker.global_position, selectedWeapon, last_shot_position)
 
 func hit():
-#	print('Player one hit')
+	print('Player one hit')
 	pass
 
-func _on_area_2d_body_entered(_body: Node2D) -> void:
-#	print('Touched Player one : ', body.name)
-	pass
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Node2D and body.name != 'firstRoom':
+		var body_y = body.global_position.y
+		var player_y = global_position.y
+		# Set base z-indexes (optional; could use current values too)
+		var player_z = z_index
+		var body_z = body.z_index
+		if player_y < body_y:
+			# Player is "in front" (lower on screen)
+			z_index = min(1, body_z - 1)
+			body.z_index = max(2, z_index + 1)
+		else:
+			# Player is "behind" (higher on screen)
+			z_index = max(2, body_z + 1)
+			body.z_index = min(1, z_index - 1)
+			print("Player y:", player_y, "z_index:", z_index)
+			print("Body y:", body.name, ' : ', body_y, "z_index:", body.z_index)

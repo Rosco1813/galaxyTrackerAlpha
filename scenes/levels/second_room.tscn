@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://66l50q0uak2w"]
+[gd_scene load_steps=16 format=3 uid="uid://66l50q0uak2w"]
 
 [ext_resource type="PackedScene" uid="uid://ckbx4514u3tl6" path="res://scenes/levels/level.tscn" id="1_hcht3"]
 [ext_resource type="Script" path="res://scenes/levels/second_room.gd" id="2_ko13x"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c6ckbssf4rc02" path="res://scenes/container/ammo_pickups.tscn" id="9_b62ce"]
 [ext_resource type="PackedScene" uid="uid://coodhe5k47vkg" path="res://scenes/enemies/sewerRat.tscn" id="10_6khvn"]
 [ext_resource type="PackedScene" uid="uid://dnu8rne7ue2uf" path="res://scenes/container/box.tscn" id="11_t1dru"]
+[ext_resource type="PackedScene" uid="uid://cjqsphs3opv26" path="res://scenes/enemies/jacked_rabbit.tscn" id="14_y3a5e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jdfwy"]
 size = Vector2(169.021, 130.71)
@@ -36,14 +37,17 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-1637, 863, 1611, 863, 1671, 919, -1690, 926)
 metadata/_edit_lock_ = true
 
-[node name="Player1" parent="." index="1"]
-position = Vector2(-802, 226)
+[node name="blood_stain" type="Sprite2D" parent="Decals" index="0"]
+position = Vector2(-1447.49, 316.594)
+rotation = -1.31692
+scale = Vector2(1.27546, 1.12166)
+skew = -0.614356
+texture = ExtResource("8_umeqk")
 
-[node name="Camera2D" parent="Player1" index="7"]
-metadata/_edit_lock_ = true
-
-[node name="Projectiles" parent="." index="2"]
-metadata/_edit_lock_ = true
+[node name="Sprite2D" type="Sprite2D" parent="Decals" index="1"]
+modulate = Color(0.705882, 0, 0.709804, 1)
+position = Vector2(260, -149)
+texture = ExtResource("9_4iunk")
 
 [node name="objects" type="Node2D" parent="." index="3"]
 metadata/_edit_lock_ = true
@@ -70,6 +74,12 @@ scale = Vector2(0.3, 0.3)
 collision_layer = 1
 collision_mask = 1
 
+[node name="box" parent="objects" index="4" instance=ExtResource("11_t1dru")]
+position = Vector2(-186, 378)
+scale = Vector2(0.4, 0.4)
+collision_layer = 1
+collision_mask = 1
+
 [node name="doorTrigger" type="Area2D" parent="." index="4"]
 metadata/_edit_lock_ = true
 
@@ -80,42 +90,36 @@ skew = -0.741765
 shape = SubResource("RectangleShape2D_jdfwy")
 metadata/_edit_lock_ = true
 
+[node name="health_item" parent="Items" index="0" instance=ExtResource("8_ai4ok")]
+position = Vector2(-611, 665)
+
+[node name="health_item2" parent="Items" index="1" instance=ExtResource("8_ai4ok")]
+position = Vector2(102, 461)
+
+[node name="ammo_pickups" parent="Items" index="2" instance=ExtResource("9_b62ce")]
+position = Vector2(-345, 252)
+
+[node name="ammo_pickups2" parent="Items" index="3" instance=ExtResource("9_b62ce")]
+position = Vector2(-1044, 590)
+
+[node name="Projectiles" parent="." index="6"]
+metadata/_edit_lock_ = true
+
+[node name="sewerRat" parent="Enemies" index="0" instance=ExtResource("10_6khvn")]
+position = Vector2(-267, -27)
+
+[node name="jackedRabbit" parent="Enemies" index="1" instance=ExtResource("14_y3a5e")]
+position = Vector2(693, 468)
+
+[node name="Player1" parent="." index="8"]
+position = Vector2(-802, 226)
+
+[node name="Camera2D" parent="Player1" index="7"]
+metadata/_edit_lock_ = true
+
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="Lights" index="0"]
 color = Color(0.8, 0.8, 0.8, 1)
 blend_mode = 1
 metadata/_edit_lock_ = true
-
-[node name="blood_stain" type="Sprite2D" parent="Ground" index="0"]
-position = Vector2(-1447.49, 316.594)
-rotation = -1.31692
-scale = Vector2(1.27546, 1.12166)
-skew = -0.614356
-texture = ExtResource("8_umeqk")
-
-[node name="Sprite2D" type="Sprite2D" parent="Ground" index="1"]
-modulate = Color(0.705882, 0, 0.709804, 1)
-position = Vector2(260, -149)
-texture = ExtResource("9_4iunk")
-
-[node name="health_item" parent="." index="8" instance=ExtResource("8_ai4ok")]
-position = Vector2(-611, 665)
-
-[node name="health_item2" parent="." index="9" instance=ExtResource("8_ai4ok")]
-position = Vector2(102, 461)
-
-[node name="ammo_pickups" parent="." index="10" instance=ExtResource("9_b62ce")]
-position = Vector2(-345, 252)
-
-[node name="ammo_pickups2" parent="." index="11" instance=ExtResource("9_b62ce")]
-position = Vector2(749, 492)
-
-[node name="sewerRat" parent="." index="12" instance=ExtResource("10_6khvn")]
-position = Vector2(-267, -27)
-
-[node name="box" parent="." index="13" instance=ExtResource("11_t1dru")]
-position = Vector2(-186, 378)
-scale = Vector2(0.4, 0.4)
-collision_layer = 1
-collision_mask = 1
 
 [connection signal="body_entered" from="doorTrigger" to="." method="_on_door_trigger_body_entered"]

@@ -12,6 +12,16 @@ script = ExtResource("1_0p3dd")
 pistol_shot = ExtResource("2_8kias")
 grenade = ExtResource("3_gopt7")
 
+[node name="Decals" type="Node2D" parent="."]
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
 [node name="Player1" parent="." instance=ExtResource("4_foeya")]
 position = Vector2(563, 264)
 
@@ -19,13 +29,7 @@ position = Vector2(563, 264)
 zoom = Vector2(1.1, 1.1)
 position_smoothing_enabled = true
 
-[node name="Projectiles" type="Node2D" parent="."]
-
 [node name="Lights" type="Node2D" parent="."]
-
-[node name="Ground" type="Node2D" parent="."]
-
-[node name="Items" type="Node2D" parent="."]
 
 [node name="UI" parent="." instance=ExtResource("5_dr7d3")]
 

@@ -16,10 +16,6 @@ script = ExtResource("2_0i36j")
 [node name="sewerRat" parent="." index="3" instance=ExtResource("3_xauum")]
 position = Vector2(620, -34)
 
-[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="Lights" index="0"]
-color = Color(0.8, 0.8, 0.8, 1)
-blend_mode = 1
-
 [node name="health_item" parent="." index="7" instance=ExtResource("5_rkicq")]
 position = Vector2(334, 58)
 
@@ -34,6 +30,10 @@ position = Vector2(719, 445)
 
 [node name="files" parent="." index="11" instance=ExtResource("7_okxkx")]
 position = Vector2(972, 593)
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="Lights" index="0"]
+color = Color(0.8, 0.8, 0.8, 1)
+blend_mode = 1
 
 [connection signal="player_entered_door" from="firstRoom" to="." method="_on_first_room_player_entered_door"]
 [connection signal="player_exit_door" from="firstRoom" to="." method="_on_first_room_player_exit_door"]

@@ -17,6 +17,7 @@ func _on_first_room_player_entered_door() -> void:
 	tween.tween_property($Player1, "speed", 0, 0.5)
 #	get_tree().change_scene_to_file("res://scenes/levels/second_room.tscn")
 	TransitionLayer.change_scene("res://scenes/levels/second_room.tscn")
+	$Player1.hide()
 #	var tween = get_tree().create_tween()
 #	tween.tween_property($Player1/Camera2D, "zoom",Vector2(2,2), 1)
 #	print('player has entered the door')
