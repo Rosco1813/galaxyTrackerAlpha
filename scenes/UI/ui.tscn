@@ -15,7 +15,7 @@
 
 [sub_resource type="Theme" id="Theme_v4ndb"]
 default_font = ExtResource("6_kpcxc")
-default_font_size = 32
+default_font_size = 16
 
 [sub_resource type="Theme" id="Theme_gkmni"]
 default_font = ExtResource("5_thqa8")

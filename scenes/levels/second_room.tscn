@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://66l50q0uak2w"]
+[gd_scene load_steps=15 format=3 uid="uid://66l50q0uak2w"]
 
 [ext_resource type="PackedScene" uid="uid://ckbx4514u3tl6" path="res://scenes/levels/level.tscn" id="1_hcht3"]
 [ext_resource type="Script" path="res://scenes/levels/second_room.gd" id="2_ko13x"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cuc06ue0d043g" path="res://scenes/objects/wall_light_left.tscn" id="5_j8kfk"]
 [ext_resource type="PackedScene" uid="uid://c6gfdhx2ycesu" path="res://scenes/container/table_right.tscn" id="8_0p2dp"]
 [ext_resource type="PackedScene" uid="uid://bqc5531k37wet" path="res://scenes/container/item.tscn" id="8_ai4ok"]
+[ext_resource type="Texture2D" uid="uid://cdh365fbpunbn" path="res://preAlphaFiles/graphics/decals/blood.png" id="8_umeqk"]
+[ext_resource type="Texture2D" uid="uid://c1qj3v827ew02" path="res://preAlphaFiles/graphics/decals/brushes/brush054.png" id="9_4iunk"]
 [ext_resource type="PackedScene" uid="uid://c6ckbssf4rc02" path="res://scenes/container/ammo_pickups.tscn" id="9_b62ce"]
 [ext_resource type="PackedScene" uid="uid://coodhe5k47vkg" path="res://scenes/enemies/sewerRat.tscn" id="10_6khvn"]
 [ext_resource type="PackedScene" uid="uid://dnu8rne7ue2uf" path="res://scenes/container/box.tscn" id="11_t1dru"]
@@ -82,6 +84,18 @@ metadata/_edit_lock_ = true
 color = Color(0.8, 0.8, 0.8, 1)
 blend_mode = 1
 metadata/_edit_lock_ = true
+
+[node name="blood_stain" type="Sprite2D" parent="Ground" index="0"]
+position = Vector2(-1447.49, 316.594)
+rotation = -1.31692
+scale = Vector2(1.27546, 1.12166)
+skew = -0.614356
+texture = ExtResource("8_umeqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground" index="1"]
+modulate = Color(0.705882, 0, 0.709804, 1)
+position = Vector2(260, -149)
+texture = ExtResource("9_4iunk")
 
 [node name="health_item" parent="." index="8" instance=ExtResource("8_ai4ok")]
 position = Vector2(-611, 665)
