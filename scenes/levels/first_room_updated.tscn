@@ -16,19 +16,19 @@ script = ExtResource("2_0i36j")
 [node name="sewerRat" parent="." index="3" instance=ExtResource("3_xauum")]
 position = Vector2(620, -34)
 
-[node name="health_item" parent="." index="7" instance=ExtResource("5_rkicq")]
+[node name="health_item" parent="Items" index="0" instance=ExtResource("5_rkicq")]
 position = Vector2(334, 58)
 
-[node name="health_item2" parent="." index="8" instance=ExtResource("5_rkicq")]
+[node name="health_item2" parent="Items" index="1" instance=ExtResource("5_rkicq")]
 position = Vector2(-282, 491)
 
-[node name="ammo_pickups" parent="." index="9" instance=ExtResource("6_aweec")]
+[node name="ammo_pickups" parent="Items" index="2" instance=ExtResource("6_aweec")]
 position = Vector2(314, 497)
 
-[node name="ammo_pickups2" parent="." index="10" instance=ExtResource("6_aweec")]
+[node name="ammo_pickups2" parent="Items" index="3" instance=ExtResource("6_aweec")]
 position = Vector2(719, 445)
 
-[node name="files" parent="." index="11" instance=ExtResource("7_okxkx")]
+[node name="files" parent="Items" index="4" instance=ExtResource("7_okxkx")]
 position = Vector2(972, 593)
 
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="Lights" index="0"]

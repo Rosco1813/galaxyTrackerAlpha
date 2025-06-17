@@ -17,6 +17,9 @@ var last_position_y = 0.0
 var last_shot_position
 var player:bool = true
 
+
+var overlapping_bodies: Array[Node2D] = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 #	print('globals ammo ', Globals.pistol_ammo)
@@ -184,19 +187,38 @@ func hit():
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Node2D and body.name != 'firstRoom':
-		var body_y = body.global_position.y
-		var player_y = global_position.y
-		# Set base z-indexes (optional; could use current values too)
-		var player_z = z_index
-		var body_z = body.z_index
-		if player_y < body_y:
-			# Player is "in front" (lower on screen)
-			z_index = min(1, body_z - 1)
-			body.z_index = max(2, z_index + 1)
-		else:
-			# Player is "behind" (higher on screen)
-			z_index = max(2, body_z + 1)
-			body.z_index = min(1, z_index - 1)
-			print("Player y:", player_y, "z_index:", z_index)
-			print("Body y:", body.name, ' : ', body_y, "z_index:", body.z_index)
+	if  body.name != 'firstRoom' and body.name != 'Player1' and body.name != 'StaticBody2D' and body.name != 'steamVent':
+		if body is Node2D:
+			overlapping_bodies.append(body)
+			update_z_index()
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body is Node2D and body in overlapping_bodies:
+		overlapping_bodies.erase(body)
+		update_z_index()
+
+
+func update_z_index():
+	if overlapping_bodies.is_empty():
+		z_index = 0
+		return
+	var highest_body_y = null
+	for body in overlapping_bodies:
+		if highest_body_y == null or body.global_position.y > highest_body_y.global_position.y:
+			highest_body_y = body
+	if highest_body_y and global_position.y < highest_body_y.global_position.y:
+#		z_index = min(1, highest_body_y.z_index - 1)
+		z_index = 0
+#		highest_body_y.z_index = max(3, highest_body_y.z_index + 1)
+		highest_body_y.z_index = 1
+	else:
+		z_index = 1
+		highest_body_y.z_index = 0
+#		z_index = max(3, highest_body_y.z_index + 1)
+#		highest_body_y.z_index =min(1, highest_body_y.z_index - 1)
+	print('==========================')
+	print(" player z  == ", z_index)
+	print('highest body  === ', highest_body_y.z_index, )
+	print('body name === ', highest_body_y.name)
+	print('==========================')

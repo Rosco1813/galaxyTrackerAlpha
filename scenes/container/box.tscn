@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://deyj0hjie575j" path="res://preAlphaFiles/graphics/objects/box/Box.png" id="2_vnboj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4h60"]
-size = Vector2(295, 299)
+size = Vector2(296, 299)
 
 [node name="box" instance=ExtResource("1_6e5qa")]
 script = ExtResource("2_4e32f")
@@ -14,5 +14,5 @@ script = ExtResource("2_4e32f")
 texture = ExtResource("2_vnboj")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-39.5, 38.5)
+position = Vector2(-39, 38.5)
 shape = SubResource("RectangleShape2D_n4h60")

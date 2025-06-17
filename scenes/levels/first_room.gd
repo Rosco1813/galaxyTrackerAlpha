@@ -13,7 +13,8 @@ func  _ready() -> void:
 	for container in get_tree().get_nodes_in_group("container"):
 		container.connect("reveal_content", _on_container_opened)
 #		print('level : container : ', container.name)
-
+#func _process(delta: float) -> void:
+#	$floorObjects/greenSlime.z_index = $floorObjects/steamVent.z_index
 
 func _on_container_opened(pos):
 	var health_item = health_item_scene.instantiate() as StaticBody2D
