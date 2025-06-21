@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://2gfa7qrrsxl1"
+path="res://.godot/imported/It feels no fear - V5.mp3-ea759260b56a4feeb9061c369b2cbce1.mp3str"
+
+[deps]
+
+source_file="res://audio/adams_bangers/It feels no fear - V5.mp3"
+dest_files=["res://.godot/imported/It feels no fear - V5.mp3-ea759260b56a4feeb9061c369b2cbce1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

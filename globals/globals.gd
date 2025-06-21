@@ -17,7 +17,7 @@ var player_one_health = H:
 			player_one_health = H
 		else:
 			player_one_health = value
-		print('player one health ', player_one_health)
+#		print('Global : p1-H  ', player_one_health)
 #		print('p1 health :   global emit', player_one_health)
 		stats_updated.emit()
 
@@ -29,7 +29,7 @@ var player_one_stamina = S:
 			player_one_stamina = S
 		else:
 			player_one_stamina = value
-#		print('p1 stamina : global emit')
+#		print('Global : p1-S : ')
 		stats_updated.emit()
 
 var pistol_ammo = p_a:
@@ -40,7 +40,7 @@ var pistol_ammo = p_a:
 			pistol_ammo = p_a
 		else:
 			pistol_ammo = value
-#		print('pistol : ammo global emit')
+#		print('global pistol : ammo global emit')
 		stats_updated.emit()
 
 var shot_gun_ammo = s_a:
@@ -51,7 +51,7 @@ var shot_gun_ammo = s_a:
 			shot_gun_ammo = s_a
 		else:
 			shot_gun_ammo = value
-#		print('shotgun : ammo global emit')
+#		print('global shotgun : ammo global emit')
 		stats_updated.emit()
 
 var grenade_ammo = g_a:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://p8ehpt73258"
+path="res://.godot/imported/Down in the pig pen V2- 2_13_25, 4.35 PM.mp3-232abff4176c3f9285c7b943967ba6d5.mp3str"
+
+[deps]
+
+source_file="res://audio/adams_bangers/Down in the pig pen V2- 2_13_25, 4.35 PM.mp3"
+dest_files=["res://.godot/imported/Down in the pig pen V2- 2_13_25, 4.35 PM.mp3-232abff4176c3f9285c7b943967ba6d5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

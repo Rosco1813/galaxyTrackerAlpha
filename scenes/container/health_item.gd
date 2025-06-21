@@ -17,6 +17,9 @@ func _ready() -> void:
 		"large":
 			health_texture.texture = preload("res://graphics/pickUps/Full_Health_Front.png")
 #	print('=== HEALTH Texture === ', health_texture)
+	var tween = create_tween()
+#	tween.set_parallel(true)
+	tween.tween_property(self, "scale", Vector2(1,1), 0.3 ).from(Vector2(0,0))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

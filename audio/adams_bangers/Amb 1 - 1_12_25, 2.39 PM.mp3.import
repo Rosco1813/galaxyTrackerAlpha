@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dtghsuadkdjaq"
+path="res://.godot/imported/Amb 1 - 1_12_25, 2.39 PM.mp3-b86b701f1b5986bcd89b471d6dd49c21.mp3str"
+
+[deps]
+
+source_file="res://audio/adams_bangers/Amb 1 - 1_12_25, 2.39 PM.mp3"
+dest_files=["res://.godot/imported/Amb 1 - 1_12_25, 2.39 PM.mp3-b86b701f1b5986bcd89b471d6dd49c21.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

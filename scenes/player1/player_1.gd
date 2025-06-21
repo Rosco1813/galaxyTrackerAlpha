@@ -28,7 +28,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-
+	update_z_index()
 	if rolling == false:
 		direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
@@ -217,8 +217,8 @@ func update_z_index():
 		highest_body_y.z_index = 0
 #		z_index = max(3, highest_body_y.z_index + 1)
 #		highest_body_y.z_index =min(1, highest_body_y.z_index - 1)
-	print('==========================')
-	print(" player z  == ", z_index)
-	print('highest body  === ', highest_body_y.z_index, )
-	print('body name === ', highest_body_y.name)
-	print('==========================')
+#	print('==========================')
+#	print(" player z  == ", z_index)
+#	print('highest body  === ', highest_body_y.z_index, )
+#	print('body name === ', highest_body_y.name)
+#	print('==========================')
