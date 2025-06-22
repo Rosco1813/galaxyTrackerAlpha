@@ -9,6 +9,9 @@ var p_a = 25
 var s_a = 6
 var g_a = 5
 
+var player_position: Vector2
+var player_direction:Vector2
+
 var player_one_health = H:
 	set(value):
 		if value < 0:

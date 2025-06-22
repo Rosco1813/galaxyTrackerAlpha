@@ -27,21 +27,20 @@ func _ready() -> void:
 	animationTree.active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+#func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	update_z_index()
+	Globals.player_position = global_position
 	if rolling == false:
 		direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-
+		Globals.player_direction = direction
+#		print('=== DIRECTION player ==',  direction)
 	if shooting == true || aiming == true:
 		speed = 0
 	velocity = direction * speed
-
-
 	if aiming == false && shooting == false || rolling == true:
 #		move_and_slide()
 		move_and_collide(velocity)
-
-
 	update_animation()
 	if aiming == false && shooting == false:
 		if position.y != last_position_y:
@@ -183,7 +182,7 @@ func triggerAmmoAnimation():
 		shootWeapon.emit(selected_marker.global_position, selectedWeapon, last_shot_position)
 
 func hit():
-	print('Player one hit')
+#	print('Player one hit')
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
