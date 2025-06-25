@@ -21,7 +21,6 @@ polygon = PackedVector2Array(-32, -46, -3, -46, 31, -25, 32, 47, -1, 47, -32, 24
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8.34465e-07, 1)
 rotation = 0.436332
-scale = Vector2(1, 1)
 skew = -0.453786
 shape = SubResource("RectangleShape2D_qtuqg")
 
