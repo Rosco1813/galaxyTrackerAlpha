@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == 'Player1':
-		print('enter health area ')
+#		print('enter health area ')
 		if Globals.player_one_health < 100:
 			Globals.player_one_health += 20
 		if Globals.player_one_stamina < 100:

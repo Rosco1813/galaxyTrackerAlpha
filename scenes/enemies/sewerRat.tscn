@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://coodhe5k47vkg"]
+[gd_scene load_steps=60 format=3 uid="uid://coodhe5k47vkg"]
 
 [ext_resource type="Script" path="res://scenes/enemies/sewerRat.gd" id="1_rac16"]
 [ext_resource type="Texture2D" uid="uid://b6ud4dvjicvc5" path="res://graphics/enemies/sewerRat/Rat_Front.png" id="2_ladsi"]
@@ -112,6 +112,44 @@ tracks/3/keys = {
 "update": 1,
 "values": [3, 4]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("gun_spawn_pos/gun_marker:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-120, 206)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("gun_spawn_pos/gun_marker_two:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(128, 200)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_frpl7"]
 resource_name = "shoot_back_tail"
@@ -163,6 +201,32 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("tail_lazer_spawn_pos/tail_marker:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 26)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ad0q1"]
@@ -216,6 +280,44 @@ tracks/3/keys = {
 "update": 1,
 "values": [3, 4]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("gun_spawn_pos/gun_marker:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-148, 410)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("gun_spawn_pos/gun_marker_two:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(144, 410)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_vyiff"]
 resource_name = "shoot_forward_tail"
@@ -267,6 +369,32 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("tail_lazer_spawn_pos/tail_marker:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(4, 444)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_w4v2q"]
@@ -320,6 +448,44 @@ tracks/3/keys = {
 "update": 1,
 "values": [3, 4]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("gun_spawn_pos/gun_marker:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-204, 268)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("gun_spawn_pos/gun_marker_two:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-338, 254)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_w5fnb"]
 resource_name = "shoot_left_tail"
@@ -371,6 +537,32 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("tail_lazer_spawn_pos/tail_marker:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-196, 48)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_5vduv"]
@@ -424,6 +616,44 @@ tracks/3/keys = {
 "update": 1,
 "values": [3, 4]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("gun_spawn_pos/gun_marker:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(240, 272)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("gun_spawn_pos/gun_marker_two:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(364, 250)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_k5bck"]
 resource_name = "shoot_right_tail"
@@ -475,6 +705,32 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("tail_lazer_spawn_pos/tail_marker:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(174, 46)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_uin11"]
@@ -689,9 +945,217 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_upaxy"]
+resource_name = "idle_forward"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ratSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ladsi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ratSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ratSprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ratSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_i2b71"]
+resource_name = "idle_back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ratSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_ng6dw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ratSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ratSprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ratSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_oc0b5"]
+resource_name = "idle_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ratSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_oocda")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ratSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ratSprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ratSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jgqmi"]
+resource_name = "idle_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ratSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_b7r80")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ratSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ratSprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ratSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1bymn"]
 _data = {
 "RESET": SubResource("Animation_bwdq5"),
+"idle_back": SubResource("Animation_i2b71"),
+"idle_forward": SubResource("Animation_upaxy"),
+"idle_left": SubResource("Animation_jgqmi"),
+"idle_right": SubResource("Animation_oc0b5"),
 "shoot_back_gun": SubResource("Animation_8udkk"),
 "shoot_back_tail": SubResource("Animation_frpl7"),
 "shoot_forward_gun": SubResource("Animation_ad0q1"),
@@ -705,6 +1169,29 @@ _data = {
 "walk_left": SubResource("Animation_lkqt1"),
 "walk_right": SubResource("Animation_l4437")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pgsg"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_63cyd"]
+animation = &"idle_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jwscw"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8xoq3"]
+animation = &"idle_back"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_o8ms7"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_5pgsg")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_63cyd")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_jwscw")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_8xoq3")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f6phv"]
 animation = &"shoot_back_gun"
@@ -777,10 +1264,6 @@ min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bh6di"]
-advance_mode = 2
-advance_condition = &"is_walking"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m4jsv"]
 advance_mode = 2
 advance_condition = &"shoot_gun"
@@ -799,15 +1282,58 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_walking"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dx80g"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6innk"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4huge"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hjgl4"]
+advance_mode = 2
+advance_condition = &"shoot_gun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j7s42"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gshxs"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kmvwr"]
+advance_mode = 2
+advance_condition = &"shoot_tail"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ragpp"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"shoot_gun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8utm0"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"shoot_tail"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i2umu"]
 states/Start/position = Vector2(70, 205)
+states/idle/node = SubResource("AnimationNodeBlendSpace2D_o8ms7")
+states/idle/position = Vector2(249, 257)
 states/shoot_gun/node = SubResource("AnimationNodeBlendSpace2D_ajgkc")
-states/shoot_gun/position = Vector2(489, 347)
+states/shoot_gun/position = Vector2(751, 307)
 states/shoot_tail/node = SubResource("AnimationNodeBlendSpace2D_eb8jg")
-states/shoot_tail/position = Vector2(489, 113)
+states/shoot_tail/position = Vector2(542, 85)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_eenxw")
-states/walk/position = Vector2(307, 205)
-transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_bh6di"), "walk", "shoot_gun", SubResource("AnimationNodeStateMachineTransition_m4jsv"), "shoot_gun", "walk", SubResource("AnimationNodeStateMachineTransition_kcher"), "walk", "shoot_tail", SubResource("AnimationNodeStateMachineTransition_3ijer"), "shoot_tail", "walk", SubResource("AnimationNodeStateMachineTransition_72sgt")]
+states/walk/position = Vector2(475, 499)
+transitions = ["walk", "shoot_gun", SubResource("AnimationNodeStateMachineTransition_m4jsv"), "shoot_gun", "walk", SubResource("AnimationNodeStateMachineTransition_kcher"), "walk", "shoot_tail", SubResource("AnimationNodeStateMachineTransition_3ijer"), "shoot_tail", "walk", SubResource("AnimationNodeStateMachineTransition_72sgt"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_dx80g"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_6innk"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_4huge"), "idle", "shoot_gun", SubResource("AnimationNodeStateMachineTransition_hjgl4"), "shoot_gun", "idle", SubResource("AnimationNodeStateMachineTransition_j7s42"), "shoot_tail", "idle", SubResource("AnimationNodeStateMachineTransition_gshxs"), "idle", "shoot_tail", SubResource("AnimationNodeStateMachineTransition_kmvwr"), "shoot_tail", "shoot_gun", SubResource("AnimationNodeStateMachineTransition_ragpp"), "shoot_gun", "shoot_tail", SubResource("AnimationNodeStateMachineTransition_8utm0")]
+graph_offset = Vector2(-2, 36)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12hqy"]
 radius = 1008.39
@@ -823,6 +1349,7 @@ texture = ExtResource("2_ladsi")
 hframes = 11
 
 [node name="ratCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-4, 308)
 rotation = -1.57254
 scale = Vector2(0.8, 0.8)
@@ -837,12 +1364,14 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_i2umu")
 anim_player = NodePath("../AnimationPlayer")
 active = true
+parameters/conditions/is_idle = false
 parameters/conditions/is_walking = false
 parameters/conditions/shoot_gun = false
 parameters/conditions/shoot_tail = false
+parameters/idle/blend_position = Vector2(0.30315, -0.0734463)
 parameters/shoot_gun/blend_position = Vector2(-0.0304878, -0.124694)
-parameters/shoot_tail/blend_position = Vector2(0.0142276, -0.173594)
-parameters/walk/blend_position = Vector2(-0.143483, 0.173148)
+parameters/shoot_tail/blend_position = Vector2(0.163386, -0.542601)
+parameters/walk/blend_position = Vector2(-0.489989, 0.191701)
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -859,11 +1388,22 @@ collision_layer = 16
 position = Vector2(-18, 248)
 shape = SubResource("CircleShape2D_12hqy")
 
-[node name="lazer_spawn_pos" type="Node2D" parent="."]
+[node name="tail_lazer_spawn_pos" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="lazer_spawn_pos"]
-position = Vector2(94, 70)
+[node name="tail_marker" type="Marker2D" parent="tail_lazer_spawn_pos"]
+position = Vector2(4, 26)
+
+[node name="gun_spawn_pos" type="Node2D" parent="."]
+
+[node name="gun_marker" type="Marker2D" parent="gun_spawn_pos"]
+position = Vector2(-120, 206)
+
+[node name="gun_marker_two" type="Marker2D" parent="gun_spawn_pos"]
+position = Vector2(128, 200)
+
+[node name="weapon_switch" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="weapon_switch" to="." method="_on_weapon_switch_timeout"]

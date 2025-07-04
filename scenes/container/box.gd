@@ -16,7 +16,7 @@ func hit():
 	if box_health == 0:
 #		var pos = $spawnPositions.get_child(randi()%$spawnPositions.get_child_count()).global_position
 		var pos = $".".global_position
-		print('pos ===== ', pos)
+#		print('pos ===== ', pos)
 		reveal_content.emit(pos)
 #		var containers = get_tree().get_nodes_in_group("container")
 #		print('== Containers ==', containers)

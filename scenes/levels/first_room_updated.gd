@@ -28,7 +28,7 @@ func _on_first_room_player_exit_door() -> void:
 	player_zoom_in(1.2,1.2, 1)
 #	var tween = get_tree().create_tween()
 #	tween.tween_property($Player1/Camera2D, "zoom",Vector2(1.2,1.2), 1)
-	print('exit the door')
+#	print('exit the door')
 
 
 func _on_first_room_sewer_entrance() -> void:

@@ -12,4 +12,5 @@ func _process(_delta: float) -> void:
 
 
 func hit():
-	print('table Hit')
+	pass
+#	print('table Hit')

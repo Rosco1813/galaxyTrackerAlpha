@@ -11,4 +11,5 @@ func _process(_delta: float) -> void:
 	pass
 
 func hit():
-	print('object')
+	pass
+#	print('object')

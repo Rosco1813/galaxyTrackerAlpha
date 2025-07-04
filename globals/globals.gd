@@ -20,8 +20,7 @@ var player_one_health = H:
 			player_one_health = H
 		else:
 			player_one_health = value
-#		print('Global : p1-H  ', player_one_health)
-#		print('p1 health :   global emit', player_one_health)
+
 		stats_updated.emit()
 
 var player_one_stamina = S:

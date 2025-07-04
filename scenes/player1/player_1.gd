@@ -186,6 +186,7 @@ func hit():
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+#	print('player : entered player area : ', body.name)
 	if  body.name != 'firstRoom' and body.name != 'Player1' and body.name != 'StaticBody2D' and body.name != 'steamVent':
 		if body is Node2D:
 			overlapping_bodies.append(body)

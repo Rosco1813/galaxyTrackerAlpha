@@ -16,6 +16,5 @@ texture = ExtResource("3_mspsc")
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(32.8867, 159.62)
 rotation = -2.56738
-scale = Vector2(1, 1)
 skew = 0.677188
 shape = SubResource("RectangleShape2D_887yo")
