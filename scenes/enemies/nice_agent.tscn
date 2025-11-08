@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://ffq01k07bbkp"]
+[gd_scene load_steps=106 format=3 uid="uid://ffq01k07bbkp"]
 
 [ext_resource type="Script" uid="uid://dtreke2oxs6og" path="res://scenes/enemies/nice_agent.gd" id="1_a802y"]
 [ext_resource type="Texture2D" uid="uid://bqbmwaaen8xd0" path="res://graphics/enemies/NICE_AGENTS_animations/NICE1A_Idle-Walk (1).png" id="1_fha88"]
@@ -934,7 +934,6 @@ advance_mode = 2
 advance_condition = &"is_walking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4u0fi"]
-switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_damaged_light"
 
@@ -958,13 +957,26 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_damaged_crit"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wmk7g"]
+advance_mode = 2
+advance_condition = &"is_shooting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ui07w"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tol0d"]
+advance_mode = 2
+advance_condition = &"is_dead_1"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6mfyy"]
 states/End/position = Vector2(1082.67, 583.718)
 states/Start/position = Vector2(91.3333, 558.718)
 states/damage_crit/node = SubResource("AnimationNodeBlendSpace2D_a802y")
 states/damage_crit/position = Vector2(569.1, 573.718)
 states/damage_light/node = SubResource("AnimationNodeBlendSpace2D_x2tc4")
-states/damage_light/position = Vector2(569.1, 441.09)
+states/damage_light/position = Vector2(544.1, 416.09)
 states/damage_medium/node = SubResource("AnimationNodeBlendSpace2D_2wyso")
 states/damage_medium/position = Vector2(569.1, 691.25)
 states/death_1/node = SubResource("AnimationNodeBlendSpace2D_xrojs")
@@ -981,7 +993,7 @@ states/shoot_right/node = SubResource("AnimationNodeBlendSpace2D_02tx7")
 states/shoot_right/position = Vector2(328.844, 691.25)
 states/walk_right/node = SubResource("AnimationNodeBlendSpace2D_a5s8j")
 states/walk_right/position = Vector2(328.844, 441.09)
-transitions = ["idle_forward", "walk_right", SubResource("AnimationNodeStateMachineTransition_tokaf"), "walk_right", "idle_forward", SubResource("AnimationNodeStateMachineTransition_h1sro"), "idle_forward", "shoot_right", SubResource("AnimationNodeStateMachineTransition_a802y"), "shoot_right", "idle_forward", SubResource("AnimationNodeStateMachineTransition_x2tc4"), "idle_forward", "damage_light", SubResource("AnimationNodeStateMachineTransition_2wyso"), "damage_light", "idle_forward", SubResource("AnimationNodeStateMachineTransition_xrojs"), "idle_forward", "damage_crit", SubResource("AnimationNodeStateMachineTransition_ffcrg"), "damage_crit", "idle_forward", SubResource("AnimationNodeStateMachineTransition_m1v4e"), "idle_forward", "damage_medium", SubResource("AnimationNodeStateMachineTransition_fqi1y"), "damage_medium", "idle_forward", SubResource("AnimationNodeStateMachineTransition_535y5"), "damage_crit", "death_crit", SubResource("AnimationNodeStateMachineTransition_k1jng"), "damage_light", "death_1", SubResource("AnimationNodeStateMachineTransition_tbiaa"), "damage_medium", "death_2", SubResource("AnimationNodeStateMachineTransition_sbs4h"), "damage_light", "death_headshot", SubResource("AnimationNodeStateMachineTransition_xcok1"), "damage_medium", "death_headshot", SubResource("AnimationNodeStateMachineTransition_02tx7"), "damage_light", "damage_crit", SubResource("AnimationNodeStateMachineTransition_a5s8j"), "damage_medium", "damage_crit", SubResource("AnimationNodeStateMachineTransition_jariv"), "Start", "idle_forward", SubResource("AnimationNodeStateMachineTransition_uaven"), "walk_right", "damage_light", SubResource("AnimationNodeStateMachineTransition_ibnd8"), "damage_light", "walk_right", SubResource("AnimationNodeStateMachineTransition_kq6f5"), "walk_right", "damage_crit", SubResource("AnimationNodeStateMachineTransition_0whtm"), "walk_right", "damage_medium", SubResource("AnimationNodeStateMachineTransition_of4y5"), "damage_medium", "walk_right", SubResource("AnimationNodeStateMachineTransition_26un7"), "shoot_right", "damage_light", SubResource("AnimationNodeStateMachineTransition_4u0fi"), "damage_light", "shoot_right", SubResource("AnimationNodeStateMachineTransition_md865"), "shoot_right", "damage_medium", SubResource("AnimationNodeStateMachineTransition_xtdyi"), "damage_medium", "shoot_right", SubResource("AnimationNodeStateMachineTransition_mhesd"), "shoot_right", "damage_crit", SubResource("AnimationNodeStateMachineTransition_ihyut")]
+transitions = ["idle_forward", "walk_right", SubResource("AnimationNodeStateMachineTransition_tokaf"), "walk_right", "idle_forward", SubResource("AnimationNodeStateMachineTransition_h1sro"), "idle_forward", "shoot_right", SubResource("AnimationNodeStateMachineTransition_a802y"), "shoot_right", "idle_forward", SubResource("AnimationNodeStateMachineTransition_x2tc4"), "idle_forward", "damage_light", SubResource("AnimationNodeStateMachineTransition_2wyso"), "damage_light", "idle_forward", SubResource("AnimationNodeStateMachineTransition_xrojs"), "idle_forward", "damage_crit", SubResource("AnimationNodeStateMachineTransition_ffcrg"), "damage_crit", "idle_forward", SubResource("AnimationNodeStateMachineTransition_m1v4e"), "idle_forward", "damage_medium", SubResource("AnimationNodeStateMachineTransition_fqi1y"), "damage_medium", "idle_forward", SubResource("AnimationNodeStateMachineTransition_535y5"), "damage_crit", "death_crit", SubResource("AnimationNodeStateMachineTransition_k1jng"), "damage_light", "death_1", SubResource("AnimationNodeStateMachineTransition_tbiaa"), "damage_medium", "death_2", SubResource("AnimationNodeStateMachineTransition_sbs4h"), "damage_light", "death_headshot", SubResource("AnimationNodeStateMachineTransition_xcok1"), "damage_medium", "death_headshot", SubResource("AnimationNodeStateMachineTransition_02tx7"), "damage_light", "damage_crit", SubResource("AnimationNodeStateMachineTransition_a5s8j"), "damage_medium", "damage_crit", SubResource("AnimationNodeStateMachineTransition_jariv"), "Start", "idle_forward", SubResource("AnimationNodeStateMachineTransition_uaven"), "walk_right", "damage_light", SubResource("AnimationNodeStateMachineTransition_ibnd8"), "damage_light", "walk_right", SubResource("AnimationNodeStateMachineTransition_kq6f5"), "walk_right", "damage_crit", SubResource("AnimationNodeStateMachineTransition_0whtm"), "walk_right", "damage_medium", SubResource("AnimationNodeStateMachineTransition_of4y5"), "damage_medium", "walk_right", SubResource("AnimationNodeStateMachineTransition_26un7"), "shoot_right", "damage_light", SubResource("AnimationNodeStateMachineTransition_4u0fi"), "damage_light", "shoot_right", SubResource("AnimationNodeStateMachineTransition_md865"), "shoot_right", "damage_medium", SubResource("AnimationNodeStateMachineTransition_xtdyi"), "damage_medium", "shoot_right", SubResource("AnimationNodeStateMachineTransition_mhesd"), "shoot_right", "damage_crit", SubResource("AnimationNodeStateMachineTransition_ihyut"), "walk_right", "shoot_right", SubResource("AnimationNodeStateMachineTransition_wmk7g"), "shoot_right", "walk_right", SubResource("AnimationNodeStateMachineTransition_ui07w"), "shoot_right", "death_1", SubResource("AnimationNodeStateMachineTransition_tol0d")]
 graph_offset = Vector2(-3.9, 377.118)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a802y"]

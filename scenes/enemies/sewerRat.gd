@@ -23,7 +23,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 #	pass
 	var distance_to_player = global_position.distance_to(Globals.player_position)
-	#print('distance to user ', distance_to_player)
+
 	if Globals.player_position == null:
 		return
 	if player_in_attack_zone == true:
@@ -58,7 +58,7 @@ func rat_move(direction, condition):
 	animationTree.set("parameters/conditions/is_walking", condition)
 	animationTree["parameters/walk/blend_position"] = direction
 func tail_lazer(direction, condition):
-#	print('tail lazer direction == ', direction)
+
 	animationTree.set("parameters/conditions/shoot_tail", condition)
 	animationTree["parameters/shoot_tail/blend_position"] = direction
 func guns(direction, condition):
@@ -93,11 +93,11 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 
 func _on_weapon_switch_timeout() -> void:
 	pass
-#	print('switch weapon')
+
 #	switchWeapon = !switchWeapon
 
 func shoot():
-#	print('shoot shoot shoot')
+
 	if ammo > 0:
 		ammo -=1
 		if ( ammo % 5) == 0:
