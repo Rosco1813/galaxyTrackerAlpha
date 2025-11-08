@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dl3jwjvcrixn4"]
 
-[ext_resource type="Script" path="res://scenes/weapons/projectiles/grenade.gd" id="1_6w7oq"]
+[ext_resource type="Script" uid="uid://d0f8ywr5b3s5p" path="res://scenes/weapons/projectiles/grenade.gd" id="1_6w7oq"]
 [ext_resource type="Texture2D" uid="uid://bls2dknplwgj2" path="res://preAlphaFiles/graphics/projectiles/grenade.png" id="1_dhx40"]
 [ext_resource type="Texture2D" uid="uid://bx2lsax0vbamu" path="res://preAlphaFiles/graphics/explosions/explosion_3.png" id="3_jgckn"]
 [ext_resource type="Texture2D" uid="uid://ckexo3a41qlx8" path="res://preAlphaFiles/graphics/lights/textures/circle.png" id="4_76sc7"]
@@ -209,9 +209,9 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1tejv"]
 _data = {
-"RESET": SubResource("Animation_1tpfw"),
-"blinking": SubResource("Animation_76dwi"),
-"explosion": SubResource("Animation_pwa5u")
+&"RESET": SubResource("Animation_1tpfw"),
+&"blinking": SubResource("Animation_76dwi"),
+&"explosion": SubResource("Animation_pwa5u")
 }
 
 [node name="grenade" type="RigidBody2D"]

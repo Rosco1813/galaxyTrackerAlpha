@@ -1,6 +1,6 @@
 [gd_scene load_steps=156 format=3 uid="uid://cp5jri42yuyq7"]
 
-[ext_resource type="Script" path="res://scenes/player1/player_1.gd" id="1_cqawk"]
+[ext_resource type="Script" uid="uid://buv6b0v7t7xhm" path="res://scenes/player1/player_1.gd" id="1_cqawk"]
 [ext_resource type="Texture2D" uid="uid://bwkrheyehhkaa" path="res://graphics/mainCharacter/walking.png" id="1_m7d0g"]
 [ext_resource type="Texture2D" uid="uid://ngfyalldedma" path="res://graphics/mainCharacter/SHADOW.png" id="2_xu6c4"]
 [ext_resource type="Texture2D" uid="uid://b7mw6earbc7xy" path="res://graphics/mainCharacter/FINAL_Character_Pallet_Sheet_Roll copy.png" id="3_btdnb"]
@@ -2996,40 +2996,40 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ha4vn"]
 _data = {
-"RESET": SubResource("Animation_grue1"),
-"idle_back": SubResource("Animation_bo2w2"),
-"idle_forward": SubResource("Animation_3gl5l"),
-"idle_left": SubResource("Animation_cl78l"),
-"idle_right": SubResource("Animation_ckiiq"),
-"pistol_aim_back": SubResource("Animation_umk2n"),
-"pistol_aim_bottom_left": SubResource("Animation_aetn0"),
-"pistol_aim_bottom_right": SubResource("Animation_s711a"),
-"pistol_aim_forward": SubResource("Animation_ddvmd"),
-"pistol_aim_left": SubResource("Animation_h6212"),
-"pistol_aim_right": SubResource("Animation_6ve6p"),
-"pistol_aim_top_left": SubResource("Animation_aa83r"),
-"pistol_aim_top_right": SubResource("Animation_0xq0v"),
-"pistol_shoot_back": SubResource("Animation_p8kot"),
-"pistol_shoot_forward": SubResource("Animation_wkyca"),
-"pistol_shoot_left": SubResource("Animation_63twu"),
-"pistol_shoot_left_bottom": SubResource("Animation_ejmxa"),
-"pistol_shoot_left_top": SubResource("Animation_1kwfu"),
-"pistol_shoot_right": SubResource("Animation_ylmo8"),
-"pistol_shoot_right_bottom": SubResource("Animation_qjbkj"),
-"pistol_shoot_right_top": SubResource("Animation_si1t2"),
-"roll_back": SubResource("Animation_n2shr"),
-"roll_forward": SubResource("Animation_btqrp"),
-"roll_left": SubResource("Animation_nhckj"),
-"roll_right": SubResource("Animation_n8p4t"),
-"shotgun_aim_forward": SubResource("Animation_88u3m"),
-"shotgun_equip": SubResource("Animation_f1ctf"),
-"shotgun_reload": SubResource("Animation_qdyjh"),
-"shotgun_shoot_forward": SubResource("Animation_mtcv3"),
-"shotgun_walk_forward": SubResource("Animation_hiho1"),
-"walk_back": SubResource("Animation_tpasb"),
-"walk_forward": SubResource("Animation_cl2gx"),
-"walk_left": SubResource("Animation_n5nik"),
-"walk_right": SubResource("Animation_rvcq4")
+&"RESET": SubResource("Animation_grue1"),
+&"idle_back": SubResource("Animation_bo2w2"),
+&"idle_forward": SubResource("Animation_3gl5l"),
+&"idle_left": SubResource("Animation_cl78l"),
+&"idle_right": SubResource("Animation_ckiiq"),
+&"pistol_aim_back": SubResource("Animation_umk2n"),
+&"pistol_aim_bottom_left": SubResource("Animation_aetn0"),
+&"pistol_aim_bottom_right": SubResource("Animation_s711a"),
+&"pistol_aim_forward": SubResource("Animation_ddvmd"),
+&"pistol_aim_left": SubResource("Animation_h6212"),
+&"pistol_aim_right": SubResource("Animation_6ve6p"),
+&"pistol_aim_top_left": SubResource("Animation_aa83r"),
+&"pistol_aim_top_right": SubResource("Animation_0xq0v"),
+&"pistol_shoot_back": SubResource("Animation_p8kot"),
+&"pistol_shoot_forward": SubResource("Animation_wkyca"),
+&"pistol_shoot_left": SubResource("Animation_63twu"),
+&"pistol_shoot_left_bottom": SubResource("Animation_ejmxa"),
+&"pistol_shoot_left_top": SubResource("Animation_1kwfu"),
+&"pistol_shoot_right": SubResource("Animation_ylmo8"),
+&"pistol_shoot_right_bottom": SubResource("Animation_qjbkj"),
+&"pistol_shoot_right_top": SubResource("Animation_si1t2"),
+&"roll_back": SubResource("Animation_n2shr"),
+&"roll_forward": SubResource("Animation_btqrp"),
+&"roll_left": SubResource("Animation_nhckj"),
+&"roll_right": SubResource("Animation_n8p4t"),
+&"shotgun_aim_forward": SubResource("Animation_88u3m"),
+&"shotgun_equip": SubResource("Animation_f1ctf"),
+&"shotgun_reload": SubResource("Animation_qdyjh"),
+&"shotgun_shoot_forward": SubResource("Animation_mtcv3"),
+&"shotgun_walk_forward": SubResource("Animation_hiho1"),
+&"walk_back": SubResource("Animation_tpasb"),
+&"walk_forward": SubResource("Animation_cl2gx"),
+&"walk_left": SubResource("Animation_n5nik"),
+&"walk_right": SubResource("Animation_rvcq4")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_10ksx"]

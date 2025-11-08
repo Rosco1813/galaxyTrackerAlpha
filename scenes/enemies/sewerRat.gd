@@ -23,7 +23,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 #	pass
 	var distance_to_player = global_position.distance_to(Globals.player_position)
-	print('distance to user ', distance_to_player)
+	#print('distance to user ', distance_to_player)
 	if Globals.player_position == null:
 		return
 	if player_in_attack_zone == true:

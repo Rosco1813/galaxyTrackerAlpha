@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjqsphs3opv26"]
 
-[ext_resource type="Script" path="res://scenes/enemies/jacked_rabbit.gd" id="1_o6k4p"]
+[ext_resource type="Script" uid="uid://cdgkb5jv3xu1k" path="res://scenes/enemies/jacked_rabbit.gd" id="1_o6k4p"]
 [ext_resource type="Texture2D" uid="uid://dlc8nuiac1885" path="res://graphics/enemies/jacked-rabbit-front-stand copy.png" id="1_qw58c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x8iph"]

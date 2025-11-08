@@ -32,12 +32,3 @@ func _on_player_1_shoot_weapon(markerPosition, weaponType, direction) -> void:
 		grenadeThrow.linear_velocity = direction * 300
 		$Projectiles.add_child(grenadeThrow)
 		$UI.update_grenade_ammo_text()
-
-
-
-
-
-
-
-
-

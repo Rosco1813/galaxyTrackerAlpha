@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckbx4514u3tl6"]
 
-[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_0p3dd"]
+[ext_resource type="Script" uid="uid://cgufsmjnmhckj" path="res://scenes/levels/level.gd" id="1_0p3dd"]
 [ext_resource type="PackedScene" uid="uid://bsngda51k5wel" path="res://scenes/weapons/projectiles/pistol_shot.tscn" id="2_8kias"]
 [ext_resource type="PackedScene" uid="uid://dl3jwjvcrixn4" path="res://scenes/weapons/projectiles/grenade.tscn" id="3_gopt7"]
 [ext_resource type="PackedScene" uid="uid://cp5jri42yuyq7" path="res://scenes/player1/player_1.tscn" id="4_foeya"]

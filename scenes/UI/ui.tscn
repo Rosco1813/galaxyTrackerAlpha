@@ -1,16 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://q6lg5rv45f8k"]
+[gd_scene load_steps=14 format=3 uid="uid://q6lg5rv45f8k"]
 
 [ext_resource type="Texture2D" uid="uid://ce1qf2c3pea1q" path="res://graphics/ui/heathBarUi.png" id="1_6p2yo"]
-[ext_resource type="Script" path="res://scenes/UI/ui.gd" id="1_18ld7"]
-[ext_resource type="Texture2D" uid="uid://caw2wqj3ku1wl" path="res://preAlphaFiles/graphics/ui/progress_bar/bg.png" id="2_ccrv8"]
+[ext_resource type="Script" uid="uid://dq5sm5f7hxwhl" path="res://scenes/UI/ui.gd" id="1_18ld7"]
 [ext_resource type="Texture2D" uid="uid://cc1g728f6j37j" path="res://preAlphaFiles/graphics/ui/bullet.png" id="2_ygaxe"]
-[ext_resource type="Texture2D" uid="uid://5hclf41m5ab2" path="res://graphics/ui/progress_bar/over.png" id="3_a8qnc"]
+[ext_resource type="Texture2D" uid="uid://5hclf41m5ab2" path="res://preAlphaFiles/graphics/ui/progress_bar/over.png" id="3_a8qnc"]
 [ext_resource type="Texture2D" uid="uid://k72fetrtonj0" path="res://preAlphaFiles/graphics/ui/grenade.png" id="3_tedut"]
-[ext_resource type="Texture2D" uid="uid://dyl0o6krfqenj" path="res://preAlphaFiles/graphics/ui/progress_bar/progress.png" id="4_45w2q"]
 [ext_resource type="FontFile" uid="uid://co7xw8byulnp7" path="res://graphics/ui/fonts/AstronBoyWonder.ttf" id="5_thqa8"]
 [ext_resource type="FontFile" uid="uid://oy17h2pedji" path="res://graphics/ui/fonts/ka1.ttf" id="6_kpcxc"]
-[ext_resource type="Texture2D" uid="uid://caw2wqj3ku1wl" path="res://graphics/ui/progress_bar/bg.png" id="8_p6pwq"]
-[ext_resource type="Texture2D" uid="uid://dyl0o6krfqenj" path="res://graphics/ui/progress_bar/progress.png" id="9_oyfll"]
+[ext_resource type="Texture2D" uid="uid://caw2wqj3ku1wl" path="res://preAlphaFiles/graphics/ui/progress_bar/bg.png" id="8_p6pwq"]
+[ext_resource type="Texture2D" uid="uid://dyl0o6krfqenj" path="res://preAlphaFiles/graphics/ui/progress_bar/progress.png" id="9_oyfll"]
 [ext_resource type="FontFile" uid="uid://bh81e2wa6k4i6" path="res://graphics/ui/fonts/FunkyRundkopfTwoNF.ttf" id="11_kp24k"]
 
 [sub_resource type="Theme" id="Theme_v4ndb"]
@@ -51,9 +49,9 @@ theme_override_constants/margin_bottom = 56
 [node name="TextureProgressBar" type="TextureProgressBar" parent="health_container"]
 layout_mode = 2
 value = 50.0
-texture_under = ExtResource("2_ccrv8")
+texture_under = ExtResource("8_p6pwq")
 texture_over = ExtResource("3_a8qnc")
-texture_progress = ExtResource("4_45w2q")
+texture_progress = ExtResource("9_oyfll")
 tint_under = Color(0.133333, 0.184314, 1, 0.443137)
 tint_over = Color(0, 0, 0, 0.509804)
 

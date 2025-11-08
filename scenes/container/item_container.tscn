@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bbmbpp44gnfni"]
 
-[ext_resource type="Script" path="res://scenes/container/item_container.gd" id="1_n00om"]
+[ext_resource type="Script" uid="uid://vygp6n75343j" path="res://scenes/container/item_container.gd" id="1_n00om"]
 
 [node name="itemContainer" type="StaticBody2D" groups=["container"]]
 collision_layer = 4

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqc5531k37wet"]
 
-[ext_resource type="Script" path="res://scenes/container/health_item.gd" id="1_kww3k"]
+[ext_resource type="Script" uid="uid://dhb0krubfq5un" path="res://scenes/container/health_item.gd" id="1_kww3k"]
 [ext_resource type="Texture2D" uid="uid://dpg0w83vffhsy" path="res://graphics/pickUps/Full_Health_Left.png" id="2_dwfva"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtuqg"]

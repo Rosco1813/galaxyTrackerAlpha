@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://eus2s5agc407"]
+[gd_scene load_steps=9 format=3 uid="uid://eus2s5agc407"]
 
 [ext_resource type="PackedScene" uid="uid://ckbx4514u3tl6" path="res://scenes/levels/level.tscn" id="1_dtc8p"]
-[ext_resource type="Script" path="res://scenes/levels/first_room_updated.gd" id="2_0i36j"]
+[ext_resource type="Script" uid="uid://r3i3xxrm4awu" path="res://scenes/levels/first_room_updated.gd" id="2_0i36j"]
 [ext_resource type="PackedScene" uid="uid://c8o4e8o1yvwor" path="res://scenes/levels/first_room.tscn" id="2_x1nx4"]
 [ext_resource type="PackedScene" uid="uid://coodhe5k47vkg" path="res://scenes/enemies/sewerRat.tscn" id="3_xauum"]
 [ext_resource type="PackedScene" uid="uid://bqc5531k37wet" path="res://scenes/container/item.tscn" id="5_rkicq"]
 [ext_resource type="PackedScene" uid="uid://c6ckbssf4rc02" path="res://scenes/container/ammo_pickups.tscn" id="6_aweec"]
 [ext_resource type="PackedScene" uid="uid://bakvllclkt34w" path="res://scenes/container/files.tscn" id="7_okxkx"]
+[ext_resource type="PackedScene" uid="uid://ffq01k07bbkp" path="res://scenes/enemies/nice_agent.tscn" id="8_6bn12"]
 
 [node name="first_room_updated" instance=ExtResource("1_dtc8p")]
 script = ExtResource("2_0i36j")
@@ -15,7 +16,10 @@ script = ExtResource("2_0i36j")
 position = Vector2(-13, 5)
 
 [node name="sewerRat" parent="." index="3" instance=ExtResource("3_xauum")]
-position = Vector2(-355, 65)
+position = Vector2(-791, -12)
+
+[node name="NICE_agent" parent="." index="4" instance=ExtResource("8_6bn12")]
+position = Vector2(751, 35)
 
 [node name="health_item" parent="Items" index="0" instance=ExtResource("5_rkicq")]
 position = Vector2(334, 58)
@@ -32,8 +36,11 @@ position = Vector2(719, 445)
 [node name="files" parent="Items" index="4" instance=ExtResource("7_okxkx")]
 position = Vector2(972, 593)
 
-[node name="Player1" parent="." index="7"]
-position = Vector2(450, 392)
+[node name="Player1" parent="." index="8"]
+position = Vector2(-170, 439)
+
+[node name="Camera2D" parent="Player1" index="7"]
+position = Vector2(-12, 0)
 
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="Lights" index="0"]
 color = Color(0.8, 0.8, 0.8, 1)

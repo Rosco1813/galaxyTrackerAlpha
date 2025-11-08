@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bbmbpp44gnfni" path="res://scenes/container/item_container.tscn" id="1_4edr6"]
 [ext_resource type="Texture2D" uid="uid://mhqrvgpfwxh4" path="res://graphics/objects/Tool_Table_Front.png" id="2_mq7el"]
-[ext_resource type="Script" path="res://scenes/container/tool_drawer_front.gd" id="2_yptsv"]
+[ext_resource type="Script" uid="uid://8ka7q7bbsvke" path="res://scenes/container/tool_drawer_front.gd" id="2_yptsv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddvr8"]
 size = Vector2(445, 479)
