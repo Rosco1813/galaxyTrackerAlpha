@@ -23,9 +23,11 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 #	pass
 	var distance_to_player = global_position.distance_to(Globals.player_position)
-	print('distance to user ', distance_to_player)
+	#print('distance to user ', distance_to_player)
 	if Globals.player_position == null:
 		return
+	var to_player = Globals.player_position - global_position
+	#update_facing(to_player)
 	if player_in_attack_zone == true:
 		if distance_to_player > 300:
 			direction = (Globals.player_position - global_position).normalized()
@@ -43,14 +45,15 @@ func _physics_process(_delta: float) -> void:
 				#guns(direction, true)
 				nice_agent_shoot.emit(pos, direction)
 		move_and_slide()
+		update_facing(to_player)
 
-func stop_moving(direction):
-	nice_agent_move(direction, false)
-	shoot_shotgun(direction, false)
+func stop_moving(_direction):
+	nice_agent_move(_direction, false)
+	shoot_shotgun(_direction, false)
 	#guns(direction, false)
 
 
-func idle(direction, condition):
+func idle(_direction, condition):
 	animationTree.set("parameters/conditions/is_idle", condition)
 	#animationTree["parameters/idle/blend_position"] = direction
 
@@ -59,12 +62,11 @@ func update_facing(dir: Vector2) -> void:
 		facing = -1 if dir.x < 0 else 1
 		sprite.flip_h = facing == -1
 
-func nice_agent_move(direction, condition):
-	update_facing(direction)
-	print('condition = ', condition)
+func nice_agent_move(_direction, condition):
+	#print('condition = ', condition)
 	animationTree.set("parameters/conditions/is_walking", condition)
 	#animationTree["parameters/walk_right/blend_position"] = direction
-func shoot_shotgun(direction, condition):
+func shoot_shotgun(_direction, condition):
 #	print('tail lazer direction == ', direction)
 	animationTree.set("parameters/conditions/is_shooting", condition)
 	#animationTree["parameters/shoot_right/blend_position"] = direction
@@ -72,12 +74,13 @@ func shoot_shotgun(direction, condition):
 	#animationTree.set("parameters/conditions/shoot_gun", condition)
 	#animationTree["parameters/shoot_gun/blend_position"] = direction
 func hit():
-	health -=50
+	health -=20
 	animationTree.set('parameters/conditions/is_damaged_light', true)
 	
 	if health == 0:
 		animationTree.set("parameters/conditions/is_damaged_crit",true )
-		queue_free()
+		
+		#queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 
@@ -114,3 +117,11 @@ func shoot():
 			switchWeapon = !switchWeapon
 	else:
 		print('out of ammo')
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	print('animation name : ', anim_name)
+	
+	animationTree.set('parameters/conditions/is_damaged_light', false)
+	if anim_name == 'death_crit':
+		queue_free()
