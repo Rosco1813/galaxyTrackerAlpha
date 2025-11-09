@@ -198,11 +198,11 @@ script = ExtResource("7_sdfxp")
 
 [node name="slimeAnimation" type="AnimationPlayer" parent="floorObjects/greenSlime"]
 libraries = {
-"": SubResource("AnimationLibrary_30ypo")
+&"": SubResource("AnimationLibrary_30ypo")
 }
 
 [node name="toolDrawerFront" parent="floorObjects" instance=ExtResource("15_jhks0")]
-position = Vector2(186, 45)
+position = Vector2(-477, 73)
 scale = Vector2(0.25, 0.25)
 collision_layer = 1
 collision_mask = 1
@@ -252,13 +252,13 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="box5" parent="floorObjects" instance=ExtResource("19_b4eie")]
-position = Vector2(-650, 107)
+position = Vector2(-698, 90)
 scale = Vector2(0.25, 0.25)
 collision_layer = 1
 collision_mask = 1
 
 [node name="box6" parent="floorObjects" instance=ExtResource("19_b4eie")]
-position = Vector2(490, 247)
+position = Vector2(-591, 103)
 scale = Vector2(0.25, 0.25)
 collision_layer = 1
 collision_mask = 1

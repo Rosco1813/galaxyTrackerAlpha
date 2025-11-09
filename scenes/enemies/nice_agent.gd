@@ -13,6 +13,8 @@ var health = 100
 var player_in_attack_zone:bool = false
 var switchWeapon:bool = false
 var facing := 1
+var hit_location:String = ''
+var just_hit:bool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -21,33 +23,35 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	var distance_to_player = global_position.distance_to(Globals.player_position)
 	var to_player = Globals.player_position - global_position
+	var away_from_player = Globals.player_position + global_position
+	var pos:Vector2
+	velocity = direction * speed
+	#shoot_shotgun(direction,false)
+	update_facing(to_player)
+	nice_agent_move(direction, true)
+	direction = (Globals.player_position - global_position).normalized()
+
+	if just_hit:
+		stop_moving(false)
+
+	if distance_to_player > 240 and distance_to_player < 450:
+		velocity = Vector2.ZERO
+
+		if just_hit == false:
+			shoot_shotgun(direction, true)
+			nice_agent_shoot.emit(pos, direction)
+					
+	if distance_to_player < 240:
+		shoot_shotgun(direction, false)
+		direction = (Globals.player_position + global_position).normalized()
+		velocity = direction * speed
+		update_facing(away_from_player)
+		nice_agent_move(direction, true)
+		move_and_slide()
+	elif distance_to_player < 240 or distance_to_player > 450:
+		shoot_shotgun(direction, false)
+		move_and_slide()
 	
-	if health < 0:
-		die_1(direction, true)
-	else:
-		if Globals.player_position == null:
-			return
-			
-		if player_in_attack_zone == true:
-			var pos:Vector2
-			if distance_to_player > 300:
-				direction = (Globals.player_position - global_position).normalized()
-				nice_agent_move(direction, false)
-				velocity = Vector2.ZERO
-				if health > 0:
-					shoot_shotgun(direction, true)
-					nice_agent_shoot.emit(pos, direction)
-				else:
-					shoot_shotgun(direction, false)
-					nice_agent_move(direction, false)
-					die_1(direction, true)
-			else:
-				direction = (Globals.player_position + global_position).normalized()
-				nice_agent_move(direction, true)
-			if health > 0:
-				velocity = direction * speed
-				move_and_slide()
-				update_facing(to_player)
 
 
 func stop_moving(_direction):
@@ -76,11 +80,16 @@ func light_damage(_direction, condition):
 	animationTree.set("parameters/conditions/is_damaged_light", condition)
 
 func hit():
-	health -=20
+	just_hit = true
+	velocity = Vector2.ZERO
+	shoot_shotgun(direction, false)
+	health -=10
 	hit_type = 'damage_light'
 	print('health === ', health)
 	if health > 0:
+		stop_moving(true)
 		light_damage(direction, true)
+
 	
 	if health < 0:
 		stop_moving(true)
@@ -100,11 +109,11 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body.name == 'Player1':
 		player_in_attack_zone = false
-		stop_moving(direction)
-		idle(direction, true)
+
 
 func _on_weapon_switch_timeout() -> void:
 	pass
+
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
@@ -112,5 +121,10 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	hit_type = anim_name
 	
 	animationTree.set('parameters/conditions/is_damaged_light', false)
+	just_hit = false
 	if anim_name == 'death_crit' or anim_name == 'death_1':
 		queue_free()
+
+
+func _on_animation_tree_animation_started(anim_name: StringName) -> void:
+	pass # Replace with function body.
