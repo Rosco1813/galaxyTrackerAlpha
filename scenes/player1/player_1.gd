@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animation = $AnimationPlayer
 @onready var sprite = $playerSprite
 @onready var animationTree = $AnimationTree
+@onready var shot_sfx: AudioStreamPlayer = $ShotSFX
 
 signal shootWeapon(markerPosition, weaponType, direction)
 
@@ -116,6 +117,8 @@ func update_animation():
 
 #			shooting = true
 			if selectedWeapon =='pistol' and Globals.pistol_ammo > 0 :
+				shot_sfx.stop()
+				shot_sfx.play()
 				shooting = true
 				set_animation_conditions('is_shooting', true)
 				Globals.pistol_ammo -= 1
@@ -152,6 +155,9 @@ func set_roll(value):
 
 func set_shooting(value):
 	if selectedWeapon =='pistol':
+		if value:
+			shot_sfx.stop()
+			shot_sfx.play()
 		animationTree['parameters/conditions/is_shooting'] = value
 	elif selectedWeapon == 'shotgun':
 		animationTree['parameters/conditions/shoot_shotgun'] = value

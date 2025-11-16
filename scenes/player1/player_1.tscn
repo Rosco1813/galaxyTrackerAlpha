@@ -1,7 +1,8 @@
-[gd_scene load_steps=156 format=3 uid="uid://cp5jri42yuyq7"]
+[gd_scene load_steps=157 format=3 uid="uid://cp5jri42yuyq7"]
 
 [ext_resource type="Script" uid="uid://buv6b0v7t7xhm" path="res://scenes/player1/player_1.gd" id="1_cqawk"]
 [ext_resource type="Texture2D" uid="uid://bwkrheyehhkaa" path="res://graphics/mainCharacter/walking.png" id="1_m7d0g"]
+[ext_resource type="AudioStream" uid="uid://dognqi5yphqkw" path="res://audio/pistol-shot-233473.mp3" id="2_5a65l"]
 [ext_resource type="Texture2D" uid="uid://ngfyalldedma" path="res://graphics/mainCharacter/SHADOW.png" id="2_xu6c4"]
 [ext_resource type="Texture2D" uid="uid://b7mw6earbc7xy" path="res://graphics/mainCharacter/FINAL_Character_Pallet_Sheet_Roll copy.png" id="3_btdnb"]
 [ext_resource type="Texture2D" uid="uid://d0sd2bpwmuu5n" path="res://graphics/mainCharacter/shotGunAnimations/FrontShotgunShoot.png" id="4_yj844"]
@@ -3555,6 +3556,9 @@ polygon = PackedVector2Array(-22, -9, -27, 30, -3, 34, 20, 35, 44, 33, 43, -3, 3
 collision_mask = 127
 script = ExtResource("1_cqawk")
 
+[node name="ShotSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5a65l")
+
 [node name="playerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_m7d0g")
@@ -3568,13 +3572,12 @@ texture = ExtResource("2_xu6c4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ha4vn")
+&"": SubResource("AnimationLibrary_ha4vn")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_8ljvn")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/conditions/aim_shotgun = false
 parameters/conditions/equip_shotgun = false
 parameters/conditions/is_aiming = false
