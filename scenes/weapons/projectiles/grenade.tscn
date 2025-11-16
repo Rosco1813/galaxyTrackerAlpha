@@ -230,10 +230,10 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_dhx40")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "blinking"
 libraries = {
-"": SubResource("AnimationLibrary_1tejv")
+&"": SubResource("AnimationLibrary_1tejv")
 }
+autoplay = "blinking"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -252,4 +252,5 @@ energy = 0.0
 texture = ExtResource("4_76sc7")
 texture_scale = 0.08
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

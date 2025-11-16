@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 signal nice_agent_shoot(pos, direction)
 const FACING_DEAD_ZONE := 0.1
+const BODY_DAMAGE := 10
+const HEADSHOT_DAMAGE := 200
 var is_enemy:bool = true
 var direction = Vector2.RIGHT
 var speed = 100
@@ -75,27 +77,46 @@ func shoot_shotgun(_direction, condition):
 	
 func die_1(_direction, condition):
 	animationTree.set("parameters/conditions/is_dead_1", condition)
+
+func die_headshot(_direction, condition):
+	animationTree.set("parameters/conditions/is_dead_headshot", condition)
 	
 func light_damage(_direction, condition):
 	animationTree.set("parameters/conditions/is_damaged_light", condition)
 
 func hit():
+	if just_hit and hit_location == "head":
+		return
+	apply_hit(BODY_DAMAGE, "is_damaged_light", "is_dead_1", "body")
+
+
+func head_hit():
+	apply_hit(HEADSHOT_DAMAGE, "is_damaged_crit", "is_dead_headshot", "head")
+
+
+func apply_hit(damage_amount: int, damage_condition: StringName, death_condition: StringName, location: String) -> void:
+	print('Apply Hit : ', damage_amount, damage_condition, death_condition, location,)
+	hit_location = location
+	hit_type = String(damage_condition)
 	just_hit = true
 	velocity = Vector2.ZERO
 	shoot_shotgun(direction, false)
-	health -=10
-	hit_type = 'damage_light'
-	print('health === ', health)
-	if health > 0:
-		stop_moving(true)
-		light_damage(direction, true)
+	health -= damage_amount
+	stop_moving(direction)
 
-	
-	if health < 0:
-		stop_moving(true)
-		die_1(direction, true)
-		if hit_type == 'damage_crit':
-			animationTree.set("parameters/conditions/is_damaged_crit",true )
+	if health <= 0:
+		match String(death_condition):
+			"is_dead_headshot":
+				die_headshot(direction, true)
+			_:
+				die_1(direction, true)
+		return
+
+	match String(damage_condition):
+		"is_damaged_light":
+			light_damage(direction, true)
+		"is_damaged_crit":
+			animationTree.set("parameters/conditions/is_damaged_crit", true)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -117,14 +138,22 @@ func _on_weapon_switch_timeout() -> void:
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	print('animation name : ', anim_name)
+	#print('animation name : ', anim_name)
 	hit_type = anim_name
 	
 	animationTree.set('parameters/conditions/is_damaged_light', false)
+	animationTree.set('parameters/conditions/is_damaged_crit', false)
 	just_hit = false
-	if anim_name == 'death_crit' or anim_name == 'death_1':
+	hit_location = ""
+	if anim_name == 'death_crit' or anim_name == 'death_1' or anim_name == 'death_headshot':
 		queue_free()
 
 
-func _on_animation_tree_animation_started(anim_name: StringName) -> void:
+func _on_animation_tree_animation_started(_anim_name: StringName) -> void:
 	pass # Replace with function body.
+
+
+func _on_head_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_projectile"):
+		head_hit()
+		area.queue_free()

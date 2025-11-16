@@ -6,7 +6,7 @@ var direction:Vector2 = Vector2.UP
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	add_to_group("player_projectile")
 
 func _process(delta: float) -> void:
 	position += direction * speed * delta
@@ -15,11 +15,14 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-#	print("Collision Body : : : ")
+	#print("Collision Body : : : ", body)
+	#if "head_hit" in body:
+		#body.head_hit()
 	if "hit" in body:
 		body.hit()
 		if "is_enemy" in body:
-			print('is an enemy')
+			pass
+			#print('is an enemy', body)
 	if "player" in body:
 		pass
 	elif  "walls" in body:

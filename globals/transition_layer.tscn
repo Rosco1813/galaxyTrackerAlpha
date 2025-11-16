@@ -52,5 +52,5 @@ color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_dv16c")
+&"": SubResource("AnimationLibrary_dv16c")
 }
