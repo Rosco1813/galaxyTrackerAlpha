@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5oksa4lu4a14"]
+[gd_scene load_steps=6 format=3 uid="uid://c5oksa4lu4a14"]
 
 [ext_resource type="Script" uid="uid://dn56600fbsowi" path="res://globals/transition_layer.gd" id="1_ckyua"]
+[ext_resource type="AudioStream" uid="uid://d2ueqnbdbrsje" path="res://audio/adams_bangers/The boss is flesh and metal - 2_13_25, 4.43 PM.mp3" id="2_0pvwb"]
 
 [sub_resource type="Animation" id="Animation_x2yfa"]
 resource_name = "fade_to_black"
@@ -54,3 +55,6 @@ color = Color(0, 0, 0, 1)
 libraries = {
 &"": SubResource("AnimationLibrary_dv16c")
 }
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0pvwb")

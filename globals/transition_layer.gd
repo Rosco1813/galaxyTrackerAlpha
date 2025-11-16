@@ -1,14 +1,19 @@
 extends CanvasLayer
 
+@onready var music: AudioStreamPlayer = $Music
 
-# Called when the node enters the scene tree for the first time.
+var _music_started := false
+
 func _ready() -> void:
-	pass # Replace with function body.
+	if music.stream is AudioStreamMP3:
+		music.stream.loop = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func play_music() -> void:
+	if _music_started:
+		return
+	music.play()
+	_music_started = true
 
 func change_scene(target:String) ->void:
 	$AnimationPlayer.play("fade_to_black")
