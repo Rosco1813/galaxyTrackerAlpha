@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx2tyvm8tva3y"]
+
+[ext_resource type="Script" uid="uid://cbvjfl8j7cl8" path="res://globals/pause_manager.gd" id="1"]
+
+[node name="PauseManager" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="Overlay" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -18,6 +18,9 @@ func play_music() -> void:
 func change_scene(target:String) ->void:
 	$AnimationPlayer.play("fade_to_black")
 	await $AnimationPlayer.animation_finished
+	if get_tree().paused:
+		get_tree().paused = false
+		Input.action_release("pause")
 	get_tree().change_scene_to_file(target)
 #	$AnimationPlayer.play("reveal")
 	$AnimationPlayer.play_backwards("fade_to_black")
