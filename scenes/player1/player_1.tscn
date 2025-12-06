@@ -3556,7 +3556,15 @@ polygon = PackedVector2Array(-22, -9, -27, 30, -3, 34, 20, 35, 44, 33, 43, -3, 3
 collision_mask = 127
 script = ExtResource("1_cqawk")
 
-[node name="ShotSFX" type="AudioStreamPlayer" parent="."]
+[node name="ShotSFXPool" type="Node" parent="."]
+
+[node name="ShotSFX0" type="AudioStreamPlayer" parent="ShotSFXPool"]
+stream = ExtResource("2_5a65l")
+
+[node name="ShotSFX1" type="AudioStreamPlayer" parent="ShotSFXPool"]
+stream = ExtResource("2_5a65l")
+
+[node name="ShotSFX2" type="AudioStreamPlayer" parent="ShotSFXPool"]
 stream = ExtResource("2_5a65l")
 
 [node name="playerSprite" type="Sprite2D" parent="."]

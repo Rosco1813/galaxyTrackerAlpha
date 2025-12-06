@@ -5,7 +5,7 @@ signal stats_updated
 
 var H = 100
 var S = 100
-var p_a = 25
+var p_a = 250
 var s_a = 6
 var g_a = 5
 

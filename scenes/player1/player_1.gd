@@ -3,7 +3,9 @@ extends CharacterBody2D
 @onready var animation = $AnimationPlayer
 @onready var sprite = $playerSprite
 @onready var animationTree = $AnimationTree
-@onready var shot_sfx: AudioStreamPlayer = $ShotSFX
+@onready var shot_sfx_pool_node: Node = $ShotSFXPool
+var shot_sfx_players: Array[AudioStreamPlayer] = []
+var shot_sfx_index := 0
 
 signal shootWeapon(markerPosition, weaponType, direction)
 
@@ -26,6 +28,9 @@ func _ready() -> void:
 #	print('globals ammo ', Globals.pistol_ammo)
 	Globals.selectedWeapon = selectedWeapon
 	animationTree.active = true
+	for child in shot_sfx_pool_node.get_children():
+		if child is AudioStreamPlayer:
+			shot_sfx_players.append(child)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(_delta: float) -> void:
@@ -117,10 +122,9 @@ func update_animation():
 
 #			shooting = true
 			if selectedWeapon =='pistol' and Globals.pistol_ammo > 0 :
-				shot_sfx.stop()
-				shot_sfx.play()
 				shooting = true
 				set_animation_conditions('is_shooting', true)
+				play_shot_sound()
 				Globals.pistol_ammo -= 1
 			elif  selectedWeapon =='shotgun' and Globals.shot_gun_ammo > 0:
 				shooting = true
@@ -155,9 +159,6 @@ func set_roll(value):
 
 func set_shooting(value):
 	if selectedWeapon =='pistol':
-		if value:
-			shot_sfx.stop()
-			shot_sfx.play()
 		animationTree['parameters/conditions/is_shooting'] = value
 	elif selectedWeapon == 'shotgun':
 		animationTree['parameters/conditions/shoot_shotgun'] = value
@@ -186,6 +187,14 @@ func triggerAmmoAnimation():
 		var shooting_markers = $shootingPosition.get_children()
 		var selected_marker = shooting_markers[randi() % shooting_markers.size() ]
 		shootWeapon.emit(selected_marker.global_position, selectedWeapon, last_shot_position)
+
+func play_shot_sound() -> void:
+	if shot_sfx_players.is_empty():
+		return
+	var sfx_player: AudioStreamPlayer = shot_sfx_players[shot_sfx_index]
+	sfx_player.stop()
+	sfx_player.play()
+	shot_sfx_index = (shot_sfx_index + 1) % shot_sfx_players.size()
 
 func hit():
 #	print('Player one hit')
