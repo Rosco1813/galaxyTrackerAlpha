@@ -7,6 +7,7 @@ var health_item_scene:PackedScene = preload("res://scenes/container/item.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super._ready()
 	for container in get_tree().get_nodes_in_group("container"):
 		container.connect("reveal_content", _on_container_opened)
 
@@ -24,6 +25,7 @@ func _process(_delta: float) -> void:
 
 func _on_door_trigger_body_entered(_body: Node2D) -> void:
 	var tween = create_tween()
-	tween.tween_property($Player1, "speed", 0, 0.5)
+	if _player:
+		tween.tween_property(_player, "speed", 0, 0.5)
 #	get_tree().change_scene_to_packed(first_room)
 	TransitionLayer.change_scene("res://scenes/levels/first_room_updated.tscn")

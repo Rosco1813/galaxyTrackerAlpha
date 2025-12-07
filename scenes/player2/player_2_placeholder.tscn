@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjkwa53j5dra"]
+
+[ext_resource type="PackedScene" uid="uid://cp5jri42yuyq7" path="res://scenes/player1/player_1.tscn" id="1"]
+
+[node name="Player2" instance=ExtResource("1")]
+
+[node name="playerSprite" parent="." index="1"]
+modulate = Color(0.55, 0.78, 1, 1)

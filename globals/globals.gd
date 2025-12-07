@@ -3,13 +3,34 @@ extends Node
 
 signal stats_updated
 
+const DEFAULT_PLAYER_ID := "player_1"
+
 var H = 100
 var S = 100
 var p_a = 250
 var s_a = 6
 var g_a = 5
-var player_one_attack_damage = 15
 
+var player_profiles := {
+	"player_1": {
+		"scene_path": "res://scenes/player1/player_1.tscn",
+		"damage_scalar": 1.0,
+		"preview_texture": "res://graphics/mainCharacter/Main_Character_Iconpng.png",
+		"modulate_color": Color.WHITE
+	},
+	"player_2": {
+		"scene_path": "res://scenes/player2/player_2_placeholder.tscn",
+		"damage_scalar": 1.0,
+		"preview_texture": "res://graphics/mainCharacter/Main_Character_Iconpng.png",
+		"modulate_color": Color(0.55, 0.78, 1.0, 1.0)
+	}
+}
+
+var selected_player_id := DEFAULT_PLAYER_ID
+
+var player_positions := {
+	DEFAULT_PLAYER_ID: Vector2.ZERO
+}
 
 var player_position: Vector2
 var player_direction:Vector2
@@ -83,3 +104,26 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+
+func set_selected_player(player_id: String) -> void:
+	if not player_profiles.has(player_id):
+		return
+	selected_player_id = player_id
+	if player_positions.has(player_id):
+		player_position = player_positions[player_id]
+
+
+func get_active_player_profile() -> Dictionary:
+	return player_profiles.get(selected_player_id, player_profiles[DEFAULT_PLAYER_ID])
+
+
+func get_active_player_damage_scalar() -> float:
+	var profile = get_active_player_profile()
+	return profile.get("damage_scalar", 1.0)
+
+
+func update_player_position(player_id: String, position: Vector2) -> void:
+	player_positions[player_id] = position
+	if player_id == selected_player_id:
+		player_position = position

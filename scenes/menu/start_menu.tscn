@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8orxm400pk5q"]
+[gd_scene load_steps=3 format=3 uid="uid://b8orxm400pk5q"]
 
 [ext_resource type="Script" uid="uid://beodnuklw26s" path="res://scenes/menu/start_menu.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://gsj2shxa73bq" path="res://graphics/mainCharacter/Main_Character_Iconpng.png" id="2"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -44,3 +45,87 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Press Enter or X to play"
 horizontal_alignment = 1
+
+[node name="CharacterCardPanel" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="CardContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CharacterCardPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Player1Card" type="Button" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer"]
+custom_minimum_size = Vector2(140, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player1Card"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Player1PreviewWrapper" type="CenterContainer" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player1Card/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Player1Preview" type="TextureRect" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player1Card/VBoxContainer/Player1PreviewWrapper"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2")
+stretch_mode = 6
+
+[node name="Player1Highlight" type="ColorRect" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player1Card/VBoxContainer/Player1PreviewWrapper/Player1Preview"]
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Player1Label" type="Label" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player1Card/VBoxContainer"]
+layout_mode = 2
+text = "Player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player2Card" type="Button" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer"]
+custom_minimum_size = Vector2(140, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player2Card"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Player2PreviewWrapper" type="CenterContainer" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player2Card/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Player2Preview" type="TextureRect" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player2Card/VBoxContainer/Player2PreviewWrapper"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2")
+stretch_mode = 6
+
+[node name="Player2Highlight" type="ColorRect" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player2Card/VBoxContainer/Player2PreviewWrapper/Player2Preview"]
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Player2Label" type="Label" parent="CenterContainer/VBoxContainer/CharacterCardPanel/CardContainer/Player2Card/VBoxContainer"]
+layout_mode = 2
+text = "Player 2"
+horizontal_alignment = 1
+vertical_alignment = 1
