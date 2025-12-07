@@ -16,13 +16,25 @@ var player_profiles := {
 		"scene_path": "res://scenes/player1/player_1.tscn",
 		"damage_scalar": 1.0,
 		"preview_texture": "res://graphics/mainCharacter/Main_Character_Iconpng.png",
-		"modulate_color": Color.WHITE
+		"modulate_color": Color.WHITE,
+		"display_name": "Player 1",
+		"highlight_color": Color(0.1, 0.7, 1.0, 0.55)
 	},
 	"player_2": {
 		"scene_path": "res://scenes/player2/player_2_placeholder.tscn",
 		"damage_scalar": 1.0,
-		"preview_texture": "res://graphics/mainCharacter/Main_Character_Iconpng.png",
-		"modulate_color": Color(0.55, 0.78, 1.0, 1.0)
+		"preview_texture": "res://graphics/mainCharacter/trinity-matrix.png",
+		"modulate_color": Color(0.85, 0.25, 0.25, 1.0),
+		"display_name": "Trinity",
+		"highlight_color": Color(0.95, 0.25, 0.25, 0.6)
+	},
+	"player_3": {
+		"scene_path": "res://scenes/player3/player_3_placeholder.tscn",
+		"damage_scalar": 1.0,
+		"preview_texture": "res://graphics/mainCharacter/locke.jpg",
+		"modulate_color": Color(1.0, 0.88, 0.25, 1.0),
+		"display_name": "Locke",
+		"highlight_color": Color(1.0, 0.85, 0.2, 0.6)
 	}
 }
 
