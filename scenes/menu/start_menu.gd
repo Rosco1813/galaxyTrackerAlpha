@@ -92,8 +92,10 @@ func _select_player(profile_id: String) -> void:
 				highlight.color = Color(1, 1, 1, 0)
 		var label := button.get_node_or_null("VBoxContainer/Label") as Label
 		if label:
-			var font_color := Color(1, 1, 1) if id == Globals.selected_player_id else Color(0.8, 0.8, 0.8)
-			label.add_theme_color_override("font_color", font_color)
+			if id == Globals.selected_player_id:
+				label.add_theme_color_override("font_color", Color(1, 0.2, 0.2))
+			else:
+				label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.8))
 
 func _update_card_preview(profile_id: String) -> void:
 	var profile := Globals.player_profiles.get(profile_id, {}) as Dictionary
