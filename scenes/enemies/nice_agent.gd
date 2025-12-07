@@ -5,13 +5,15 @@ extends CharacterBody2D
 
 signal nice_agent_shoot(pos, direction)
 const FACING_DEAD_ZONE := 0.1
-const BODY_DAMAGE := 10
+const BODY_DAMAGE := 26
 const HEADSHOT_DAMAGE := 200
+const MAX_HEALTH := 100
+const LIGHT_DAMAGE_THRESHOLD := MAX_HEALTH / 4
 var is_enemy:bool = true
 var direction = Vector2.RIGHT
 var speed = 100
 var hit_type :String = ''
-var health = 100
+var health = MAX_HEALTH
 var player_in_attack_zone:bool = false
 var switchWeapon:bool = false
 var facing := 1
@@ -61,14 +63,15 @@ func stop_moving(_direction):
 	shoot_shotgun(_direction, false)
 
 
-func idle(_direction, condition):
-	animationTree.set("parameters/conditions/is_idle", condition)
 
 func update_facing(dir: Vector2) -> void:
 	if abs(dir.x) > FACING_DEAD_ZONE:
 		facing = -1 if dir.x < 0 else 1
 		sprite.flip_h = facing == -1
 
+func idle(_direction, condition):
+	animationTree.set("parameters/conditions/is_idle", condition)
+	
 func nice_agent_move(_direction, condition):
 	animationTree.set("parameters/conditions/is_walking", condition)
 
@@ -78,11 +81,20 @@ func shoot_shotgun(_direction, condition):
 func die_1(_direction, condition):
 	animationTree.set("parameters/conditions/is_dead_1", condition)
 
+func die_2(_direction, condition):
+	animationTree.set("parameters/conditions/is_dead_2", condition)
+
+func die_crit(_direction, condition):
+	animationTree.set("parameters/conditions/is_damaged_crit", condition)
+
 func die_headshot(_direction, condition):
 	animationTree.set("parameters/conditions/is_dead_headshot", condition)
 	
 func light_damage(_direction, condition):
 	animationTree.set("parameters/conditions/is_damaged_light", condition)
+
+func medium_damage(_direction, condition):
+	animationTree.set("parameters/conditions/is_damaged_medium", condition)
 
 func hit():
 	if just_hit and hit_location == "head":
@@ -101,22 +113,37 @@ func apply_hit(damage_amount: int, damage_condition: StringName, death_condition
 	just_hit = true
 	velocity = Vector2.ZERO
 	shoot_shotgun(direction, false)
-	health -= damage_amount
 	stop_moving(direction)
 
-	if health <= 0:
-		match String(death_condition):
-			"is_dead_headshot":
-				die_headshot(direction, true)
-			_:
-				die_1(direction, true)
+	var damage_tier := "light"
+	if damage_amount >= MAX_HEALTH:
+		damage_tier = "crit"
+	elif damage_amount >= LIGHT_DAMAGE_THRESHOLD:
+		damage_tier = "medium"
+
+	health -= damage_amount
+
+	if damage_tier == "crit":
+		if String(death_condition) == "is_dead_headshot":
+			die_headshot(direction, true)
+		else:
+			die_crit(direction, true)
 		return
 
-	match String(damage_condition):
-		"is_damaged_light":
+	if health <= 0:
+		if String(death_condition) == "is_dead_headshot":
+			die_headshot(direction, true)
+		elif damage_tier == "medium":
+			die_2(direction, true)
+		else:
+			die_1(direction, true)
+		return
+
+	match damage_tier:
+		"medium":
+			medium_damage(direction, true)
+		_:
 			light_damage(direction, true)
-		"is_damaged_crit":
-			animationTree.set("parameters/conditions/is_damaged_crit", true)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -142,10 +169,11 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	hit_type = anim_name
 	
 	animationTree.set('parameters/conditions/is_damaged_light', false)
+	animationTree.set('parameters/conditions/is_damaged_medium', false)
 	animationTree.set('parameters/conditions/is_damaged_crit', false)
 	just_hit = false
 	hit_location = ""
-	if anim_name == 'death_crit' or anim_name == 'death_1' or anim_name == 'death_headshot':
+	if anim_name == 'death_crit' or anim_name == 'death_1' or anim_name == "death_2" or anim_name == 'death_headshot':
 		queue_free()
 
 

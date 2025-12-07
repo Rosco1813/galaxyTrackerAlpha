@@ -8,6 +8,8 @@ var S = 100
 var p_a = 250
 var s_a = 6
 var g_a = 5
+var player_one_attack_damage = 15
+
 
 var player_position: Vector2
 var player_direction:Vector2
