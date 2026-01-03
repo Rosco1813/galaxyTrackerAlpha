@@ -124,7 +124,7 @@ func update_animation():
 			if selectedWeapon =='pistol' and Globals.pistol_ammo > 0 :
 				shooting = true
 				set_animation_conditions('is_shooting', true)
-				play_shot_sound()
+				#play_shot_sound()
 				Globals.pistol_ammo -= 1
 			elif  selectedWeapon =='shotgun' and Globals.shot_gun_ammo > 0:
 				shooting = true
