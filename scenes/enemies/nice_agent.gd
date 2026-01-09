@@ -2,6 +2,9 @@ extends CharacterBody2D
 @onready var animation = $AnimationPlayer
 @onready var sprite = $niceAgentSprite
 @onready var animationTree = $AnimationTree
+@onready var bullet_spawn = $BulletSpawn
+
+var bullet_scene: PackedScene = preload("res://scenes/weapons/projectiles/enemy_bullet.tscn")
 
 signal nice_agent_shoot(pos, direction)
 const FACING_DEAD_ZONE := 0.1
@@ -19,6 +22,7 @@ var switchWeapon:bool = false
 var facing := 1
 var hit_location:String = ''
 var just_hit:bool
+var has_shot:bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -28,7 +32,6 @@ func _physics_process(_delta: float) -> void:
 	var distance_to_player = global_position.distance_to(Globals.player_position)
 	var to_player = Globals.player_position - global_position
 	var away_from_player = Globals.player_position + global_position
-	var pos:Vector2
 	velocity = direction * speed
 	#shoot_shotgun(direction,false)
 	update_facing(to_player)
@@ -43,7 +46,9 @@ func _physics_process(_delta: float) -> void:
 
 		if just_hit == false:
 			shoot_shotgun(direction, true)
-			nice_agent_shoot.emit(pos, direction)
+			if not has_shot:
+				spawn_bullet()
+				has_shot = true
 					
 	if distance_to_player < 240:
 		shoot_shotgun(direction, false)
@@ -62,6 +67,13 @@ func stop_moving(_direction):
 	nice_agent_move(_direction, false)
 	shoot_shotgun(_direction, false)
 
+
+func spawn_bullet():
+	var bullet = bullet_scene.instantiate()
+	bullet.direction = direction
+	bullet.position = bullet_spawn.global_position
+	bullet.rotation = direction.angle() - PI / 2
+	get_tree().current_scene.add_child(bullet)
 
 
 func update_facing(dir: Vector2) -> void:
@@ -173,6 +185,11 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	animationTree.set('parameters/conditions/is_damaged_crit', false)
 	just_hit = false
 	hit_location = ""
+	
+	# Reset shooting flag when shooting animation ends
+	if "shoot" in anim_name:
+		has_shot = false
+	
 	if anim_name == 'death_crit' or anim_name == 'death_1' or anim_name == "death_2" or anim_name == 'death_headshot':
 		queue_free()
 

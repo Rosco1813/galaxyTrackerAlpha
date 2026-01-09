@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dneq2m8jk5abc"]
+
+[ext_resource type="Script" path="res://scenes/weapons/projectiles/enemy_bullet.gd" id="1_enemy"]
+[ext_resource type="Texture2D" uid="uid://cpj8kdnn11e23" path="res://preAlphaFiles/graphics/explosions/gun.png" id="2_bullet"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_enemy"]
+radius = 37.0
+height = 146.0
+
+[node name="EnemyBullet" type="Area2D"]
+light_mask = 9
+visibility_layer = 9
+scale = Vector2(0.3, 0.3)
+collision_layer = 8
+collision_mask = 103
+script = ExtResource("1_enemy")
+
+[node name="bulletSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -54)
+texture = ExtResource("2_bullet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_enemy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
