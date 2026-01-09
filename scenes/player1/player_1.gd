@@ -125,7 +125,7 @@ func update_animation():
 				shooting = true
 				set_animation_conditions('is_shooting', true)
 				#play_shot_sound()
-				Globals.pistol_ammo -= 1
+				#Globals.pistol_ammo -= 1
 			elif  selectedWeapon =='shotgun' and Globals.shot_gun_ammo > 0:
 				shooting = true
 				set_animation_conditions('shoot_shotgun', true)
@@ -184,6 +184,7 @@ func endShooting(value=false):
 	set_shooting(false)
 
 func triggerAmmoAnimation():
+		Globals.pistol_ammo -= 1
 		var shooting_markers = $shootingPosition.get_children()
 		var selected_marker = shooting_markers[randi() % shooting_markers.size() ]
 		shootWeapon.emit(selected_marker.global_position, selectedWeapon, last_shot_position)

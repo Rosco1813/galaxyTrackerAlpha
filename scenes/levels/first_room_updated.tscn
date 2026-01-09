@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://eus2s5agc407"]
+[gd_scene load_steps=8 format=3 uid="uid://eus2s5agc407"]
 
 [ext_resource type="PackedScene" uid="uid://ckbx4514u3tl6" path="res://scenes/levels/level.tscn" id="1_dtc8p"]
 [ext_resource type="Script" uid="uid://r3i3xxrm4awu" path="res://scenes/levels/first_room_updated.gd" id="2_0i36j"]
 [ext_resource type="PackedScene" uid="uid://c8o4e8o1yvwor" path="res://scenes/levels/first_room.tscn" id="2_x1nx4"]
-[ext_resource type="PackedScene" uid="uid://coodhe5k47vkg" path="res://scenes/enemies/sewerRat.tscn" id="3_xauum"]
 [ext_resource type="PackedScene" uid="uid://bqc5531k37wet" path="res://scenes/container/item.tscn" id="5_rkicq"]
 [ext_resource type="PackedScene" uid="uid://c6ckbssf4rc02" path="res://scenes/container/ammo_pickups.tscn" id="6_aweec"]
 [ext_resource type="PackedScene" uid="uid://bakvllclkt34w" path="res://scenes/container/files.tscn" id="7_okxkx"]
@@ -15,8 +14,8 @@ script = ExtResource("2_0i36j")
 [node name="firstRoom" parent="." index="0" instance=ExtResource("2_x1nx4")]
 position = Vector2(-13, 5)
 
-[node name="sewerRat" parent="." index="3" instance=ExtResource("3_xauum")]
-position = Vector2(-791, -12)
+[node name="NICE_agent2" parent="." index="3" instance=ExtResource("8_6bn12")]
+position = Vector2(-872, 231)
 
 [node name="NICE_agent" parent="." index="4" instance=ExtResource("8_6bn12")]
 position = Vector2(751, 35)
