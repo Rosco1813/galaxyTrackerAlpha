@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=3 uid="uid://cp5jri42yuyq7"]
+[gd_scene load_steps=159 format=3 uid="uid://cp5jri42yuyq7"]
 
 [ext_resource type="Script" uid="uid://buv6b0v7t7xhm" path="res://scenes/player1/player_1.gd" id="1_cqawk"]
 [ext_resource type="Texture2D" uid="uid://bwkrheyehhkaa" path="res://graphics/mainCharacter/walking.png" id="1_m7d0g"]
@@ -3664,6 +3664,13 @@ height = 90.5206
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uggju"]
 polygon = PackedVector2Array(-22, -9, -27, 30, -3, 34, 20, 35, 44, 33, 43, -3, 30, -38, -9, -44)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bodyhurt"]
+radius = 40.0
+height = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_headhurt"]
+radius = 35.0
+
 [node name="Player1" type="CharacterBody2D"]
 collision_mask = 127
 script = ExtResource("1_cqawk")
@@ -3748,5 +3755,23 @@ position = Vector2(-5, -5)
 polygon = PackedVector2Array(-42, -54, -53, 22, -42, 68, -49, 114, -54, 138, 59, 141, 53, 66, 62, 45, 59, -5, 48, -48, 44, -64, 32, -122, -35, -108)
 metadata/_edit_lock_ = true
 
+[node name="BodyHurtbox" type="Area2D" parent="." groups=["player_body_hurtbox"]]
+collision_layer = 128
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox"]
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_bodyhurt")
+
+[node name="HeadHurtbox" type="Area2D" parent="." groups=["player_head_hurtbox"]]
+collision_layer = 128
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadHurtbox"]
+position = Vector2(-3, -88)
+shape = SubResource("CircleShape2D_headhurt")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="BodyHurtbox" to="." method="_on_body_hurtbox_area_entered"]
+[connection signal="area_entered" from="HeadHurtbox" to="." method="_on_head_hurtbox_area_entered"]

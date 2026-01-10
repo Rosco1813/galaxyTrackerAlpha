@@ -13,9 +13,13 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if "hit" in body:
 		body.hit()
-	if body.is_in_group("player"):
-		Globals.player_one_health -= damage
-	queue_free()
+	# Player damage now handled by hurtboxes
+	if not body.is_in_group("player"):
+		queue_free()
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_head_hurtbox") or area.is_in_group("player_body_hurtbox"):
+		queue_free()
 
 func _on_timer_timeout() -> void:
 	queue_free()

@@ -239,3 +239,13 @@ func update_z_index():
 #	print('highest body  === ', highest_body_y.z_index, )
 #	print('body name === ', highest_body_y.name)
 #	print('==========================')
+
+func _on_body_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy_projectile"):
+		Globals.player_one_health -= area.damage
+		area.queue_free()
+
+func _on_head_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy_projectile"):
+		Globals.player_one_health -= area.damage * 2
+		area.queue_free()

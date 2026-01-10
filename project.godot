@@ -146,6 +146,7 @@ select_stuff={
 2d_physics/layer_5="Items & Zones"
 2d_physics/layer_6="Player2"
 2d_physics/layer_7="Buddy"
+2d_physics/layer_8="Hurtboxes"
 
 [rendering]
 
