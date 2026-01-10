@@ -23,9 +23,10 @@ var facing := 1
 var hit_location:String = ''
 var just_hit:bool
 var has_shot:bool = false
+var bullet_spawn_offset_x: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	bullet_spawn_offset_x = bullet_spawn.position.x
 
 
 func _physics_process(_delta: float) -> void:
@@ -80,6 +81,8 @@ func update_facing(dir: Vector2) -> void:
 	if abs(dir.x) > FACING_DEAD_ZONE:
 		facing = -1 if dir.x < 0 else 1
 		sprite.flip_h = facing == -1
+		bullet_spawn.position.x = bullet_spawn_offset_x * facing
+
 
 func idle(_direction, condition):
 	animationTree.set("parameters/conditions/is_idle", condition)
