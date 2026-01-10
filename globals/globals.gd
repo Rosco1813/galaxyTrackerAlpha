@@ -2,8 +2,10 @@ extends Node
 
 
 signal stats_updated
+signal player_died
 
 const DEFAULT_PLAYER_ID := "player_1"
+const DEATH_SCREEN_PATH := "res://scenes/UI/death_screen.tscn"
 
 var H = 100
 var S = 100
@@ -57,6 +59,26 @@ var player_one_health = H:
 			player_one_health = value
 
 		stats_updated.emit()
+		
+		# Check for death
+		if player_one_health <= 0:
+			_show_death_screen()
+
+
+var _death_screen_shown := false
+
+func _show_death_screen() -> void:
+	if _death_screen_shown:
+		return
+	_death_screen_shown = true
+	player_died.emit()
+	var death_screen = load(DEATH_SCREEN_PATH).instantiate()
+	get_tree().current_scene.add_child(death_screen)
+
+
+func reset_death_state() -> void:
+	_death_screen_shown = false
+
 
 var player_one_stamina = S:
 	set(value):

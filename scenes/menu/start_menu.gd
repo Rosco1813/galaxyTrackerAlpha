@@ -46,6 +46,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _start_game() -> void:
 	_starting = true
+	# Reset player stats when starting a new game
+	Globals.reset_death_state()
+	Globals.player_one_health = Globals.H
 	TransitionLayer.change_scene(MAIN_SCENE_PATH)
 
 func _setup_character_cards() -> void:

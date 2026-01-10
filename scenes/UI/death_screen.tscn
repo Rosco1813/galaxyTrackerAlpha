@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://death_screen_001"]
+
+[ext_resource type="Script" path="res://scenes/UI/death_screen.gd" id="1_death"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 64
+
+[node name="DeathScreen" type="CanvasLayer"]
+layer = 100
+process_mode = 3
+script = ExtResource("1_death")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(400, 0)
+theme_override_constants/separation = 40
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/MenuContainer"]
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Nice Guys Never Win"
+label_settings = SubResource("LabelSettings_title")
+
+[node name="Spacer" type="Control" parent="CenterContainer/MenuContainer"]
+custom_minimum_size = Vector2(0, 40)
+
+[node name="RestartButton" type="Button" parent="CenterContainer/MenuContainer"]
+custom_minimum_size = Vector2(0, 50)
+text = "Restart Level"
+
+[node name="MenuButton" type="Button" parent="CenterContainer/MenuContainer"]
+custom_minimum_size = Vector2(0, 50)
+text = "Return to Menu"

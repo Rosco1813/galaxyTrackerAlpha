@@ -40,6 +40,7 @@ _data = {
 }
 
 [node name="TransitionLayer" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_ckyua")
 
 [node name="ColorRect" type="ColorRect" parent="."]
