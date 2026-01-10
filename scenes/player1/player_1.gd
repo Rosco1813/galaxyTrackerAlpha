@@ -26,6 +26,7 @@ var overlapping_bodies: Array[Node2D] = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 #	print('globals ammo ', Globals.pistol_ammo)
+	add_to_group("player")
 	Globals.selectedWeapon = selectedWeapon
 	animationTree.active = true
 	for child in shot_sfx_pool_node.get_children():
