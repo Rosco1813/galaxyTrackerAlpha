@@ -12,6 +12,8 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == 'Player1':
-		Globals.player_one_stamina +=50
+	if body.is_in_group("player"):
+		var pid: int = body.player_id if "player_id" in body else 1
+		var current_stamina := Globals.get_player_stamina(pid)
+		Globals.set_player_stamina(pid, mini(current_stamina + 50, 100))
 		queue_free()

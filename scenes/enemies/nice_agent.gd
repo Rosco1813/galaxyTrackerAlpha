@@ -30,14 +30,18 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var distance_to_player = global_position.distance_to(Globals.player_position)
-	var to_player = Globals.player_position - global_position
-	var away_from_player = Globals.player_position + global_position
+	var target_pos := Globals.get_closest_player_position(global_position)
+	if target_pos == Vector2.ZERO:
+		return
+	
+	var distance_to_player = global_position.distance_to(target_pos)
+	var to_player = target_pos - global_position
+	var away_from_player = target_pos + global_position
 	velocity = direction * speed
 	#shoot_shotgun(direction,false)
 	update_facing(to_player)
 	nice_agent_move(direction, true)
-	direction = (Globals.player_position - global_position).normalized()
+	direction = (target_pos - global_position).normalized()
 
 	if just_hit:
 		stop_moving(false)
@@ -53,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 					
 	if distance_to_player < 240:
 		shoot_shotgun(direction, false)
-		direction = (Globals.player_position + global_position).normalized()
+		direction = (target_pos + global_position).normalized()
 		velocity = direction * speed
 		update_facing(away_from_player)
 		nice_agent_move(direction, true)
@@ -65,6 +69,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func stop_moving(_direction):
+	velocity = Vector2.ZERO
 	nice_agent_move(_direction, false)
 	shoot_shotgun(_direction, false)
 
@@ -162,15 +167,17 @@ func apply_hit(damage_amount: int, damage_condition: StringName, death_condition
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "Player1":
-		Globals.player_one_health -= 40
+	if body.is_in_group("player"):
+		var pid: int = body.player_id if "player_id" in body else 1
+		var current_health := Globals.get_player_health(pid)
+		Globals.set_player_health(pid, current_health - 40)
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body.name == 'Player1':
+	if body.is_in_group("player"):
 		player_in_attack_zone = true
 
 func _on_attack_area_body_exited(body: Node2D) -> void:
-	if body.name == 'Player1':
+	if body.is_in_group("player"):
 		player_in_attack_zone = false
 
 

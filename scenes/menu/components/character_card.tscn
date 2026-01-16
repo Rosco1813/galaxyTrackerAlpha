@@ -1,30 +1,27 @@
-[gd_scene load_steps=1 format=3]
+[gd_scene format=3 uid="uid://6h47d8esydxu"]
 
 [node name="CharacterCard" type="Button"]
 custom_minimum_size = Vector2(140, 200)
-focus_mode = 2
-flat = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-alignment = 1
 size_flags_horizontal = 4
 size_flags_vertical = 4
+alignment = 1
 
 [node name="PreviewWrapper" type="CenterContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_minimum_size = Vector2(128, 128)
 
 [node name="Preview" type="TextureRect" parent="VBoxContainer/PreviewWrapper"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_minimum_size = Vector2(128, 128)
 expand_mode = 1
 stretch_mode = 6
-ignore_texture_size = true
 
 [node name="Highlight" type="ColorRect" parent="VBoxContainer/PreviewWrapper/Preview"]
 layout_mode = 2
@@ -36,4 +33,3 @@ size_flags_horizontal = 4
 text = "Player"
 horizontal_alignment = 1
 vertical_alignment = 1
-

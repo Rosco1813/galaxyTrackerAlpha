@@ -7,11 +7,14 @@ class_name LevelParent
 @export var grenade: PackedScene
 
 var _player: Node2D
+var _player_two: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	print('LEVEL SHELL ===============================')
 	_spawn_selected_player()
+	if Globals.coop_enabled:
+		_spawn_player_two()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -91,6 +94,98 @@ func _connect_player_signals() -> void:
 		if _player.shootWeapon.is_connected(shoot_callable):
 			_player.shootWeapon.disconnect(shoot_callable)
 		_player.shootWeapon.connect(shoot_callable)
+
+
+func _spawn_player_two() -> void:
+	if _player == null:
+		return
+	
+	# Get player 2's selected character from Globals
+	var profile_id := Globals.selected_players.get(2, "player_2") as String
+	var profile := Globals.player_profiles.get(profile_id, {}) as Dictionary
+	var scene_path := profile.get("scene_path", "") as String
+	
+	if scene_path == "":
+		push_warning("No scene path for player 2 profile: " + profile_id)
+		return
+	
+	var packed := load(scene_path)
+	if not packed is PackedScene:
+		push_warning("Failed to load player 2 scene: " + scene_path)
+		return
+	
+	_player_two = (packed as PackedScene).instantiate() as Node2D
+	if _player_two == null:
+		return
+	
+	_player_two.name = "Player2"
+	
+	# Spawn player 2 offset from player 1
+	_player_two.global_position = _player.global_position + Vector2(60, 0)
+	_player_two.rotation = _player.rotation
+	_player_two.scale = _player.scale
+	
+	# Set player_id for input routing
+	if "player_id" in _player_two:
+		_player_two.player_id = 2
+	
+	# Make sure player 2 is in the player group
+	if not _player_two.is_in_group("player"):
+		_player_two.add_to_group("player")
+	
+	# Disable player 2's camera (we'll use player 1's camera with coop zoom)
+	var p2_camera := _player_two.get_node_or_null("Camera2D") as Camera2D
+	if p2_camera:
+		p2_camera.enabled = false
+	
+	# Setup co-op camera zoom helper
+	var p1_camera := _player.get_node_or_null("Camera2D") as Camera2D
+	if p1_camera:
+		var coop_script := load("res://scenes/levels/coop_camera.gd")
+		if coop_script:
+			var coop_helper := Node.new()
+			coop_helper.name = "CoopCameraHelper"
+			coop_helper.set_script(coop_script)
+			add_child(coop_helper)
+			
+			# Set references after adding to tree
+			coop_helper.camera = p1_camera
+			coop_helper.player_one = _player
+			coop_helper.player_two = _player_two
+			
+			print("[Level] Co-op camera helper created")
+		else:
+			push_error("[Level] Failed to load coop_camera.gd script")
+	else:
+		push_warning("[Level] No Camera2D found on Player 1")
+	
+	add_child(_player_two)
+	_connect_player_two_signals()
+
+
+func _connect_player_two_signals() -> void:
+	if _player_two == null:
+		return
+	var shoot_callable := Callable(self, "_on_player_2_shoot_weapon")
+	if _player_two.has_signal("shootWeapon"):
+		if _player_two.shootWeapon.is_connected(shoot_callable):
+			_player_two.shootWeapon.disconnect(shoot_callable)
+		_player_two.shootWeapon.connect(shoot_callable)
+
+
+func _on_player_2_shoot_weapon(markerPosition, weaponType, direction) -> void:
+	if weaponType == 'pistol' or weaponType == 'shotgun':
+		var pistolShot = pistol_shot.instantiate() as Area2D
+		pistolShot.rotation_degrees = rad_to_deg(direction.angle()) - 90
+		pistolShot.direction = direction
+		pistolShot.position = markerPosition
+		$Projectiles.add_child(pistolShot)
+		# TODO: Update P2 ammo UI when implemented
+	if weaponType == 'grenade':
+		var grenadeThrow = grenade.instantiate() as RigidBody2D
+		grenadeThrow.position = markerPosition
+		grenadeThrow.linear_velocity = direction * 300
+		$Projectiles.add_child(grenadeThrow)
 
 
 func _on_player_1_shoot_weapon(markerPosition, weaponType, direction) -> void:

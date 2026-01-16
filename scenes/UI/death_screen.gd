@@ -85,15 +85,13 @@ func _prepare_menu_button(button: Button) -> void:
 
 func _on_restart_pressed() -> void:
 	# Keep game paused - TransitionLayer will unpause after fade completes
-	Globals.reset_death_state()
-	Globals.player_one_health = Globals.H  # Reset health
+	Globals.reset_all_player_stats()  # Reset health, stamina, ammo for both players
 	TransitionLayer.change_scene(current_level_path)
 	queue_free()
 
 
 func _on_menu_pressed() -> void:
 	# Keep game paused - TransitionLayer will unpause after fade completes
-	Globals.reset_death_state()
-	Globals.player_one_health = Globals.H  # Reset health
+	Globals.reset_all_player_stats()  # Reset health, stamina, ammo for both players
 	TransitionLayer.change_scene("res://scenes/menu/start_menu.tscn")
 	queue_free()

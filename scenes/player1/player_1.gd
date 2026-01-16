@@ -9,6 +9,8 @@ var shot_sfx_index := 0
 
 signal shootWeapon(markerPosition, weaponType, direction)
 
+@export var player_id := 1  # 1 for player 1, 2 for player 2
+
 var speed = 3
 var weapons:Array = ['pistol', 'shotgun','empty_handed', 'grenade']
 var selectedWeapon: String = weapons[0];
@@ -27,7 +29,7 @@ var overlapping_bodies: Array[Node2D] = []
 func _ready() -> void:
 #	print('globals ammo ', Globals.pistol_ammo)
 	add_to_group("player")
-	Globals.selectedWeapon = selectedWeapon
+	Globals.set_player_weapon(player_id, selectedWeapon)
 	animationTree.active = true
 	for child in shot_sfx_pool_node.get_children():
 		if child is AudioStreamPlayer:
@@ -39,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 	update_z_index()
 	Globals.player_position = global_position
 	if rolling == false:
-		direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		direction = InputManager.get_movement(player_id)
 		Globals.player_direction = direction
 #		print('=== DIRECTION player ==',  direction)
 	if shooting == true || aiming == true:
@@ -55,15 +57,15 @@ func _physics_process(_delta: float) -> void:
 #			update_level_scale()
 			pass
 		last_position_y = position.y
-	if Input.is_action_just_released("switch_weapon"):
+	if InputManager.is_action_just_released(player_id, "switch_weapon"):
 		switchWeapon()
-	if Input.is_action_pressed("grenade"):
+	if InputManager.is_action_pressed(player_id, "grenade"):
 		set_animation_conditions("is_idle", true)
 		speed = 0
-	if Input.is_action_just_released("grenade") and Globals.grenade_ammo > 0:
+	if InputManager.is_action_just_released(player_id, "grenade") and Globals.get_player_ammo(player_id, "grenade") > 0:
 		var previousWeapon = selectedWeapon
 		selectedWeapon = 'grenade'
-		Globals.grenade_ammo -= 1
+		Globals.use_player_ammo(player_id, "grenade")
 		triggerAmmoAnimation()
 		selectedWeapon = previousWeapon
 		speed = 3
@@ -74,7 +76,7 @@ func switchWeapon():
 		current_index = 0
 	current_index = (current_index + 1) % weapons.size()
 	selectedWeapon = weapons[current_index]
-	Globals.selectedWeapon = selectedWeapon
+	Globals.set_player_weapon(player_id, selectedWeapon)
 	if selectedWeapon == 'shotgun':
 		set_animation_conditions('equip_shotgun', true)
 
@@ -109,7 +111,7 @@ func update_animation():
 			set_animation_conditions('walk_shotgun', true)
 	else:
 		set_animation_conditions('is_idle', true)
-	if Input.is_action_pressed("aim"):
+	if InputManager.is_action_pressed(player_id, "aim"):
 		aiming = true
 		if selectedWeapon =='pistol':
 			set_animation_conditions('is_aiming', true)
@@ -117,25 +119,25 @@ func update_animation():
 			set_animation_conditions('aim_shotgun', true)
 	if shooting == true || aiming == true:
 
-		if Input.is_action_just_pressed("shoot")  :
+		if InputManager.is_action_just_pressed(player_id, "shoot")  :
 #			if selectedWeapon == 'pistol':
 #			elif  selectedWeapon == 'shotgun':
 
 #			shooting = true
-			if selectedWeapon =='pistol' and Globals.pistol_ammo > 0 :
+			if selectedWeapon =='pistol' and Globals.get_player_ammo(player_id, "pistol") > 0 :
 				shooting = true
 				set_animation_conditions('is_shooting', true)
 				#play_shot_sound()
 				#Globals.pistol_ammo -= 1
-			elif  selectedWeapon =='shotgun' and Globals.shot_gun_ammo > 0:
+			elif  selectedWeapon =='shotgun' and Globals.get_player_ammo(player_id, "shotgun") > 0:
 				shooting = true
 				set_animation_conditions('shoot_shotgun', true)
-				Globals.shot_gun_ammo -=1
-	if Input.is_action_just_released("aim"):
+				Globals.use_player_ammo(player_id, "shotgun")
+	if InputManager.is_action_just_released(player_id, "aim"):
 #		$AnimationPlayer.stop()
 
 		set_animation_conditions('is_idle', true)
-	if Input.is_action_just_pressed("roll") && aiming == false and Globals.player_one_stamina > 0:
+	if InputManager.is_action_just_pressed(player_id, "roll") && aiming == false and Globals.get_player_stamina(player_id) > 0:
 		rolling = true
 
 	if rolling == true && shooting == false:
@@ -155,7 +157,8 @@ func set_animation_conditions(condition: String, value: bool):
 
 func set_roll(value):
 	rolling = value
-	Globals.player_one_stamina -= 10
+	var current_stamina := Globals.get_player_stamina(player_id)
+	Globals.set_player_stamina(player_id, current_stamina - 10)
 	animationTree["parameters/conditions/is_rolling"] = value
 
 func set_shooting(value):
@@ -185,7 +188,7 @@ func endShooting(value=false):
 	set_shooting(false)
 
 func triggerAmmoAnimation():
-		Globals.pistol_ammo -= 1
+		Globals.use_player_ammo(player_id, "pistol")
 		var shooting_markers = $shootingPosition.get_children()
 		var selected_marker = shooting_markers[randi() % shooting_markers.size() ]
 		shootWeapon.emit(selected_marker.global_position, selectedWeapon, last_shot_position)
@@ -242,10 +245,12 @@ func update_z_index():
 
 func _on_body_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_projectile"):
-		Globals.player_one_health -= area.damage
+		var current_health := Globals.get_player_health(player_id)
+		Globals.set_player_health(player_id, current_health - area.damage)
 		area.queue_free()
 
 func _on_head_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_projectile"):
-		Globals.player_one_health -= area.damage * 2
+		var current_health := Globals.get_player_health(player_id)
+		Globals.set_player_health(player_id, current_health - area.damage * 2)
 		area.queue_free()

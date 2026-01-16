@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var menu_container: VBoxContainer = $CenterContainer/PauseMenu
 @onready var pause_label: Label = $CenterContainer/PauseMenu/Label
 @onready var resume_button: Button = $CenterContainer/PauseMenu/ResumeButton
+@onready var friendly_fire_button: Button = null
 @onready var return_button: Button = $CenterContainer/PauseMenu/ReturnToMenuButton
 
 var is_paused := false
@@ -13,12 +14,38 @@ const MENU_HIGHLIGHT_COLOR := Color(0.95, 0.85, 0.2, 1.0)
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_process(true)
-	_menu_buttons = [resume_button, return_button]
+	_setup_friendly_fire_button()
+	_menu_buttons = [resume_button]
+	if friendly_fire_button:
+		_menu_buttons.append(friendly_fire_button)
+	_menu_buttons.append(return_button)
 	for button in _menu_buttons:
 		_prepare_menu_button(button)
 	resume_button.pressed.connect(_on_resume_pressed)
 	return_button.pressed.connect(_on_return_to_menu_pressed)
 	hide_pause_overlay()
+
+
+func _setup_friendly_fire_button() -> void:
+	# Create friendly fire toggle button
+	friendly_fire_button = Button.new()
+	friendly_fire_button.name = "FriendlyFireButton"
+	_update_friendly_fire_button_text()
+	friendly_fire_button.pressed.connect(_on_friendly_fire_pressed)
+	# Insert between resume and return buttons
+	menu_container.add_child(friendly_fire_button)
+	menu_container.move_child(friendly_fire_button, resume_button.get_index() + 1)
+
+
+func _update_friendly_fire_button_text() -> void:
+	if friendly_fire_button:
+		var status := "ON" if Globals.friendly_fire_enabled else "OFF"
+		friendly_fire_button.text = "Friendly Fire: %s" % status
+
+
+func _on_friendly_fire_pressed() -> void:
+	Globals.friendly_fire_enabled = not Globals.friendly_fire_enabled
+	_update_friendly_fire_button_text()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):

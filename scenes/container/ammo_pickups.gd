@@ -17,12 +17,10 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == 'Player1':
+	if body.is_in_group("player"):
+		var pid: int = body.player_id if "player_id" in body else 1
 		if type == "pistol":
-#			print('picked up :  ',type, ' : pistol')
-			Globals.pistol_ammo +=6
-
+			Globals.add_player_ammo(pid, "pistol", 6)
 		if type == 'shotgun':
-#			print('picked up :  ',type, ' : shotgun')
-			Globals.shot_gun_ammo += 2
+			Globals.add_player_ammo(pid, "shotgun", 2)
 		queue_free()
