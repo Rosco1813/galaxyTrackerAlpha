@@ -44,8 +44,3 @@ position = Vector2(-12, 0)
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="Lights" index="0"]
 color = Color(0.8, 0.8, 0.8, 1)
 blend_mode = 1
-
-[connection signal="player_entered_door" from="firstRoom" to="." method="_on_first_room_player_entered_door"]
-[connection signal="player_exit_door" from="firstRoom" to="." method="_on_first_room_player_exit_door"]
-[connection signal="sewer_entrance" from="firstRoom" to="." method="_on_first_room_sewer_entrance"]
-[connection signal="sewer_exit" from="firstRoom" to="." method="_on_first_room_sewer_exit"]

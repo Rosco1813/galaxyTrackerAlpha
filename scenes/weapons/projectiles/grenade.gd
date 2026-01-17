@@ -4,6 +4,8 @@ extends RigidBody2D
 @onready var explosionAnimation = $AnimationPlayer
 
 var speed:int = 750
+var damage: int = 50
+var owner_player_id: int = -1  # -1 means no owner (can hit any player)
 #var direction:Vector2 = Vector2.RIGHT
 
 # Called when the node enters the scene tree for the first time.

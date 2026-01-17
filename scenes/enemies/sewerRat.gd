@@ -46,26 +46,26 @@ func _physics_process(_delta: float) -> void:
 				rat_shoot.emit(pos, direction)
 		move_and_slide()
 
-func stop_moving(direction):
-	rat_move(direction, false)
-	tail_lazer(direction, false)
-	guns(direction, false)
+func stop_moving(directions):
+	rat_move(directions, false)
+	tail_lazer(directions, false)
+	guns(directions, false)
 
 
-func idle(direction, condition):
+func idle(directions, condition):
 	animationTree.set("parameters/conditions/is_idle", condition)
-	animationTree["parameters/idle/blend_position"] = direction
+	animationTree["parameters/idle/blend_position"] = directions
 
-func rat_move(direction, condition):
+func rat_move(directions, condition):
 	animationTree.set("parameters/conditions/is_walking", condition)
-	animationTree["parameters/walk/blend_position"] = direction
-func tail_lazer(direction, condition):
+	animationTree["parameters/walk/blend_position"] = directions
+func tail_lazer(directions, condition):
 
 	animationTree.set("parameters/conditions/shoot_tail", condition)
-	animationTree["parameters/shoot_tail/blend_position"] = direction
-func guns(direction, condition):
+	animationTree["parameters/shoot_tail/blend_position"] = directions
+func guns(directions, condition):
 	animationTree.set("parameters/conditions/shoot_gun", condition)
-	animationTree["parameters/shoot_gun/blend_position"] = direction
+	animationTree["parameters/shoot_gun/blend_position"] = directions
 func hit():
 	health -=50
 	if health == 0:

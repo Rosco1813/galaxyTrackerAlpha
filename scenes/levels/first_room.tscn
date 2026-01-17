@@ -264,8 +264,3 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="firstRoomItems" type="Node2D" parent="."]
-
-[connection signal="body_entered" from="doorTrigger" to="." method="_on_door_trigger_body_entered"]
-[connection signal="body_exited" from="doorTrigger" to="." method="_on_door_trigger_body_exited"]
-[connection signal="body_entered" from="sewerTrigger" to="." method="_on_sewer_trigger_body_entered"]
-[connection signal="body_exited" from="sewerTrigger" to="." method="_on_sewer_trigger_body_exited"]

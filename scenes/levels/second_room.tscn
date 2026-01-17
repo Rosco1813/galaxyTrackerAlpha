@@ -122,3 +122,4 @@ blend_mode = 1
 metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="doorTrigger" to="." method="_on_door_trigger_body_entered"]
+[connection signal="body_exited" from="doorTrigger" to="." method="_on_door_trigger_body_exited"]

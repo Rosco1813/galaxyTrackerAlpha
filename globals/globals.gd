@@ -13,6 +13,10 @@ const DEATH_SCREEN_PATH := "res://scenes/UI/death_screen.tscn"
 var coop_enabled := false
 var friendly_fire_enabled := false
 
+# Level transition - tracks which entrance the player came through
+# Values: "door", "sewer", "default" (or any custom entrance name)
+var spawn_entrance := "default"
+
 # Player selections for co-op (player number -> profile id)
 var selected_players := { 1: "player_1", 2: "player_2" }
 

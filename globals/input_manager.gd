@@ -3,6 +3,9 @@ extends Node
 # Input schemes
 enum InputScheme { SINGLE_PLAYER, COOP_TWO_CONTROLLERS, COOP_CONTROLLER_KEYBOARD, COOP_SPLIT_KEYBOARD }
 
+# Controller types for icon display
+enum ControllerType { KEYBOARD, PLAYSTATION, XBOX, GENERIC }
+
 var current_scheme := InputScheme.SINGLE_PLAYER
 
 # Movement vectors per player
@@ -19,13 +22,20 @@ const SPLIT_KB_P1_KEYS := {
 	"right": KEY_D,
 	"up": KEY_W,
 	"down": KEY_S,
+	"ui_left": KEY_A,
+	"ui_right": KEY_D,
+	"ui_up": KEY_W,
+	"ui_down": KEY_S,
 	"shoot": KEY_F,
 	"aim": KEY_G,
 	"select_stuff": KEY_SPACE,
+	"ui_accept": KEY_SPACE,
 	"switch_weapon": KEY_Q,
 	"grenade": KEY_E,
 	"reload": KEY_R,
 	"roll": KEY_SHIFT,
+	"pause": KEY_P,
+	"back": KEY_ESCAPE,
 }
 
 const SPLIT_KB_P2_KEYS := {
@@ -33,20 +43,27 @@ const SPLIT_KB_P2_KEYS := {
 	"right": KEY_RIGHT,
 	"up": KEY_UP,
 	"down": KEY_DOWN,
+	"ui_left": KEY_LEFT,
+	"ui_right": KEY_RIGHT,
+	"ui_up": KEY_UP,
+	"ui_down": KEY_DOWN,
 	"shoot": KEY_KP_1,
 	"aim": KEY_KP_2,
 	"select_stuff": KEY_KP_0,
+	"ui_accept": KEY_KP_0,
 	"switch_weapon": KEY_KP_4,
 	"grenade": KEY_KP_5,
 	"reload": KEY_KP_3,
 	"roll": KEY_KP_ENTER,
+	"pause": KEY_P,
+	"back": KEY_ESCAPE,
 }
 
-# Controller actions to track (only actions that exist in InputMap)
-const CONTROLLER_ACTIONS := ["shoot", "aim", "switch_weapon", "grenade", "reload", "select_stuff", "roll"]
-
-# Track which actions are being held (for _just_pressed detection)
-var _prev_action_pressed := { 1: {}, 2: {} }
+# Actions to track (gameplay + menu)
+const TRACKED_ACTIONS := [
+	"shoot", "aim", "switch_weapon", "grenade", "reload", "select_stuff", "roll",
+	"ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "pause", "back"
+]
 
 
 func _ready() -> void:
@@ -72,7 +89,7 @@ func _input(event: InputEvent) -> void:
 			_process_coop_split_keyboard_input(event)
 
 
-func _process_single_player_input(event: InputEvent) -> void:
+func _process_single_player_input(_event: InputEvent) -> void:
 	# All input goes to player 1
 	_movement[1] = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	_update_action_states_from_input(1)
@@ -164,35 +181,28 @@ func _update_split_kb_actions(player_id: int, key_map: Dictionary, keycode: int,
 		if action_name in ["left", "right", "up", "down"]:
 			continue
 		if keycode == key_map[action_name]:
-			var was_pressed: bool = _action_pressed[player_id].get(action_name, false)
-			_action_pressed[player_id][action_name] = pressed
-			if pressed and not was_pressed:
-				_action_just_pressed[player_id][action_name] = true
-			elif not pressed and was_pressed:
-				_action_just_released[player_id][action_name] = true
+			_record_action_state(player_id, action_name, pressed)
 
 
 func _update_action_states_from_input(player_id: int) -> void:
-	for action in CONTROLLER_ACTIONS:
+	for action in TRACKED_ACTIONS:
 		var is_pressed := Input.is_action_pressed(action)
-		var was_pressed: bool = _action_pressed[player_id].get(action, false)
-		_action_pressed[player_id][action] = is_pressed
-		if is_pressed and not was_pressed:
-			_action_just_pressed[player_id][action] = true
-		elif not is_pressed and was_pressed:
-			_action_just_released[player_id][action] = true
+		_record_action_state(player_id, action, is_pressed)
 
 
 func _update_controller_action_states(player_id: int, event: InputEvent) -> void:
-	for action in CONTROLLER_ACTIONS:
+	for action in TRACKED_ACTIONS:
 		if event.is_action(action):
-			var is_pressed := event.is_pressed()
-			var was_pressed: bool = _action_pressed[player_id].get(action, false)
-			_action_pressed[player_id][action] = is_pressed
-			if is_pressed and not was_pressed:
-				_action_just_pressed[player_id][action] = true
-			elif not is_pressed and was_pressed:
-				_action_just_released[player_id][action] = true
+			_record_action_state(player_id, action, event.is_pressed())
+
+
+func _record_action_state(player_id: int, action_name: String, is_pressed: bool) -> void:
+	var was_pressed: bool = _action_pressed[player_id].get(action_name, false)
+	_action_pressed[player_id][action_name] = is_pressed
+	if is_pressed and not was_pressed:
+		_action_just_pressed[player_id][action_name] = true
+	elif not is_pressed and was_pressed:
+		_action_just_released[player_id][action_name] = true
 
 
 # Public API for players to query their input
@@ -218,6 +228,32 @@ func is_action_just_released(player_id: int, action: String) -> bool:
 	if current_scheme == InputScheme.SINGLE_PLAYER and player_id == 1:
 		return Input.is_action_just_released(action)
 	return _action_just_released[player_id].get(action, false)
+
+
+# Menu helpers
+func get_menu_nav(player_id: int) -> Vector2:
+	var nav := Vector2.ZERO
+	if is_action_just_pressed(player_id, "ui_left"):
+		nav.x = -1
+	elif is_action_just_pressed(player_id, "ui_right"):
+		nav.x = 1
+	if is_action_just_pressed(player_id, "ui_up"):
+		nav.y = -1
+	elif is_action_just_pressed(player_id, "ui_down"):
+		nav.y = 1
+	return nav
+
+
+func is_menu_confirm_just_pressed(player_id: int) -> bool:
+	return is_action_just_pressed(player_id, "select_stuff") or is_action_just_pressed(player_id, "ui_accept")
+
+
+func is_menu_pause_just_pressed(player_id: int) -> bool:
+	return is_action_just_pressed(player_id, "pause")
+
+
+func is_menu_back_just_pressed(player_id: int) -> bool:
+	return is_action_just_pressed(player_id, "back")
 
 
 # Auto-detect if a controller is connected
@@ -252,3 +288,23 @@ func get_scheme_description() -> String:
 		InputScheme.COOP_SPLIT_KEYBOARD:
 			return "P1: WASD | P2: Arrow Keys + Numpad"
 	return ""
+
+
+## Returns the controller type for the given device (for displaying appropriate button icons)
+func get_controller_type(device_id: int = 0) -> ControllerType:
+	var joypads := Input.get_connected_joypads()
+	if joypads.is_empty():
+		return ControllerType.KEYBOARD
+	
+	# Use first connected joypad if device_id not found
+	var actual_device := device_id if device_id in joypads else joypads[0]
+	var joy_name := Input.get_joy_name(actual_device).to_lower()
+	
+	if "playstation" in joy_name or "dualshock" in joy_name or "dualsense" in joy_name or "ps4" in joy_name or "ps5" in joy_name:
+		return ControllerType.PLAYSTATION
+	elif "xbox" in joy_name or "xinput" in joy_name:
+		return ControllerType.XBOX
+	elif joy_name != "":
+		return ControllerType.GENERIC
+	
+	return ControllerType.KEYBOARD

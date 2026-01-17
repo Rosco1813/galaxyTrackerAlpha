@@ -3,6 +3,8 @@ extends Area2D
 
 var speed:int = 1000
 var direction:Vector2 = Vector2.UP
+var damage: int = 10
+var owner_player_id: int = -1  # -1 means no owner (can hit any player)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

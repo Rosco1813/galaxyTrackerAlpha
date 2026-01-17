@@ -179,12 +179,14 @@ func _on_player_2_shoot_weapon(markerPosition, weaponType, direction) -> void:
 		pistolShot.rotation_degrees = rad_to_deg(direction.angle()) - 90
 		pistolShot.direction = direction
 		pistolShot.position = markerPosition
+		pistolShot.owner_player_id = 2  # Mark as player 2's projectile
 		$Projectiles.add_child(pistolShot)
 		# TODO: Update P2 ammo UI when implemented
 	if weaponType == 'grenade':
 		var grenadeThrow = grenade.instantiate() as RigidBody2D
 		grenadeThrow.position = markerPosition
 		grenadeThrow.linear_velocity = direction * 300
+		grenadeThrow.owner_player_id = 2  # Mark as player 2's projectile
 		$Projectiles.add_child(grenadeThrow)
 
 
@@ -195,6 +197,7 @@ func _on_player_1_shoot_weapon(markerPosition, weaponType, direction) -> void:
 		#update laser position, then move the laser, then add laser to instance of Node2d projectiles
 		pistolShot.direction = direction
 		pistolShot.position= markerPosition
+		pistolShot.owner_player_id = 1  # Mark as player 1's projectile
 
 		$Projectiles.add_child(pistolShot)
 		$UI.update_pistol_ammo_text()
@@ -202,5 +205,6 @@ func _on_player_1_shoot_weapon(markerPosition, weaponType, direction) -> void:
 		var grenadeThrow = grenade.instantiate() as RigidBody2D
 		grenadeThrow.position = markerPosition
 		grenadeThrow.linear_velocity = direction * 300
+		grenadeThrow.owner_player_id = 1  # Mark as player 1's projectile
 		$Projectiles.add_child(grenadeThrow)
 		$UI.update_grenade_ammo_text()

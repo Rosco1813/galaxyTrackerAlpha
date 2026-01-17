@@ -248,9 +248,23 @@ func _on_body_hurtbox_area_entered(area: Area2D) -> void:
 		var current_health := Globals.get_player_health(player_id)
 		Globals.set_player_health(player_id, current_health - area.damage)
 		area.queue_free()
+	# Friendly fire check
+	elif area.is_in_group("player_projectile") and Globals.friendly_fire_enabled:
+		if "owner_player_id" in area and area.owner_player_id != player_id:
+			var current_health := Globals.get_player_health(player_id)
+			var dmg = area.damage if "damage" in area else 10
+			Globals.set_player_health(player_id, current_health - dmg)
+			area.queue_free()
 
 func _on_head_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_projectile"):
 		var current_health := Globals.get_player_health(player_id)
 		Globals.set_player_health(player_id, current_health - area.damage * 2)
 		area.queue_free()
+	# Friendly fire check (headshot = 2x damage)
+	elif area.is_in_group("player_projectile") and Globals.friendly_fire_enabled:
+		if "owner_player_id" in area and area.owner_player_id != player_id:
+			var current_health := Globals.get_player_health(player_id)
+			var dmg = area.damage if "damage" in area else 10
+			Globals.set_player_health(player_id, current_health - dmg * 2)
+			area.queue_free()

@@ -21,6 +21,7 @@ Globals="*res://globals/globals.gd"
 InputManager="*res://globals/input_manager.gd"
 TransitionLayer="*res://globals/transition_layer.tscn"
 PauseManager="*res://globals/pause_manager.tscn"
+InteractionPrompt="*res://globals/interaction_prompt.tscn"
 
 [display]
 
