@@ -11,7 +11,7 @@ signal shootWeapon(markerPosition, weaponType, direction)
 
 @export var player_id := 1  # 1 for player 1, 2 for player 2
 
-var speed = 3
+var speed = 6
 var weapons:Array = ['pistol', 'shotgun','empty_handed', 'grenade']
 var selectedWeapon: String = weapons[0];
 var direction:Vector2 = Vector2.ZERO
