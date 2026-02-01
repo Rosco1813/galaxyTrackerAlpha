@@ -3736,13 +3736,13 @@ visible = false
 position = Vector2(-2, 2)
 
 [node name="Marker2D" type="Marker2D" parent="shootingPosition"]
-position = Vector2(17, 31)
+position = Vector2(-17, -128)
 
 [node name="Marker2D2" type="Marker2D" parent="shootingPosition"]
-position = Vector2(2, 54)
+position = Vector2(-6, -144)
 
 [node name="Marker2D3" type="Marker2D" parent="shootingPosition"]
-position = Vector2(-6, 30)
+position = Vector2(8, -127)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
