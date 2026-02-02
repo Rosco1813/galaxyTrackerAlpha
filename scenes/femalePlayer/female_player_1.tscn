@@ -1891,3 +1891,6 @@ position = Vector2(77, -16)
 
 [node name="Marker2D3" type="Marker2D" parent="shootingPosition"]
 position = Vector2(66, -9)
+
+[connection signal="area_entered" from="BodyHurtbox" to="." method="_on_body_hurtbox_area_entered"]
+[connection signal="area_entered" from="HeadHurtbox" to="." method="_on_head_hurtbox_area_entered"]
