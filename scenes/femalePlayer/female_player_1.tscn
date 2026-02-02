@@ -1422,9 +1422,15 @@ tracks/5/path = NodePath("..")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0666667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.233333, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"triggerAmmoAnimation"
+}, {
+"args": [],
+"method": &"triggerAmmoAnimation"
+}, {
 "args": [],
 "method": &"triggerAmmoAnimation"
 }]
@@ -1436,9 +1442,15 @@ tracks/6/path = NodePath("..")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.233333, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"play_shot_sound"
+}, {
+"args": [],
+"method": &"play_shot_sound"
+}, {
 "args": [],
 "method": &"play_shot_sound"
 }]
@@ -1446,14 +1458,14 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../shootingPosition/Marker2D:position")
+tracks/7/path = NodePath("../Sprite2D:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(42, -10)]
+"values": [Vector2(0.5, 0.5)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -1465,7 +1477,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(60, -18)]
+"values": [Vector2(99, -31)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1477,19 +1489,19 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(63, -10)]
+"values": [Vector2(95, -19)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../Sprite2D:scale")
+tracks/10/path = NodePath("../shootingPosition/Marker2D:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(0.5, 0.5)]
+"values": [Vector2(72, -17)]
 }
 
 [sub_resource type="Animation" id="Animation_obj3v"]
@@ -1564,9 +1576,18 @@ tracks/5/path = NodePath("..")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.133333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.166667, 0.366667, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"triggerAmmoAnimation"
+}, {
+"args": [],
+"method": &"triggerAmmoAnimation"
+}, {
+"args": [],
+"method": &"triggerAmmoAnimation"
+}, {
 "args": [],
 "method": &"triggerAmmoAnimation"
 }]
@@ -1578,9 +1599,18 @@ tracks/6/path = NodePath("..")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.166667, 0.366667, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"play_shot_sound"
+}, {
+"args": [],
+"method": &"play_shot_sound"
+}, {
+"args": [],
+"method": &"play_shot_sound"
+}, {
 "args": [],
 "method": &"play_shot_sound"
 }]
@@ -1588,50 +1618,50 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../shootingPosition/Marker2D:position")
+tracks/7/path = NodePath("../Sprite2D:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(46, -30)]
+"values": [Vector2(0.5, 0.5)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../shootingPosition/Marker2D2:position")
+tracks/8/path = NodePath("../shootingPosition/Marker2D:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(67, -31)]
+"values": [Vector2(72, -45)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../shootingPosition/Marker2D3:position")
+tracks/9/path = NodePath("../shootingPosition/Marker2D2:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(62, -36)]
+"values": [Vector2(107, -51)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../Sprite2D:scale")
+tracks/10/path = NodePath("../shootingPosition/Marker2D3:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(0.5, 0.5)]
+"values": [Vector2(97, -58)]
 }
 
 [sub_resource type="Animation" id="Animation_s7x6d"]
@@ -1706,9 +1736,15 @@ tracks/5/path = NodePath("..")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.233333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"triggerAmmoAnimation"
+}, {
+"args": [],
+"method": &"triggerAmmoAnimation"
+}, {
 "args": [],
 "method": &"triggerAmmoAnimation"
 }]
@@ -1720,9 +1756,15 @@ tracks/6/path = NodePath("..")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.233333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"play_shot_sound"
+}, {
+"args": [],
+"method": &"play_shot_sound"
+}, {
 "args": [],
 "method": &"play_shot_sound"
 }]
@@ -1730,50 +1772,50 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../shootingPosition/Marker2D:position")
+tracks/7/path = NodePath("../Sprite2D:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(41, -51)]
+"values": [Vector2(0.5, 0.5)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../shootingPosition/Marker2D2:position")
+tracks/8/path = NodePath("../shootingPosition/Marker2D:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(57, -52)]
+"values": [Vector2(70, -87)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../shootingPosition/Marker2D3:position")
+tracks/9/path = NodePath("../shootingPosition/Marker2D2:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(52, -56)]
+"values": [Vector2(87, -95)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../Sprite2D:scale")
+tracks/10/path = NodePath("../shootingPosition/Marker2D3:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(0.5, 0.5)]
+"values": [Vector2(95, -86)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o3xu0"]
@@ -1826,6 +1868,7 @@ texture = ExtResource("1_ej8lr")
 hframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 113)
 shape = SubResource("CircleShape2D_3n1bs")
 
@@ -1853,6 +1896,7 @@ libraries = {
 }
 
 [node name="BodyHurtbox" type="Area2D" parent="." groups=["player_body_hurtbox"]]
+visible = false
 collision_layer = 128
 collision_mask = 8
 
@@ -1861,6 +1905,7 @@ position = Vector2(-2, -8)
 shape = SubResource("CapsuleShape2D_b1a5i")
 
 [node name="HeadHurtbox" type="Area2D" parent="." groups=["player_head_hurtbox"]]
+visible = false
 collision_layer = 128
 collision_mask = 8
 
@@ -1869,6 +1914,7 @@ position = Vector2(-4, -80)
 shape = SubResource("CircleShape2D_b1a5i")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
@@ -1877,6 +1923,7 @@ polygon = PackedVector2Array(-16, -59, -13, -12, -20, 33, -21, 95, -19, 131, 37,
 metadata/_edit_lock_ = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 position = Vector2(-7, 92)
 occluder = SubResource("OccluderPolygon2D_b1a5i")
 
