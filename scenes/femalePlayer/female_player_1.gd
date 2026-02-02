@@ -11,10 +11,11 @@ signal shootWeapon(markerPosition, weaponType, direction)
 
 @export var player_id := 1  # 1 for player 1, 2 for player 2
 
-var speed = 6
+var speed = 8
 var weapons: Array = ['pistol', 'shotgun', 'empty_handed', 'grenade']
 var selectedWeapon: String = weapons[0]
 var direction: Vector2 = Vector2.ZERO
+var facing_direction: Vector2 = Vector2.ZERO  # For twin-stick aiming
 var aiming = false
 var rolling = false
 var shooting = false
@@ -36,6 +37,28 @@ func _ready() -> void:
 			if child is AudioStreamPlayer:
 				shot_sfx_players.append(child)
 
+func _get_state_machine() -> AnimationNodeStateMachinePlayback:
+	return animationTree["parameters/playback"]
+
+func _is_shoot_animation_finished() -> bool:
+	# Check if the current animation has reached its end
+	var state_machine = _get_state_machine()
+	var current_state = state_machine.get_current_node()
+	if not ("shoot" in current_state or "Shoot" in current_state):
+		return false
+	# Get the current animation length and position
+	var current_length = state_machine.get_current_length()
+	var current_position = state_machine.get_current_play_position()
+	# Consider it finished if we're at 95% or more of the animation
+	return current_length > 0 and current_position >= current_length * 0.95
+
+func _restart_shoot_animation() -> void:
+	# Force restart the current shooting animation by traveling to it again
+	var state_machine = _get_state_machine()
+	var current_state = state_machine.get_current_node()
+	if "shoot" in current_state or "Shoot" in current_state:
+		state_machine.start(current_state, true)  # true = reset
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	update_z_index()
@@ -46,20 +69,30 @@ func _physics_process(_delta: float) -> void:
 		direction = InputManager.get_movement(player_id)
 		Globals.player_direction = direction
 	
-	# Flip sprite and shooting position based on horizontal direction
-	if direction.x < 0:
+	# Get facing direction from right stick (twin-stick controls)
+	var right_stick := InputManager.get_facing(player_id)
+	if right_stick.length() > 0.2:
+		# Right stick is being used - face that direction
+		facing_direction = right_stick.normalized()
+	elif direction != Vector2.ZERO:
+		# No right stick input - default to movement direction
+		facing_direction = direction.normalized()
+	# else: keep facing previous direction when standing still
+	
+	# Flip sprite and shooting position based on facing direction
+	if facing_direction.x < 0:
 		sprite.flip_h = true
 		var shoot_pos = get_node_or_null("shootingPosition")
 		if shoot_pos:
 			shoot_pos.scale.x = -1
-	elif direction.x > 0:
+	elif facing_direction.x > 0:
 		sprite.flip_h = false
 		var shoot_pos = get_node_or_null("shootingPosition")
 		if shoot_pos:
 			shoot_pos.scale.x = 1
 	
-	# For this character, moving = aiming (no need to hold aim button)
-	aiming = direction != Vector2.ZERO
+	# Aiming when right stick is used OR when moving (auto-aim)
+	aiming = facing_direction != Vector2.ZERO
 	
 	# Set speed based on state
 	if rolling == true:
@@ -105,26 +138,12 @@ func switchWeapon():
 	#	set_animation_conditions('equip_shotgun', true)
 
 func update_animation():
-	# Update blend position when moving
-	if direction != Vector2.ZERO:
-		last_shot_position = direction
+	# Update blend position when facing direction exists
+	if facing_direction != Vector2.ZERO:
+		last_shot_position = facing_direction
 		update_blend_position()
 	
-	# Determine animation state based on current inputs (priority order)
-	if rolling == true && shooting == false:
-		set_animation_conditions("is_rolling", true)
-	elif shooting == true:
-		if direction != Vector2.ZERO:
-			set_animation_conditions('is_walking_shooting', true)
-		else:
-			set_animation_conditions('is_idle_shooting', true)
-	elif direction != Vector2.ZERO:
-		# Moving = automatically in walk_aim
-		set_animation_conditions('is_walking_aiming', true)
-	else:
-		# Standing still = idle
-		set_animation_conditions('is_idle', true)
-	
+	# FIRST: Process inputs to update state variables
 	# Handle shoot input (shooting while button held)
 	if InputManager.is_action_pressed(player_id, "shoot"):
 		if selectedWeapon == 'pistol' and Globals.get_player_ammo(player_id, "pistol") > 0:
@@ -132,6 +151,8 @@ func update_animation():
 		elif selectedWeapon == 'shotgun' and Globals.get_player_ammo(player_id, "shotgun") > 0:
 			shooting = true
 			Globals.use_player_ammo(player_id, "shotgun")
+		else:
+			shooting = false  # No ammo
 	else:
 		# Shoot button released - stop shooting
 		shooting = false
@@ -147,6 +168,28 @@ func update_animation():
 			animationTree["parameters/roll/blend_position"] = last_shot_position
 		else:
 			animationTree["parameters/roll/blend_position"] = direction
+	
+	# Check if we need to restart a shooting animation (held shoot, animation ended)
+	if shooting and _is_shoot_animation_finished():
+		_restart_shoot_animation()
+	
+	# THEN: Determine animation state based on updated state variables (priority order)
+	if rolling == true && shooting == false:
+		set_animation_conditions("is_rolling", true)
+	elif shooting == true:
+		if direction != Vector2.ZERO:
+			set_animation_conditions('is_walking_shooting', true)
+		else:
+			set_animation_conditions('is_idle_shooting', true)
+	elif direction != Vector2.ZERO:
+		# Moving = automatically in walk_aim
+		set_animation_conditions('is_walking_aiming', true)
+	elif facing_direction != Vector2.ZERO and direction == Vector2.ZERO:
+		# Standing still but aiming with right stick = idle_aim
+		set_animation_conditions('is_idle_aiming', true)
+	else:
+		# Standing still = idle
+		set_animation_conditions('is_idle', true)
 
 func set_animation_conditions(condition: String, value: bool):
 	# Current female player conditions
@@ -173,12 +216,13 @@ func set_shooting(value):
 		animationTree['parameters/conditions/is_idle_shooting'] = value
 
 func update_blend_position():
-	animationTree["parameters/idle/blend_position"] = direction
-	animationTree["parameters/idle_aim/blend_position"] = direction
-	animationTree["parameters/idle_shoot/blend_position"] = direction
-	animationTree["parameters/roll/blend_position"] = direction
-	animationTree["parameters/walk_aim/blend_position"] = direction
-	animationTree["parameters/walk_shoot/blend_position"] = direction
+	# Use facing_direction for all aim/shoot animations (twin-stick support)
+	animationTree["parameters/idle/blend_position"] = facing_direction
+	animationTree["parameters/idle_aim/blend_position"] = facing_direction
+	animationTree["parameters/idle_shoot/blend_position"] = facing_direction
+	animationTree["parameters/roll/blend_position"] = direction  # Roll uses movement direction
+	animationTree["parameters/walk_aim/blend_position"] = facing_direction
+	animationTree["parameters/walk_shoot/blend_position"] = facing_direction
 
 func endRoll(_value = false):
 	speed = 3

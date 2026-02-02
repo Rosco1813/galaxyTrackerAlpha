@@ -11,6 +11,9 @@ var current_scheme := InputScheme.SINGLE_PLAYER
 # Movement vectors per player
 var _movement := { 1: Vector2.ZERO, 2: Vector2.ZERO }
 
+# Facing direction vectors per player (right stick)
+var _facing := { 1: Vector2.ZERO, 2: Vector2.ZERO }
+
 # Action states per player (for actions that need press tracking)
 var _action_pressed := { 1: {}, 2: {} }
 var _action_just_pressed := { 1: {}, 2: {} }
@@ -92,6 +95,7 @@ func _input(event: InputEvent) -> void:
 func _process_single_player_input(_event: InputEvent) -> void:
 	# All input goes to player 1
 	_movement[1] = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	_facing[1] = Input.get_vector("face_left", "face_right", "face_up", "face_down")
 	_update_action_states_from_input(1)
 
 
@@ -102,10 +106,12 @@ func _process_coop_controller_keyboard_input(event: InputEvent) -> void:
 	if event is InputEventJoypadMotion or event is InputEventJoypadButton:
 		# Controller input -> Player 1
 		_movement[1] = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		_facing[1] = _get_controller_facing(0)
 		_update_controller_action_states(1, event)
 	else:
-		# Keyboard input -> Player 2
+		# Keyboard input -> Player 2 (no right stick, facing defaults to movement)
 		_movement[2] = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		_facing[2] = Vector2.ZERO
 		_update_action_states_from_input(2)
 
 
@@ -118,10 +124,12 @@ func _process_coop_two_controllers_input(event: InputEvent) -> void:
 		if device == 0:
 			# First controller -> Player 1
 			_movement[1] = _get_controller_movement(0)
+			_facing[1] = _get_controller_facing(0)
 			_update_controller_action_states(1, event)
 		elif device == 1:
 			# Second controller -> Player 2
 			_movement[2] = _get_controller_movement(1)
+			_facing[2] = _get_controller_facing(1)
 			_update_controller_action_states(2, event)
 
 
@@ -145,6 +153,18 @@ func _get_controller_movement(device: int) -> Vector2:
 	if movement.length() < 0.2:
 		return Vector2.ZERO
 	return movement.normalized() if movement.length() > 1.0 else movement
+
+
+func _get_controller_facing(device: int) -> Vector2:
+	# Get facing direction from right stick for a specific controller device
+	var right_x := Input.get_joy_axis(device, JOY_AXIS_RIGHT_X)
+	var right_y := Input.get_joy_axis(device, JOY_AXIS_RIGHT_Y)
+	var facing := Vector2(right_x, right_y)
+	
+	# Apply deadzone
+	if facing.length() < 0.2:
+		return Vector2.ZERO
+	return facing.normalized() if facing.length() > 1.0 else facing
 
 
 func _process_coop_split_keyboard_input(event: InputEvent) -> void:
@@ -210,6 +230,18 @@ func get_movement(player_id: int) -> Vector2:
 	if current_scheme == InputScheme.SINGLE_PLAYER:
 		return Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	return _movement.get(player_id, Vector2.ZERO)
+
+
+func get_facing(player_id: int) -> Vector2:
+	# Get facing direction from right stick (or face_ actions)
+	if current_scheme == InputScheme.SINGLE_PLAYER:
+		# Try face_ actions first, then fall back to controller right stick
+		var facing := Input.get_vector("face_left", "face_right", "face_up", "face_down")
+		if facing.length() < 0.2:
+			# Try reading right stick directly for single player controller
+			facing = _get_controller_facing(0)
+		return facing
+	return _facing.get(player_id, Vector2.ZERO)
 
 
 func is_action_pressed(player_id: int, action: String) -> bool:
