@@ -14,10 +14,13 @@ script = ExtResource("2_0i36j")
 [node name="firstRoom" parent="." index="0" instance=ExtResource("2_x1nx4")]
 position = Vector2(-13, 5)
 
-[node name="NICE_agent2" parent="." index="3" instance=ExtResource("8_6bn12")]
+[node name="NICE_agent3" parent="." index="3" instance=ExtResource("8_6bn12")]
 position = Vector2(-872, 231)
 
-[node name="NICE_agent" parent="." index="4" instance=ExtResource("8_6bn12")]
+[node name="NICE_agent2" parent="." index="4" instance=ExtResource("8_6bn12")]
+position = Vector2(-273, -20)
+
+[node name="NICE_agent" parent="." index="5" instance=ExtResource("8_6bn12")]
 position = Vector2(751, 35)
 
 [node name="health_item" parent="Items" index="0" instance=ExtResource("5_rkicq")]
@@ -35,7 +38,7 @@ position = Vector2(719, 445)
 [node name="files" parent="Items" index="4" instance=ExtResource("7_okxkx")]
 position = Vector2(972, 593)
 
-[node name="Player1" parent="." index="8"]
+[node name="Player1" parent="." index="9"]
 position = Vector2(-163, 434)
 
 [node name="Camera2D" parent="Player1" index="10"]
