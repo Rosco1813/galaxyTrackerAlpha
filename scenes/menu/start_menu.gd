@@ -88,9 +88,10 @@ func _on_single_player_pressed() -> void:
 	# Hide mode buttons
 	_hide_mode_buttons()
 	
-	_show_character_cards()
-	_select_player(Globals.selected_player_id)
-	_update_prompt_label()
+	# Single player: Auto-select Trinity (female_player_1) and start game immediately
+	Globals.selected_player_id = "female_player_1"
+	Globals.selected_players[1] = "female_player_1"
+	_start_game()
 
 
 func _on_coop_pressed() -> void:

@@ -6,7 +6,7 @@ signal player_died
 signal player_downed(player_id: int)
 signal player_revived(player_id: int)
 
-const DEFAULT_PLAYER_ID := "player_1"
+const DEFAULT_PLAYER_ID := "female_player_1"
 const DEATH_SCREEN_PATH := "res://scenes/UI/death_screen.tscn"
 
 # Co-op settings
@@ -18,7 +18,7 @@ var friendly_fire_enabled := false
 var spawn_entrance := "default"
 
 # Player selections for co-op (player number -> profile id)
-var selected_players := { 1: "player_1", 2: "player_2" }
+var selected_players := { 1: "female_player_1", 2: "player_1" }
 
 # Downed state tracking
 var player_is_downed := { 1: false, 2: false }
@@ -42,24 +42,16 @@ var player_profiles := {
 		"damage_scalar": 1.0,
 		"preview_texture": "res://graphics/mainCharacter/Main_Character_Iconpng.png",
 		"modulate_color": Color.WHITE,
-		"display_name": "Player 1",
+		"display_name": "Sam",
 		"highlight_color": Color(0.1, 0.7, 1.0, 0.55)
 	},
-	"player_2": {
-		"scene_path": "res://scenes/player2/player_2_placeholder.tscn",
+	"female_player_1": {
+		"scene_path": "res://scenes/femalePlayer/female_player_1.tscn",
 		"damage_scalar": 1.0,
 		"preview_texture": "res://graphics/mainCharacter/trinity-matrix.png",
-		"modulate_color": Color(0.85, 0.25, 0.25, 1.0),
+		"modulate_color": Color.WHITE,
 		"display_name": "Trinity",
 		"highlight_color": Color(0.95, 0.25, 0.25, 0.6)
-	},
-	"player_3": {
-		"scene_path": "res://scenes/player3/player_3_placeholder.tscn",
-		"damage_scalar": 1.0,
-		"preview_texture": "res://graphics/mainCharacter/locke.jpg",
-		"modulate_color": Color(1.0, 0.88, 0.25, 1.0),
-		"display_name": "Locke",
-		"highlight_color": Color(1.0, 0.85, 0.2, 0.6)
 	}
 }
 

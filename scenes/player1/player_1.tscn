@@ -3655,7 +3655,7 @@ states/walk/position = Vector2(-106, -3)
 states/walk_shotgun/node = SubResource("AnimationNodeBlendSpace2D_2kcgd")
 states/walk_shotgun/position = Vector2(-169, 439)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_63s0y"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_ifbt6"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_rm7ly"), "idle", "aim_pistol", SubResource("AnimationNodeStateMachineTransition_hqbgu"), "walk", "aim_pistol", SubResource("AnimationNodeStateMachineTransition_7cq87"), "walk", "roll", SubResource("AnimationNodeStateMachineTransition_ifp1v"), "roll", "walk", SubResource("AnimationNodeStateMachineTransition_vsntb"), "idle", "roll", SubResource("AnimationNodeStateMachineTransition_mcqbu"), "roll", "idle", SubResource("AnimationNodeStateMachineTransition_2y60g"), "aim_pistol", "roll", SubResource("AnimationNodeStateMachineTransition_i82y2"), "roll", "aim_pistol", SubResource("AnimationNodeStateMachineTransition_fdxhs"), "aim_pistol", "idle", SubResource("AnimationNodeStateMachineTransition_6e0d5"), "aim_pistol", "walk", SubResource("AnimationNodeStateMachineTransition_7rfnk"), "aim_pistol", "shoot_pistol", SubResource("AnimationNodeStateMachineTransition_6gag8"), "shoot_pistol", "aim_pistol", SubResource("AnimationNodeStateMachineTransition_j1246"), "idle", "walk_shotgun", SubResource("AnimationNodeStateMachineTransition_lsl05"), "walk_shotgun", "idle", SubResource("AnimationNodeStateMachineTransition_7hprq"), "walk_shotgun", "roll", SubResource("AnimationNodeStateMachineTransition_nr7un"), "roll", "walk_shotgun", SubResource("AnimationNodeStateMachineTransition_hodew"), "shoot_pistol", "roll", SubResource("AnimationNodeStateMachineTransition_ln6f0"), "shoot_pistol", "idle", SubResource("AnimationNodeStateMachineTransition_hoqox"), "shoot_pistol", "walk", SubResource("AnimationNodeStateMachineTransition_2smgs"), "idle", "equip_shotgun", SubResource("AnimationNodeStateMachineTransition_6s2x2"), "equip_shotgun", "idle", SubResource("AnimationNodeStateMachineTransition_0p7ki"), "equip_shotgun", "walk_shotgun", SubResource("AnimationNodeStateMachineTransition_yb585"), "walk_shotgun", "equip_shotgun", SubResource("AnimationNodeStateMachineTransition_fb3eb"), "walk_shotgun", "reload_shotgun", SubResource("AnimationNodeStateMachineTransition_lkw27"), "reload_shotgun", "walk_shotgun", SubResource("AnimationNodeStateMachineTransition_be5xf"), "idle", "reload_shotgun", SubResource("AnimationNodeStateMachineTransition_niix0"), "reload_shotgun", "idle", SubResource("AnimationNodeStateMachineTransition_bsjyd"), "shoot_shotgun", "walk_shotgun", SubResource("AnimationNodeStateMachineTransition_868ak"), "idle", "aim_shotgun", SubResource("AnimationNodeStateMachineTransition_52g3v"), "aim_shotgun", "idle", SubResource("AnimationNodeStateMachineTransition_6w4nx"), "aim_shotgun", "walk_shotgun", SubResource("AnimationNodeStateMachineTransition_sd2at"), "walk_shotgun", "aim_shotgun", SubResource("AnimationNodeStateMachineTransition_x5o1f"), "reload_shotgun", "aim_shotgun", SubResource("AnimationNodeStateMachineTransition_aehap"), "aim_shotgun", "reload_shotgun", SubResource("AnimationNodeStateMachineTransition_j62te"), "aim_shotgun", "shoot_shotgun", SubResource("AnimationNodeStateMachineTransition_nwhib"), "shoot_shotgun", "aim_shotgun", SubResource("AnimationNodeStateMachineTransition_q1nwi"), "shoot_shotgun", "reload_shotgun", SubResource("AnimationNodeStateMachineTransition_q18db"), "reload_shotgun", "shoot_shotgun", SubResource("AnimationNodeStateMachineTransition_tioi5"), "walk", "walk_shotgun", SubResource("AnimationNodeStateMachineTransition_j1x5f"), "walk_shotgun", "walk", SubResource("AnimationNodeStateMachineTransition_a83gc"), "roll", "aim_shotgun", SubResource("AnimationNodeStateMachineTransition_evxml"), "aim_shotgun", "roll", SubResource("AnimationNodeStateMachineTransition_xyfpx"), "equip_shotgun", "aim_shotgun", SubResource("AnimationNodeStateMachineTransition_bv8bn"), "aim_shotgun", "equip_shotgun", SubResource("AnimationNodeStateMachineTransition_8uxwr")]
-graph_offset = Vector2(-218, -147.43)
+graph_offset = Vector2(-10, 10.57)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r0b4u"]
 radius = 32.9873
@@ -3732,7 +3732,6 @@ rotation = -0.027765
 shape = SubResource("CapsuleShape2D_r0b4u")
 
 [node name="shootingPosition" type="Node2D" parent="."]
-visible = false
 position = Vector2(-2, 2)
 
 [node name="Marker2D" type="Marker2D" parent="shootingPosition"]
@@ -3745,12 +3744,10 @@ position = Vector2(-6, -144)
 position = Vector2(8, -127)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
 position = Vector2(-7, 92)
 occluder = SubResource("OccluderPolygon2D_uggju")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
@@ -3759,7 +3756,6 @@ polygon = PackedVector2Array(-42, -54, -53, 22, -42, 68, -49, 114, -54, 138, 59,
 metadata/_edit_lock_ = true
 
 [node name="BodyHurtbox" type="Area2D" parent="." groups=["player_body_hurtbox"]]
-visible = false
 collision_layer = 128
 collision_mask = 8
 
@@ -3768,7 +3764,6 @@ position = Vector2(0, -20)
 shape = SubResource("CapsuleShape2D_bodyhurt")
 
 [node name="HeadHurtbox" type="Area2D" parent="." groups=["player_head_hurtbox"]]
-visible = false
 collision_layer = 128
 collision_mask = 8
 
