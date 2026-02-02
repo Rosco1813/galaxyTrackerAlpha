@@ -25,6 +25,11 @@ var player:bool = true
 
 var overlapping_bodies: Array[Node2D] = []
 
+# Stamina regeneration
+var stamina_regen_cooldown := 4.0  # Seconds to wait before regenerating
+var stamina_regen_rate := 15.0  # Stamina points per second
+var time_since_stamina_used := 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 #	print('globals ammo ', Globals.pistol_ammo)
@@ -37,9 +42,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(_delta: float) -> void:
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	update_z_index()
 	Globals.player_position = global_position
+	
+	# Stamina regeneration
+	_update_stamina_regen(delta)
+	
 	if rolling == false:
 		direction = InputManager.get_movement(player_id)
 		Globals.player_direction = direction
@@ -155,10 +164,30 @@ func set_animation_conditions(condition: String, value: bool):
 		else:
 			animationTree[param_path] = !value
 
+func _use_stamina(amount: int) -> void:
+	# Use stamina and reset regen timer
+	var current_stamina := Globals.get_player_stamina(player_id)
+	Globals.set_player_stamina(player_id, current_stamina - amount)
+	time_since_stamina_used = 0.0
+
+func _update_stamina_regen(delta: float) -> void:
+	var current_stamina := Globals.get_player_stamina(player_id)
+	var max_stamina: int = Globals.S  # Max stamina from Globals
+	
+	if current_stamina < max_stamina:
+		time_since_stamina_used += delta
+		
+		if time_since_stamina_used >= stamina_regen_cooldown:
+			# Regenerate stamina
+			var regen_amount := int(stamina_regen_rate * delta)
+			if regen_amount < 1:
+				regen_amount = 1  # Ensure at least 1 point per applicable frame
+			var new_stamina := mini(current_stamina + regen_amount, max_stamina)
+			Globals.set_player_stamina(player_id, new_stamina)
+
 func set_roll(value):
 	rolling = value
-	var current_stamina := Globals.get_player_stamina(player_id)
-	Globals.set_player_stamina(player_id, current_stamina - 10)
+	_use_stamina(10)
 	animationTree["parameters/conditions/is_rolling"] = value
 
 func set_shooting(value):

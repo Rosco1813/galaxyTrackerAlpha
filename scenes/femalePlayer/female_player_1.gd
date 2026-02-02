@@ -16,6 +16,7 @@ var weapons: Array = ['pistol', 'shotgun', 'empty_handed', 'grenade']
 var selectedWeapon: String = weapons[0]
 var direction: Vector2 = Vector2.ZERO
 var facing_direction: Vector2 = Vector2.ZERO  # For twin-stick aiming
+var right_stick_active := false  # Is right stick currently being used
 var aiming = false
 var rolling = false
 var shooting = false
@@ -82,9 +83,14 @@ func _physics_process(delta: float) -> void:
 	if right_stick.length() > 0.2:
 		# Right stick is being used - face that direction
 		facing_direction = right_stick.normalized()
+		right_stick_active = true
 	elif direction != Vector2.ZERO:
 		# No right stick input - default to movement direction
 		facing_direction = direction.normalized()
+		right_stick_active = false
+	else:
+		# Neither stick active - clear right stick state
+		right_stick_active = false
 	# else: keep facing previous direction when standing still
 	
 	# Flip sprite and shooting position based on facing direction
@@ -191,11 +197,11 @@ func update_animation():
 	elif direction != Vector2.ZERO:
 		# Moving = automatically in walk_aim
 		set_animation_conditions('is_walking_aiming', true)
-	elif facing_direction != Vector2.ZERO and direction == Vector2.ZERO:
+	elif right_stick_active and direction == Vector2.ZERO:
 		# Standing still but aiming with right stick = idle_aim
 		set_animation_conditions('is_idle_aiming', true)
 	else:
-		# Standing still = idle
+		# Standing still, no right stick = idle
 		set_animation_conditions('is_idle', true)
 
 func set_animation_conditions(condition: String, value: bool):
