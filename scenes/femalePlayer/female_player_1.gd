@@ -26,6 +26,11 @@ var player: bool = true
 
 var overlapping_bodies: Array[Node2D] = []
 
+# Aim angle clamp (degrees from horizontal). Prevents bullets from traveling
+# beyond the angles the arm sprites can visually represent.
+var min_aim_angle_deg: float = -45.0  # max upward angle (negative = up in Godot)
+var max_aim_angle_deg: float = 45.0   # max downward angle (positive = down in Godot)
+
 # Stamina regeneration
 var stamina_regen_cooldown := 4.0  # Seconds to wait before regenerating
 var stamina_regen_rate := 15.0  # Stamina points per second
@@ -154,7 +159,7 @@ func switchWeapon():
 func update_animation():
 	# Update blend position when facing direction exists
 	if facing_direction != Vector2.ZERO:
-		last_shot_position = facing_direction
+		last_shot_position = clamp_aim_direction(facing_direction)
 		update_blend_position()
 	
 	# FIRST: Process inputs to update state variables
@@ -247,6 +252,29 @@ func set_shooting(value):
 		animationTree['parameters/conditions/is_walking_shooting'] = value
 	else:
 		animationTree['parameters/conditions/is_idle_shooting'] = value
+
+func clamp_aim_direction(dir: Vector2) -> Vector2:
+	# Clamp the aim direction so bullets can't travel beyond the angles
+	# that the arm sprites visually support (±45° from horizontal).
+	if dir == Vector2.ZERO:
+		return dir
+
+	var min_rad := deg_to_rad(min_aim_angle_deg)
+	var max_rad := deg_to_rad(max_aim_angle_deg)
+
+	if dir.x >= 0:
+		# Facing right: clamp angle directly (0° = right, range is simple)
+		var angle := dir.angle()
+		angle = clampf(angle, min_rad, max_rad)
+		return Vector2.from_angle(angle)
+	else:
+		# Facing left: mirror to the right side, clamp, then mirror back.
+		# This avoids the ±PI wrapping problem entirely.
+		var mirrored := Vector2(-dir.x, dir.y)
+		var angle := mirrored.angle()
+		angle = clampf(angle, min_rad, max_rad)
+		var result := Vector2.from_angle(angle)
+		return Vector2(-result.x, result.y)
 
 func update_blend_position():
 	# Use facing_direction for all aim/shoot animations (twin-stick support)

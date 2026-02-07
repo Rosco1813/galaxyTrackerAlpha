@@ -63,6 +63,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackArea:disable_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HeadArea:disable_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_x2tc4"]
 resource_name = "damage_crit"
@@ -270,6 +306,53 @@ tracks/3/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackArea:disable_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HeadArea:disable_mode")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_2wyso"]
 resource_name = "death_2"
@@ -320,6 +403,42 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackArea:disable_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HeadArea:disable_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_xrojs"]
@@ -373,6 +492,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [1, 2, 3, 4, 5]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackArea:disable_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HeadArea:disable_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_igtqv"]
 resource_name = "death_headshot"
@@ -423,6 +578,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4, 5, 6]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackArea:disable_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HeadArea:disable_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_fha88"]
@@ -1009,7 +1188,7 @@ states/shoot_right/position = Vector2(127.844, 763.25)
 states/walk_right/node = SubResource("AnimationNodeBlendSpace2D_a5s8j")
 states/walk_right/position = Vector2(368.844, 417.09)
 transitions = ["idle_forward", "walk_right", SubResource("AnimationNodeStateMachineTransition_tokaf"), "walk_right", "idle_forward", SubResource("AnimationNodeStateMachineTransition_h1sro"), "idle_forward", "shoot_right", SubResource("AnimationNodeStateMachineTransition_a802y"), "shoot_right", "idle_forward", SubResource("AnimationNodeStateMachineTransition_x2tc4"), "idle_forward", "damage_light", SubResource("AnimationNodeStateMachineTransition_2wyso"), "damage_light", "idle_forward", SubResource("AnimationNodeStateMachineTransition_xrojs"), "idle_forward", "damage_crit", SubResource("AnimationNodeStateMachineTransition_ffcrg"), "damage_crit", "idle_forward", SubResource("AnimationNodeStateMachineTransition_m1v4e"), "idle_forward", "damage_medium", SubResource("AnimationNodeStateMachineTransition_fqi1y"), "damage_medium", "idle_forward", SubResource("AnimationNodeStateMachineTransition_535y5"), "damage_crit", "death_crit", SubResource("AnimationNodeStateMachineTransition_k1jng"), "damage_light", "death_1", SubResource("AnimationNodeStateMachineTransition_tbiaa"), "damage_medium", "death_2", SubResource("AnimationNodeStateMachineTransition_sbs4h"), "damage_light", "death_headshot", SubResource("AnimationNodeStateMachineTransition_xcok1"), "damage_medium", "death_headshot", SubResource("AnimationNodeStateMachineTransition_02tx7"), "damage_light", "damage_crit", SubResource("AnimationNodeStateMachineTransition_a5s8j"), "damage_medium", "damage_crit", SubResource("AnimationNodeStateMachineTransition_jariv"), "Start", "idle_forward", SubResource("AnimationNodeStateMachineTransition_uaven"), "walk_right", "damage_light", SubResource("AnimationNodeStateMachineTransition_ibnd8"), "damage_light", "walk_right", SubResource("AnimationNodeStateMachineTransition_kq6f5"), "walk_right", "damage_crit", SubResource("AnimationNodeStateMachineTransition_0whtm"), "walk_right", "damage_medium", SubResource("AnimationNodeStateMachineTransition_of4y5"), "damage_medium", "walk_right", SubResource("AnimationNodeStateMachineTransition_26un7"), "shoot_right", "damage_light", SubResource("AnimationNodeStateMachineTransition_4u0fi"), "damage_light", "shoot_right", SubResource("AnimationNodeStateMachineTransition_md865"), "shoot_right", "damage_medium", SubResource("AnimationNodeStateMachineTransition_xtdyi"), "damage_medium", "shoot_right", SubResource("AnimationNodeStateMachineTransition_mhesd"), "shoot_right", "damage_crit", SubResource("AnimationNodeStateMachineTransition_ihyut"), "walk_right", "shoot_right", SubResource("AnimationNodeStateMachineTransition_wmk7g"), "shoot_right", "walk_right", SubResource("AnimationNodeStateMachineTransition_ui07w"), "shoot_right", "death_1", SubResource("AnimationNodeStateMachineTransition_tol0d"), "walk_right", "death_1", SubResource("AnimationNodeStateMachineTransition_iy5ys"), "walk_right", "death_headshot", SubResource("AnimationNodeStateMachineTransition_rkoph"), "shoot_right", "death_headshot", SubResource("AnimationNodeStateMachineTransition_13pp7"), "shoot_right", "death_2", SubResource("AnimationNodeStateMachineTransition_xiyry"), "walk_right", "death_2", SubResource("AnimationNodeStateMachineTransition_vac84")]
-graph_offset = Vector2(-6.89999, 329.118)
+graph_offset = Vector2(140.1, 384.118)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a802y"]
 radius = 1083.58
@@ -1062,6 +1241,7 @@ parameters/walk_right/blend_position = Vector2(-1, -0.00361013)
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+visible = false
 shape = SubResource("CircleShape2D_a802y")
 
 [node name="HeadArea" type="Area2D" parent="."]

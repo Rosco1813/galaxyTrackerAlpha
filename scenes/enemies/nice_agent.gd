@@ -23,6 +23,7 @@ var facing := 1
 var hit_location:String = ''
 var just_hit:bool
 var has_shot:bool = false
+var is_dead:bool = false
 var bullet_spawn_offset_x: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +31,10 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if is_dead:
+		velocity = Vector2.ZERO
+		return
+
 	var target_pos := Globals.get_closest_player_position(global_position)
 	if target_pos == Vector2.ZERO:
 		return
@@ -144,6 +149,8 @@ func apply_hit(damage_amount: int, damage_condition: StringName, death_condition
 	health -= damage_amount
 
 	if damage_tier == "crit":
+		is_dead = true
+		velocity = Vector2.ZERO
 		if String(death_condition) == "is_dead_headshot":
 			die_headshot(direction, true)
 		else:
@@ -151,6 +158,8 @@ func apply_hit(damage_amount: int, damage_condition: StringName, death_condition
 		return
 
 	if health <= 0:
+		is_dead = true
+		velocity = Vector2.ZERO
 		if String(death_condition) == "is_dead_headshot":
 			die_headshot(direction, true)
 		elif damage_tier == "medium":
